@@ -1,0 +1,1815 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB — refined</title>
+    <!-- Google Font & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: #02090e;
+        color: #ffffff;
+      }
+
+      /* ===== NAVBAR — professional, compact ===== */
+      .navbar {
+        width: 100%;
+        height: 80px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        padding: 0 4%;
+        background: #02090e;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        height: 76px;
+        background: rgba(2, 9, 14, 0.96);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      /* ===== BRAND — tighter ===== */
+      .brand {
+        display: flex;
+        align-items: center;
+        min-width: 240px;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 190px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      .brand-name {
+        margin-left: 11px;
+        font-size: 26px;
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: -1px;
+        color: #f0f4f7;
+      }
+
+      .brand-name span {
+        color: #09c8ec;
+      }
+
+      /* ===== NAVIGATION — reduced font, balanced spacing ===== */
+      .nav-menu {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 38px;
+      }
+
+      .nav-link {
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        color: #eef2f5;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.2px;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+
+      .nav-link:hover {
+        color: #09c8ec;
+      }
+
+      /* Active underline – slimmer & closer to text */
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 26px;
+        height: 3px;
+        border-radius: 20px;
+        background: #09c8ec;
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
+      }
+
+      .nav-link.active::after {
+        transform: scaleX(1);
+      }
+
+      /* ===== JOIN BUTTON — compact, refined ===== */
+      .community-btn {
+        min-width: 190px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 18px;
+        background: #09c8ec;
+        color: #031017;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+        transition: all 0.25s ease;
+      }
+
+      .community-btn i {
+        font-size: 20px;
+      }
+
+      .community-btn:hover {
+        transform: translateY(-2px);
+        background: #1ad9f2;
+        box-shadow: 0 8px 25px rgba(11, 210, 237, 0.2);
+      }
+
+      /* ===== MOBILE TOGGLE ===== */
+      .menu-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .menu-toggle span {
+        width: 22px;
+        height: 2px;
+        background: #ffffff;
+        border-radius: 10px;
+        transition: 0.3s;
+      }
+
+      /* ===== MOBILE MENU ===== */
+      .mobile-menu {
+        display: none;
+      }
+
+      /* ===== TABLET (≤1250px) ===== */
+      @media (max-width: 1250px) {
+        .navbar {
+          padding: 0 3%;
+        }
+
+        .brand {
+          min-width: 200px;
+        }
+
+        .brand img {
+          width: 48px;
+          height: 48px;
+        }
+
+        .brand-name {
+          font-size: 23px;
+          margin-left: 9px;
+        }
+
+        .nav-menu {
+          gap: 22px;
+        }
+
+        .nav-link {
+          font-size: 14px;
+        }
+
+        .nav-link::after {
+          bottom: 22px;
+          height: 3px;
+        }
+
+        .community-btn {
+          min-width: 200px;
+          height: 46px;
+          font-size: 14px;
+          padding: 0 18px;
+        }
+
+        .community-btn i {
+          font-size: 18px;
+        }
+      }
+
+      /* ===== MOBILE (≤1050px) ===== */
+      @media (max-width: 1050px) {
+        .navbar {
+          height: 78px;
+        }
+
+        .navbar.scrolled {
+          height: 70px;
+        }
+
+        .nav-menu,
+        .community-btn {
+          display: none;
+        }
+
+        .brand {
+          min-width: auto;
+        }
+
+        .brand img {
+          width: 46px;
+          height: 46px;
+        }
+
+        .brand-name {
+          font-size: 22px;
+          letter-spacing: -0.8px;
+          margin-left: 8px;
+        }
+
+        .menu-toggle {
+          display: flex;
+          margin-left: auto;
+        }
+
+        /* Mobile dropdown */
+        .mobile-menu {
+          position: fixed;
+          top: 78px;
+          left: 0;
+          width: 100%;
+          padding: 18px 6% 28px;
+          background: #02090e;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          z-index: 999;
+          transform: translateY(-120%);
+          transition: transform 0.35s ease;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+          box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.6);
+        }
+
+        .mobile-menu.open {
+          transform: translateY(0);
+        }
+
+        .mobile-menu a {
+          color: #ffffff;
+          text-decoration: none;
+          padding: 14px 4px;
+          font-size: 15px;
+          font-weight: 500;
+          letter-spacing: -0.2px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-menu a:hover {
+          color: #09c8ec;
+        }
+
+        .mobile-community-btn {
+          margin-top: 14px;
+          background: #09c8ec;
+          color: #021017 !important;
+          border-radius: 8px;
+          text-align: center;
+          font-weight: 700 !important;
+          border: none !important;
+          padding: 14px 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-size: 15px;
+        }
+      }
+
+      /* ===== SMALL MOBILE (≤550px) ===== */
+      @media (max-width: 550px) {
+        .navbar {
+          padding: 0 16px;
+        }
+
+        .brand img {
+          width: 40px;
+          height: 40px;
+        }
+
+        .brand-name {
+          font-size: 19px;
+          letter-spacing: -0.5px;
+          margin-left: 7px;
+        }
+
+        .mobile-menu {
+          top: 78px;
+          padding: 16px 5% 26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="navbar" id="navbar">
+      <!-- LOGO + NAME -->
+      <a href="#" class="brand">
+        <img src="Photos/UGFXLABLogo.png" alt="UGFXLAB Logo" />
+        <!-- <span class="brand-name">UGFX<span>LAB</span></span> -->
+      </a>
+
+      <!-- DESKTOP NAV -->
+      <nav class="nav-menu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#community" class="nav-link">Community</a>
+        <a href="#mentorship" class="nav-link">Mentorship</a>
+        <a href="#results" class="nav-link">Results</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- JOIN BUTTON -->
+      <a href="#community" class="community-btn">
+        <i class="fa-brands fa-telegram"></i>
+        <span>Join Free Community</span>
+      </a>
+
+      <!-- HAMBURGER -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#community">Community</a>
+      <a href="#mentorship">Mentorship</a>
+      <a href="#results">Results</a>
+      <a href="#contact">Contact</a>
+      <a href="#community" class="mobile-community-btn">
+        <i class="fa-brands fa-telegram"></i>
+        &nbsp; Join Free Community
+      </a>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      (function () {
+        // Navbar scroll effect
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 30) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuToggle.addEventListener("click", function (e) {
+          e.stopPropagation();
+          mobileMenu.classList.toggle("open");
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll(".mobile-menu a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.remove("open");
+          });
+        });
+
+        // Active link switching (desktop)
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            navLinks.forEach(function (item) {
+              item.classList.remove("active");
+            });
+            this.classList.add("active");
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- --- Hero--- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>UGFXLAB — Trading Education & Mentorship</title>
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== PALETTE ===== */
+      :root {
+        --black: #03070a;
+        --black-soft: #081116;
+        --cyan: #00d9ff;
+        --lime: #b8ff2c;
+        --white: #f5f7f8;
+        --muted: #8b9aa3;
+        --border: rgba(255, 255, 255, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--black);
+        overflow-x: hidden;
+        font-family: "Inter", sans-serif;
+        color: var(--white);
+        /* height: 200vh; */
+      }
+
+      /* =========================================================
+         UGFXLAB HERO — IMAGE + VIDEO BACKGROUND
+      ========================================================= */
+
+      .hero {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 55px 5% 40px;
+
+        overflow: hidden;
+        isolation: isolate;
+        text-align: center;
+
+        background: #02070b;
+      }
+
+      /* VIDEO BACKGROUND */
+      .bg-video {
+        position: absolute;
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        z-index: -3;
+
+        opacity: 0.42;
+
+        filter: brightness(0.48) contrast(1.15) saturate(1.15);
+
+        pointer-events: none;
+      }
+
+      /* IMAGE BACKGROUND */
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        z-index: -2;
+
+        background-image:
+          linear-gradient(
+            90deg,
+            rgba(1, 7, 11, 0.92) 0%,
+            rgba(1, 7, 11, 0.55) 30%,
+            rgba(1, 7, 11, 0.3) 50%,
+            rgba(1, 7, 11, 0.65) 75%,
+            rgba(1, 7, 11, 0.94) 100%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(1, 7, 11, 0.72) 0%,
+            rgba(1, 7, 11, 0.2) 45%,
+            rgba(1, 7, 11, 0.88) 100%
+          ),
+          url("Photos/Transparent Center Bull Market Banner.png");
+
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        opacity: 0.95;
+      }
+
+      /* DARK CINEMATIC OVERLAY */
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+
+        z-index: -1;
+
+        background:
+          radial-gradient(
+            circle at 50% 42%,
+            rgba(0, 217, 255, 0.11),
+            transparent 32%
+          ),
+          radial-gradient(
+            circle at 15% 65%,
+            rgba(0, 217, 255, 0.1),
+            transparent 32%
+          ),
+          radial-gradient(
+            circle at 85% 65%,
+            rgba(184, 255, 44, 0.07),
+            transparent 30%
+          ),
+          linear-gradient(180deg, rgba(2, 7, 11, 0.15), rgba(2, 7, 11, 0.48));
+      }
+
+      /* SUBTLE TRADING GRID */
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+
+        z-index: -1;
+
+        background-image:
+          linear-gradient(rgba(0, 217, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 217, 255, 0.035) 1px, transparent 1px);
+
+        background-size: 70px 70px;
+
+        mask-image: linear-gradient(
+          to bottom,
+          transparent,
+          black 25%,
+          black 65%,
+          transparent 100%
+        );
+
+        pointer-events: none;
+      }
+
+      /* AMBIENT GLOW */
+      .blur {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(130px);
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .blur1 {
+        width: 520px;
+        height: 520px;
+
+        background: rgba(0, 217, 255, 0.08);
+
+        top: -180px;
+        left: -180px;
+      }
+
+      .blur2 {
+        width: 450px;
+        height: 450px;
+
+        background: rgba(184, 255, 44, 0.055);
+
+        right: -180px;
+        bottom: -180px;
+      }
+
+      .blur3 {
+        width: 350px;
+        height: 350px;
+
+        background: rgba(0, 217, 255, 0.055);
+
+        left: 45%;
+        top: 40%;
+      }
+
+      /* ===== FIXED CONTENT BLOCK ===== */
+      .hero-container {
+        position: relative;
+        z-index: 5;
+
+        width: 100%;
+        max-width: 1080px;
+
+        margin: 0 auto;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        min-height: 650px;
+      }
+
+      /* eyebrow */
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 26px;
+        border-radius: 50px;
+        background: rgba(8, 17, 22, 0.75);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(14px);
+        gap: 10px;
+        box-shadow: 0 0 30px rgba(0, 217, 255, 0.04);
+        margin-bottom: 36px;
+        flex-shrink: 0;
+      }
+      .hero-badge i {
+        color: var(--lime);
+        font-size: 0.85rem;
+      }
+      .hero-badge span {
+        color: var(--white);
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      /* headline wrapper — fixed height */
+      .hero-title-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 130px; /* fixed height prevents any movement */
+        margin-bottom: 60px;
+        flex-shrink: 0;
+      }
+
+      .typed-headline {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(3rem, 6.2vw, 65px);
+        line-height: 0.98;
+        font-weight: 700;
+        letter-spacing: -3px;
+        display: inline;
+        color: #ffffff;
+        text-shadow: 0 0 40px rgba(255, 255, 255, 0.06);
+        width: 680px;
+      }
+
+      /* white part of the headline */
+      .typing-white {
+        display: inline;
+        white-space: normal;
+        color: #ffffff;
+        -webkit-text-fill-color: #ffffff;
+      }
+
+      /* cyan part of the headline */
+      .typing-cyan {
+        display: inline;
+        white-space: normal;
+        background: linear-gradient(
+          90deg,
+          #ffffff 0%,
+          #ffffff 55%,
+          #00d9ff 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 0 25px rgba(0, 217, 255, 0.18));
+      }
+
+      .typed-cursor {
+        display: inline;
+        margin-left: 4px;
+        vertical-align: baseline;
+        font-size: inherit;
+        color: var(--cyan);
+        opacity: 1;
+        animation: blink 0.8s infinite;
+        font-weight: 300;
+        text-shadow: 0 0 20px var(--cyan);
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.1;
+        }
+      }
+
+      /* body text */
+      .hero-text {
+        max-width: 680px;
+        color: var(--muted);
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin: 0 auto 28px auto;
+        font-weight: 400;
+        flex-shrink: 0;
+      }
+
+      .hero-text strong {
+        color: var(--white);
+        font-weight: 600;
+      }
+
+      /* ===== 4 FEATURE POINTS ===== */
+      .hero-features {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 26px;
+
+        margin: 18px 0 30px;
+
+        width: 100%;
+      }
+
+      .hero-feature {
+        display: flex;
+        align-items: center;
+
+        gap: 12px;
+
+        text-align: left;
+
+        color: #ffffff;
+
+        font-size: 0.86rem;
+
+        font-weight: 600;
+
+        line-height: 1.35;
+
+        white-space: nowrap;
+      }
+
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(5, 18, 25, 0.78);
+
+        border: 1px solid rgba(0, 217, 255, 0.15);
+
+        color: #00d9ff;
+
+        font-size: 1.05rem;
+
+        box-shadow: 0 0 25px rgba(0, 217, 255, 0.08);
+      }
+
+      .hero-feature:nth-child(4) .feature-icon {
+        color: #b8ff2c;
+      }
+
+      .hero-feature:nth-child(6) .feature-icon {
+        color: #00d9ff;
+      }
+
+      .hero-feature:nth-child(8) .feature-icon {
+        color: #b8ff2c;
+      }
+
+      .feature-line {
+        width: 1px;
+        height: 35px;
+
+        background: rgba(255, 255, 255, 0.13);
+      }
+
+      /* CTA */
+      .hero-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 18px;
+
+        margin-top: 4px;
+      }
+
+      .primary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 14px;
+
+        min-width: 350px;
+
+        padding: 19px 38px;
+
+        border-radius: 60px;
+
+        background: linear-gradient(90deg, #00d9ff, #00ff87);
+        color: #000000;
+
+        font-size: 1rem;
+
+        font-weight: 800;
+
+        text-decoration: none;
+
+        border: none;
+
+        transition: 0.35s ease;
+      }
+
+      .primary-btn:hover {
+        transform: translateY(-4px);
+
+        box-shadow:
+          0 15px 45px rgba(0, 217, 255, 0.2),
+          0 10px 35px rgba(184, 255, 44, 0.15);
+      }
+
+      .secondary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 12px;
+
+        min-width: 250px;
+
+        padding: 18px 32px;
+
+        border-radius: 60px;
+
+        border: 1px solid rgba(255, 255, 255, 0.65);
+
+        color: #ffffff;
+
+        background: rgba(2, 7, 11, 0.25);
+
+        backdrop-filter: blur(10px);
+
+        text-decoration: none;
+
+        font-size: 1rem;
+
+        font-weight: 700;
+
+        transition: 0.3s ease;
+      }
+
+      .secondary-btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+
+        border-color: #00d9ff;
+
+        transform: translateY(-3px);
+      }
+
+      /* trust / community line */
+      .hero-trust {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 18px;
+
+        margin-top: 28px;
+
+        color: rgba(255, 255, 255, 0.65);
+
+        font-size: 0.72rem;
+
+        font-weight: 600;
+
+        letter-spacing: 3px;
+      }
+
+      .trust-line {
+        width: 45px;
+        height: 1px;
+
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 850px) {
+        .hero-container {
+          min-height: 560px;
+        }
+        .hero-title-wrapper {
+          height: 110px;
+        }
+      }
+
+      @media (max-width: 750px) {
+        .hero {
+          padding: 100px 20px 80px;
+        }
+        .hero-container {
+          min-height: 520px;
+        }
+        .hero-title-wrapper {
+          height: 100px;
+          margin-bottom: 20px;
+        }
+        .hero-text {
+          font-size: 1rem;
+          padding: 0 8px;
+          margin-bottom: 22px;
+        }
+        .primary-btn {
+          padding: 16px 34px;
+          font-size: 1rem;
+        }
+        .hero-badge {
+          padding: 8px 18px;
+          margin-bottom: 28px;
+        }
+        .hero-badge span {
+          font-size: 0.72rem;
+        }
+        .hero-trust {
+          margin-top: 34px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .hero {
+          padding: 80px 16px 60px;
+        }
+        .hero-container {
+          min-height: 480px;
+        }
+        .hero-title-wrapper {
+          height: 80px;
+          margin-bottom: 16px;
+        }
+        .typed-headline {
+          font-size: clamp(1.7rem, 8vw, 2.4rem);
+          letter-spacing: -1px;
+        }
+        .hero-text {
+          font-size: 0.92rem;
+          margin-bottom: 18px;
+        }
+        .hero-badge {
+          padding: 7px 14px;
+          margin-bottom: 22px;
+        }
+        .hero-badge span {
+          font-size: 0.65rem;
+          letter-spacing: 0.3px;
+        }
+        .hero-badge i {
+          font-size: 0.7rem;
+        }
+        .primary-btn {
+          padding: 14px 28px;
+          font-size: 0.92rem;
+          gap: 10px;
+        }
+        .trust-info h4 {
+          font-size: 0.8rem;
+        }
+        .trust-info p {
+          font-size: 0.68rem;
+        }
+        .hero-trust {
+          padding: 10px 16px;
+          gap: 12px;
+          margin-top: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <video autoplay muted loop playsinline class="bg-video">
+        <source src="Photos/ES-2.webm" type="video/webm" />
+      </video>
+
+      <div class="hero-overlay"></div>
+      <div class="hero-grid"></div>
+      <!-- <div class="blur blur1"></div>
+      <div class="blur blur2"></div>
+      <div class="blur blur3"></div> -->
+
+      <div class="hero-container">
+        <!-- EYEBROW -->
+        <div class="hero-badge">
+          <i class="fa-solid fa-bolt"></i>
+          <span>TRADING EDUCATION • MENTORSHIP • COMMUNITY</span>
+        </div>
+
+        <!-- TYPING HEADLINE — split white / cyan -->
+        <div class="hero-title-wrapper">
+          <div class="typed-headline">
+            <span class="typing-white" id="typed-white"></span>
+            <span class="typing-cyan" id="typed-cyan"></span>
+            <span class="typed-cursor" id="static-cursor">|</span>
+          </div>
+        </div>
+
+        <!-- MAIN TEXT -->
+        <p class="hero-text">
+          Build a <strong>structured trading process</strong>, understand your
+          edge, manage risk and learn how to
+          <strong>execute with consistency</strong>.
+        </p>
+
+        <!-- 4 FEATURE POINTS -->
+        <!-- <div class="hero-features">
+          <div class="hero-feature">
+            <div class="feature-icon">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            <span>Structured<br />Learning</span>
+          </div>
+
+          <div class="feature-line"></div>
+
+          <div class="hero-feature">
+            <div class="feature-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <span>Practical<br />Strategies</span>
+          </div>
+
+          <div class="feature-line"></div>
+
+          <div class="hero-feature">
+            <div class="feature-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <span>Mentorship<br />& Support</span>
+          </div>
+
+          <div class="feature-line"></div>
+
+          <div class="hero-feature">
+            <div class="feature-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <span>Real Market<br />Application</span>
+          </div>
+        </div> -->
+
+        <!-- CTA -->
+        <div class="hero-buttons">
+          <a href="#" class="primary-btn">
+            Explore UGFXLAB
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+          <a href="#" class="secondary-btn">
+            <i class="fa-solid fa-play"></i>
+            Watch Intro
+          </a>
+        </div>
+
+        <!-- COMMUNITY LINE -->
+        <div class="hero-trust">
+          <span class="trust-line"></span>
+
+          <span> JOIN A GROWING COMMUNITY OF SERIOUS TRADERS </span>
+
+          <span class="trust-line"></span>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        // ========== TYPING EFFECT — split white / cyan ==========
+        const typedWhite = document.getElementById("typed-white");
+        const typedCyan = document.getElementById("typed-cyan");
+        const cursorSpan = document.getElementById("static-cursor");
+
+        if (typedWhite && typedCyan) {
+          // Each message has a white part and a cyan part
+          const messages = [
+            { white: "Become the Trader ", cyan: "You Know You Can Be" },
+            { white: "Build Your Edge ", cyan: "Master Consistency" },
+            { white: "Structured Process ", cyan: "Repeatable Results" },
+            { white: "Trade with Clarity ", cyan: "Execute with Confidence" },
+          ];
+
+          let messageIndex = 0;
+          let charPos = 0;
+          let isDeleting = false;
+          let typingTimeout = null;
+
+          function updateTyping() {
+            const msg = messages[messageIndex % messages.length];
+            const fullWhite = msg.white;
+            const fullCyan = msg.cyan;
+
+            // Total characters in the full message
+            const totalLen = fullWhite.length + fullCyan.length;
+
+            if (!isDeleting && charPos <= totalLen) {
+              // Determine how much of the white and cyan parts to show
+              const whiteChars = Math.min(charPos, fullWhite.length);
+              const cyanChars = Math.max(0, charPos - fullWhite.length);
+
+              typedWhite.textContent = fullWhite.substring(0, whiteChars);
+              typedCyan.textContent = fullCyan.substring(0, cyanChars);
+
+              if (cursorSpan) cursorSpan.style.display = "inline";
+
+              if (charPos === totalLen) {
+                // Fully typed, pause then start deleting
+                typingTimeout = setTimeout(() => {
+                  isDeleting = true;
+                  updateTyping();
+                }, 2800);
+                return;
+              } else {
+                charPos++;
+                typingTimeout = setTimeout(updateTyping, 65);
+              }
+            } else if (isDeleting && charPos >= 0) {
+              const whiteChars = Math.min(charPos, fullWhite.length);
+              const cyanChars = Math.max(0, charPos - fullWhite.length);
+
+              typedWhite.textContent = fullWhite.substring(0, whiteChars);
+              typedCyan.textContent = fullCyan.substring(0, cyanChars);
+
+              if (cursorSpan) cursorSpan.style.display = "inline";
+
+              if (charPos === 0) {
+                // Finished deleting, move to next message
+                isDeleting = false;
+                messageIndex++;
+                charPos = 0;
+                typingTimeout = setTimeout(updateTyping, 200);
+              } else {
+                charPos--;
+                typingTimeout = setTimeout(updateTyping, 35);
+              }
+            }
+          }
+
+          typedWhite.textContent = "";
+          typedCyan.textContent = "";
+          if (cursorSpan) cursorSpan.style.display = "inline";
+          updateTyping();
+        }
+
+        // ========== VIDEO FALLBACK ==========
+        const videoBg = document.querySelector(".bg-video");
+        if (videoBg) {
+          videoBg.addEventListener("error", function () {
+            this.style.display = "none";
+          });
+          videoBg.play().catch(() => {});
+        }
+
+        console.log(
+          "UGFXLAB — fixed content space, white→cyan headline, stable layout.",
+        );
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ---- about ---   -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>More Than Just Trading — UGFXLAB</title>
+
+    <style>
+      :root {
+        --black: #03070a;
+        --black-soft: #081116;
+        --cyan: #09c8ec;
+        --white: #f5f7f8;
+        --text: #91a0a8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--white);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      /* =====================================================
+   SECTION
+===================================================== */
+
+      .expertise {
+        width: 100%;
+        min-height: 100vh;
+        background: var(--black);
+
+        padding: 72px 30px 70px;
+      }
+
+      /* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+      .expertise-inner {
+        width: 100%;
+        max-width: 1250px;
+        margin: 0 auto;
+      }
+
+      /* =====================================================
+   HEADING
+===================================================== */
+
+      .expertise-title {
+        font-size: 58px;
+        line-height: 1.02;
+        font-weight: 400;
+        letter-spacing: -2.4px;
+        width: 800px;
+        max-width: 100%;
+        margin-bottom: 25px;
+      }
+
+      .expertise-title .cyan-text {
+        color: var(--cyan);
+        display: block;
+      }
+
+      /* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+      .expertise-layout {
+        display: grid;
+
+        grid-template-columns:
+          minmax(0, 1.38fr)
+          minmax(0, 1fr);
+
+        gap: 50px;
+
+        align-items: start;
+
+        position: relative;
+      }
+
+      /* =====================================================
+   VIDEO / IMAGE
+===================================================== */
+
+      .expertise-image {
+        width: 100%;
+        height: 418px;
+
+        border-radius: 14px;
+
+        overflow: hidden;
+
+        background: var(--black-soft);
+
+        position: relative;
+      }
+
+      /* Video element fills container */
+      .expertise-image video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      .expertise-image:hover video {
+        transform: scale(1.025);
+      }
+
+      /* Optional play button overlay for video feel */
+      .video-play-badge {
+        position: absolute;
+
+        bottom: 20px;
+        right: 20px;
+
+        width: 60px;
+        height: 60px;
+
+        border-radius: 50%;
+
+        background: rgba(9, 200, 236, 0.9);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: var(--black);
+
+        font-size: 24px;
+
+        pointer-events: none;
+
+        box-shadow: 0 8px 24px rgba(9, 200, 236, 0.3);
+      }
+
+      /* =====================================================
+   RIGHT SIDE
+===================================================== */
+
+      .expertise-right {
+        position: relative;
+
+        padding-top: 34px;
+      }
+
+      /* =====================================================
+   CYAN STAR
+===================================================== */
+
+      .expertise-star {
+        position: absolute;
+
+        top: -104px;
+        left: -50px;
+
+        width: 108px;
+        height: 108px;
+
+        pointer-events: none;
+      }
+
+      /* vertical diamond */
+
+      .expertise-star::before {
+        content: "";
+
+        position: absolute;
+
+        width: 8px;
+        height: 108px;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        background: var(--cyan);
+
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+
+      /* horizontal diamond */
+
+      .expertise-star::after {
+        content: "";
+
+        position: absolute;
+
+        width: 108px;
+        height: 8px;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        background: var(--cyan);
+
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+
+      /* white center */
+
+      .star-center {
+        position: absolute;
+
+        width: 15px;
+        height: 15px;
+
+        background: var(--white);
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        z-index: 5;
+      }
+
+      /* =====================================================
+   DESCRIPTION
+===================================================== */
+
+      .expertise-description {
+        width: 100%;
+        max-width: 585px;
+
+        color: var(--text);
+
+        font-size: 17px;
+        line-height: 1.58;
+
+        font-weight: 400;
+
+        margin: 0 0 48px;
+      }
+
+      .expertise-description .highlight {
+        color: var(--white);
+      }
+
+      /* =====================================================
+   BUTTON
+===================================================== */
+
+      .story-btn {
+        display: inline-flex;
+        align-items: center;
+
+        height: 60px;
+
+        padding-left: 28px;
+        padding-right: 8px;
+
+        gap: 22px;
+
+        color: var(--white);
+
+        text-decoration: none;
+
+        font-size: 17px;
+        font-weight: 400;
+
+        border: 1px solid rgba(9, 200, 236, 0.65);
+
+        border-radius: 50px;
+
+        transition:
+          background 0.3s ease,
+          border-color 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .story-btn-arrow {
+        width: 43px;
+        height: 43px;
+
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: var(--cyan);
+
+        color: var(--black);
+
+        font-size: 22px;
+
+        transition: transform 0.3s ease;
+      }
+
+      .story-btn:hover {
+        background: rgba(9, 200, 236, 0.06);
+
+        border-color: var(--cyan);
+
+        transform: translateY(-2px);
+      }
+
+      .story-btn:hover .story-btn-arrow {
+        transform: translateX(4px);
+      }
+
+      /* =====================================================
+   DESKTOP 1250px
+===================================================== */
+
+      @media (max-width: 1250px) {
+        .expertise {
+          padding-left: 28px;
+          padding-right: 28px;
+        }
+
+        .expertise-title {
+          font-size: 58px;
+        }
+
+        .expertise-layout {
+          gap: 45px;
+        }
+
+        .expertise-image {
+          height: 390px;
+        }
+
+        .expertise-description {
+          font-size: 18px;
+        }
+      }
+
+      /* =====================================================
+   TABLET
+===================================================== */
+
+      @media (max-width: 900px) {
+        .expertise {
+          padding: 60px 24px;
+        }
+
+        .expertise-title {
+          font-size: 52px;
+          margin-bottom: 42px;
+        }
+
+        .expertise-layout {
+          grid-template-columns: 1fr;
+          gap: 45px;
+        }
+
+        .expertise-image {
+          height: 420px;
+        }
+
+        .expertise-right {
+          padding-top: 0;
+        }
+
+        .expertise-star {
+          position: relative;
+
+          top: auto;
+          left: auto;
+
+          margin-bottom: 25px;
+        }
+
+        .expertise-description {
+          max-width: 650px;
+        }
+      }
+
+      /* =====================================================
+   MOBILE
+===================================================== */
+
+      @media (max-width: 600px) {
+        .expertise {
+          padding: 50px 18px;
+        }
+
+        .expertise-title {
+          font-size: 43px;
+          letter-spacing: -1.6px;
+
+          margin-bottom: 32px;
+        }
+
+        .expertise-layout {
+          gap: 38px;
+        }
+
+        .expertise-image {
+          height: 300px;
+          border-radius: 11px;
+        }
+
+        .expertise-description {
+          font-size: 16px;
+          line-height: 1.6;
+
+          margin-bottom: 32px;
+        }
+
+        .expertise-star {
+          width: 75px;
+          height: 75px;
+        }
+
+        .expertise-star::before {
+          height: 75px;
+          width: 6px;
+        }
+
+        .expertise-star::after {
+          width: 75px;
+          height: 6px;
+        }
+
+        .star-center {
+          width: 11px;
+          height: 11px;
+        }
+
+        .story-btn {
+          height: 56px;
+          font-size: 16px;
+        }
+
+        .story-btn-arrow {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="expertise">
+      <div class="expertise-inner">
+        <!-- ==========================================
+             HEADING
+        =========================================== -->
+
+        <h1 class="expertise-title">
+          Stop Searching for the
+
+          <span class="cyan-text"> Next Strategy. </span>
+        </h1>
+
+        <!-- ==========================================
+             TWO COLUMN CONTENT
+        =========================================== -->
+
+        <div class="expertise-layout">
+          <!-- ======================================
+                 VIDEO (REPLACED IMAGE)
+            ======================================= -->
+
+          <div class="expertise-image">
+            <video
+              controls
+              playsinline
+              poster="https://images.pexels.com/photos/27051702/pexels-photo-27051702.jpeg?auto=compress&cs=tinysrgb&w=1400"
+            >
+              <source
+                src="https://www.pexels.com/download/video/35606120/"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+            <!-- <div class="video-play-badge">▶</div> -->
+          </div>
+
+          <!-- ======================================
+                 RIGHT CONTENT
+            ======================================= -->
+
+          <div class="expertise-right">
+            <!-- CYAN STAR -->
+
+            <div class="expertise-star">
+              <div class="star-center"></div>
+            </div>
+
+            <!-- DESCRIPTION -->
+
+            <p class="expertise-description">
+              MORE THAN JUST TRADING
+              <br /><br />
+              Trading isn't about finding a perfect strategy that wins every
+              trade. It's about developing an edge, understanding the market,
+              managing your risk and becoming disciplined enough to execute your
+              process repeatedly.
+              <br /><br />
+              At
+
+              <span class="highlight"> UGFXLAB </span>
+
+              , we help traders build that foundation through practical
+              education, market analysis, mentorship and a community of traders
+              walking the same path.
+            </p>
+
+            <!-- BUTTON -->
+
+            <a href="#" class="story-btn">
+              <span> Explore Our Community </span>
+
+              <span class="story-btn-arrow"> → </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      /* =====================================================
+   SIMPLE SCROLL REVEAL
+===================================================== */
+
+      const section = document.querySelector(".expertise");
+
+      const title = document.querySelector(".expertise-title");
+      const image = document.querySelector(".expertise-image");
+      const right = document.querySelector(".expertise-right");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              title.style.opacity = "1";
+              title.style.transform = "translateY(0)";
+
+              image.style.opacity = "1";
+              image.style.transform = "translateY(0)";
+
+              right.style.opacity = "1";
+              right.style.transform = "translateY(0)";
+
+              observer.unobserve(section);
+            }
+          });
+        },
+        {
+          threshold: 0.15,
+        },
+      );
+
+      /* Initial state */
+
+      title.style.opacity = "0";
+      title.style.transform = "translateY(25px)";
+      title.style.transition = "all .7s ease";
+
+      image.style.opacity = "0";
+      image.style.transform = "translateY(25px)";
+      image.style.transition = "all .8s ease .1s";
+
+      right.style.opacity = "0";
+      right.style.transform = "translateY(25px)";
+      right.style.transition = "all .8s ease .2s";
+
+      observer.observe(section);
+    </script>
+  </body>
+</html>

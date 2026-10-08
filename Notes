@@ -1,0 +1,18 @@
+My pick: Electric Lime — #B8FF2C
+It would work extremely well with your current palette:
+
+- Primary Cyan: #00D9FF
+- Deep Black: #03070A
+- White: #F5F7F8
+- NEW Accent — Electric Lime: #B8FF2C
+  Where to use the lime
+  Don't use it everywhere. Keep it as a small premium highlight
+
+color pallele :
+--black: #03070A;
+--black-soft: #081116;
+--cyan: #09c8ec;
+--lime: #B8FF2C;
+--white: #F5F7F8;
+--muted: #8B9AA3;
+--border: rgba(255,255,255,0.10);

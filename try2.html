@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>More Than Just Trading — UGFXLAB</title>
+
+    <style>
+      :root {
+        --black: #03070a;
+        --black-soft: #081116;
+        --cyan: #09c8ec;
+        --white: #f5f7f8;
+        --text: #91a0a8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--white);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      /* =====================================================
+   SECTION
+===================================================== */
+
+      .expertise {
+        width: 100%;
+        min-height: 100vh;
+        background: var(--black);
+
+        padding: 72px 30px 70px;
+      }
+
+      /* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
+      .expertise-inner {
+        width: 100%;
+        max-width: 1250px;
+        margin: 0 auto;
+      }
+
+      /* =====================================================
+   HEADING
+===================================================== */
+
+      .expertise-title {
+        font-size: 58px;
+        line-height: 1.02;
+        font-weight: 400;
+        letter-spacing: -2.4px;
+        width: 800px;
+        max-width: 100%;
+        margin-bottom: 25px;
+      }
+
+      .expertise-title .cyan-text {
+        color: var(--cyan);
+        display: block;
+      }
+
+      /* =====================================================
+   MAIN CONTENT
+===================================================== */
+
+      .expertise-layout {
+        display: grid;
+
+        grid-template-columns:
+          minmax(0, 1.38fr)
+          minmax(0, 1fr);
+
+        gap: 50px;
+
+        align-items: start;
+
+        position: relative;
+      }
+
+      /* =====================================================
+   VIDEO / IMAGE
+===================================================== */
+
+      .expertise-image {
+        width: 100%;
+        height: 418px;
+
+        border-radius: 14px;
+
+        overflow: hidden;
+
+        background: var(--black-soft);
+
+        position: relative;
+      }
+
+      /* Video element fills container */
+      .expertise-image video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      .expertise-image:hover video {
+        transform: scale(1.025);
+      }
+
+      /* Optional play button overlay for video feel */
+      .video-play-badge {
+        position: absolute;
+
+        bottom: 20px;
+        right: 20px;
+
+        width: 60px;
+        height: 60px;
+
+        border-radius: 50%;
+
+        background: rgba(9, 200, 236, 0.9);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: var(--black);
+
+        font-size: 24px;
+
+        pointer-events: none;
+
+        box-shadow: 0 8px 24px rgba(9, 200, 236, 0.3);
+      }
+
+      /* =====================================================
+   RIGHT SIDE
+===================================================== */
+
+      .expertise-right {
+        position: relative;
+
+        padding-top: 34px;
+      }
+
+      /* =====================================================
+   CYAN STAR
+===================================================== */
+
+      .expertise-star {
+        position: absolute;
+
+        top: -104px;
+        left: -50px;
+
+        width: 108px;
+        height: 108px;
+
+        pointer-events: none;
+      }
+
+      /* vertical diamond */
+
+      .expertise-star::before {
+        content: "";
+
+        position: absolute;
+
+        width: 8px;
+        height: 108px;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        background: var(--cyan);
+
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+
+      /* horizontal diamond */
+
+      .expertise-star::after {
+        content: "";
+
+        position: absolute;
+
+        width: 108px;
+        height: 8px;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        background: var(--cyan);
+
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+
+      /* white center */
+
+      .star-center {
+        position: absolute;
+
+        width: 15px;
+        height: 15px;
+
+        background: var(--white);
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        z-index: 5;
+      }
+
+      /* =====================================================
+   DESCRIPTION
+===================================================== */
+
+      .expertise-description {
+        width: 100%;
+        max-width: 585px;
+
+        color: var(--text);
+
+        font-size: 19px;
+        line-height: 1.58;
+
+        font-weight: 400;
+
+        margin: 0 0 48px;
+      }
+
+      .expertise-description .highlight {
+        color: var(--white);
+      }
+
+      /* =====================================================
+   BUTTON
+===================================================== */
+
+      .story-btn {
+        display: inline-flex;
+        align-items: center;
+
+        height: 60px;
+
+        padding-left: 28px;
+        padding-right: 8px;
+
+        gap: 22px;
+
+        color: var(--white);
+
+        text-decoration: none;
+
+        font-size: 17px;
+        font-weight: 400;
+
+        border: 1px solid rgba(9, 200, 236, 0.65);
+
+        border-radius: 50px;
+
+        transition:
+          background 0.3s ease,
+          border-color 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .story-btn-arrow {
+        width: 43px;
+        height: 43px;
+
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: var(--cyan);
+
+        color: var(--black);
+
+        font-size: 22px;
+
+        transition: transform 0.3s ease;
+      }
+
+      .story-btn:hover {
+        background: rgba(9, 200, 236, 0.06);
+
+        border-color: var(--cyan);
+
+        transform: translateY(-2px);
+      }
+
+      .story-btn:hover .story-btn-arrow {
+        transform: translateX(4px);
+      }
+
+      /* =====================================================
+   DESKTOP 1250px
+===================================================== */
+
+      @media (max-width: 1250px) {
+        .expertise {
+          padding-left: 28px;
+          padding-right: 28px;
+        }
+
+        .expertise-title {
+          font-size: 58px;
+        }
+
+        .expertise-layout {
+          gap: 45px;
+        }
+
+        .expertise-image {
+          height: 390px;
+        }
+
+        .expertise-description {
+          font-size: 18px;
+        }
+      }
+
+      /* =====================================================
+   TABLET
+===================================================== */
+
+      @media (max-width: 900px) {
+        .expertise {
+          padding: 60px 24px;
+        }
+
+        .expertise-title {
+          font-size: 52px;
+          margin-bottom: 42px;
+        }
+
+        .expertise-layout {
+          grid-template-columns: 1fr;
+          gap: 45px;
+        }
+
+        .expertise-image {
+          height: 420px;
+        }
+
+        .expertise-right {
+          padding-top: 0;
+        }
+
+        .expertise-star {
+          position: relative;
+
+          top: auto;
+          left: auto;
+
+          margin-bottom: 25px;
+        }
+
+        .expertise-description {
+          max-width: 650px;
+        }
+      }
+
+      /* =====================================================
+   MOBILE
+===================================================== */
+
+      @media (max-width: 600px) {
+        .expertise {
+          padding: 50px 18px;
+        }
+
+        .expertise-title {
+          font-size: 43px;
+          letter-spacing: -1.6px;
+
+          margin-bottom: 32px;
+        }
+
+        .expertise-layout {
+          gap: 38px;
+        }
+
+        .expertise-image {
+          height: 300px;
+          border-radius: 11px;
+        }
+
+        .expertise-description {
+          font-size: 16px;
+          line-height: 1.6;
+
+          margin-bottom: 32px;
+        }
+
+        .expertise-star {
+          width: 75px;
+          height: 75px;
+        }
+
+        .expertise-star::before {
+          height: 75px;
+          width: 6px;
+        }
+
+        .expertise-star::after {
+          width: 75px;
+          height: 6px;
+        }
+
+        .star-center {
+          width: 11px;
+          height: 11px;
+        }
+
+        .story-btn {
+          height: 56px;
+          font-size: 16px;
+        }
+
+        .story-btn-arrow {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="expertise">
+      <div class="expertise-inner">
+        <!-- ==========================================
+             HEADING
+        =========================================== -->
+
+        <h1 class="expertise-title">
+          Stop Searching for the
+
+          <span class="cyan-text"> Next Strategy. </span>
+        </h1>
+
+        <!-- ==========================================
+             TWO COLUMN CONTENT
+        =========================================== -->
+
+        <div class="expertise-layout">
+          <!-- ======================================
+                 VIDEO (REPLACED IMAGE)
+            ======================================= -->
+
+          <div class="expertise-image">
+            <video
+              controls
+              playsinline
+              poster="https://images.pexels.com/photos/27051702/pexels-photo-27051702.jpeg?auto=compress&cs=tinysrgb&w=1400"
+            >
+              <source
+                src="https://www.pexels.com/download/video/35606120/"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+            <!-- <div class="video-play-badge">▶</div> -->
+          </div>
+
+          <!-- ======================================
+                 RIGHT CONTENT
+            ======================================= -->
+
+          <div class="expertise-right">
+            <!-- CYAN STAR -->
+
+            <div class="expertise-star">
+              <div class="star-center"></div>
+            </div>
+
+            <!-- DESCRIPTION -->
+
+            <p class="expertise-description">
+              MORE THAN JUST TRADING
+              <br /><br />
+              Trading isn't about finding a perfect strategy that wins every
+              trade. It's about developing an edge, understanding the market,
+              managing your risk and becoming disciplined enough to execute your
+              process repeatedly.
+              <br /><br />
+              At
+
+              <span class="highlight"> UGFXLAB </span>
+
+              , we help traders build that foundation through practical
+              education, market analysis, mentorship and a community of traders
+              walking the same path.
+            </p>
+
+            <!-- BUTTON -->
+
+            <a href="#" class="story-btn">
+              <span> Explore Our Community </span>
+
+              <span class="story-btn-arrow"> → </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      /* =====================================================
+   SIMPLE SCROLL REVEAL
+===================================================== */
+
+      const section = document.querySelector(".expertise");
+
+      const title = document.querySelector(".expertise-title");
+      const image = document.querySelector(".expertise-image");
+      const right = document.querySelector(".expertise-right");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              title.style.opacity = "1";
+              title.style.transform = "translateY(0)";
+
+              image.style.opacity = "1";
+              image.style.transform = "translateY(0)";
+
+              right.style.opacity = "1";
+              right.style.transform = "translateY(0)";
+
+              observer.unobserve(section);
+            }
+          });
+        },
+        {
+          threshold: 0.15,
+        },
+      );
+
+      /* Initial state */
+
+      title.style.opacity = "0";
+      title.style.transform = "translateY(25px)";
+      title.style.transition = "all .7s ease";
+
+      image.style.opacity = "0";
+      image.style.transform = "translateY(25px)";
+      image.style.transition = "all .8s ease .1s";
+
+      right.style.opacity = "0";
+      right.style.transform = "translateY(25px)";
+      right.style.transition = "all .8s ease .2s";
+
+      observer.observe(section);
+    </script>
+  </body>
+</html>
