@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB | Why Choose Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        background: #000;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: Inter, Arial, sans-serif;
+        background: #000;
+        color: #f7f7f7;
+      }
+      .why-section {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        width: 100%;
+        padding: 76px 24px 84px;
+        background: #000;
+      }
+      .why-section:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: -180px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(900px, 100%);
+        height: 420px;
+        background: radial-gradient(
+          ellipse,
+          rgba(0, 229, 255, 0.09),
+          transparent 68%
+        );
+        pointer-events: none;
+      }
+      .why-inner {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .why-heading {
+        text-align: center;
+        margin: 0 auto 62px;
+        max-width: 760px;
+      }
+      .eyebrow {
+        display: inline-block;
+        color: #00e5ff;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 19px;
+      }
+      .why-heading h2 {
+        font-size: clamp(32px, 4vw, 44px);
+        line-height: 1.14;
+        letter-spacing: -1.25px;
+        font-weight: 800;
+        color: #fff;
+        margin: 0 auto 19px;
+      }
+      .why-heading h2 span {
+        display: block;
+        background: linear-gradient(100deg, #b3f5ff 8%, #00e5ff 85%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .why-heading p {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #b9b9b9;
+        font-weight: 400;
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 25px;
+      }
+      .feature-card {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        min-height: 258px;
+        padding: 31px 31px 27px;
+        text-align: left;
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        border-radius: 10px;
+        background:
+          radial-gradient(
+            ellipse at 100% 0%,
+            rgba(0, 229, 255, 0.1),
+            transparent 43%
+          ),
+          linear-gradient(145deg, #0c0c0b 0%, #080808 72%);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.035),
+          0 12px 35px rgba(0, 0, 0, 0.28);
+        transition:
+          transform 0.35s ease,
+          border-color 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+      .feature-card:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 8%;
+        width: 84%;
+        height: 145px;
+        background: radial-gradient(
+          ellipse at top,
+          rgba(0, 229, 255, 0.13),
+          rgba(0, 229, 255, 0.04) 38%,
+          transparent 74%
+        );
+        pointer-events: none;
+        transition: opacity 0.35s ease;
+      }
+      .feature-card:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 24%;
+        width: 52%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 229, 255, 0.85),
+          transparent
+        );
+        box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+        opacity: 0.75;
+        pointer-events: none;
+      }
+      .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(0, 229, 255, 0.7);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.055),
+          0 18px 42px rgba(0, 0, 0, 0.5),
+          0 0 25px rgba(0, 229, 255, 0.08);
+      }
+      .feature-card:hover:before {
+        opacity: 1;
+      }
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 27px;
+      }
+      .feature-icon {
+        width: 64px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 21px;
+        color: #080806;
+        font-size: 24px;
+        background: linear-gradient(
+          155deg,
+          #d4faff 0%,
+          #00e5ff 52%,
+          #0088a3 100%
+        );
+        box-shadow:
+          0 9px 22px rgba(0, 229, 255, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.55);
+      }
+      .card-number {
+        font-size: 47px;
+        line-height: 1;
+        font-weight: 500;
+        letter-spacing: -2px;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(0, 229, 255, 0.3);
+        font-variant-numeric: tabular-nums;
+      }
+      .feature-card h3 {
+        font-size: 21px;
+        line-height: 1.3;
+        font-weight: 750;
+        letter-spacing: -0.55px;
+        color: #f8f8f8;
+        margin-bottom: 13px;
+        text-transform: uppercase;
+      }
+      .feature-card p {
+        font-size: 13.5px;
+        line-height: 1.8;
+        color: #c0c0c0;
+        font-weight: 400;
+        max-width: 310px;
+      }
+      .why-cta {
+        display: flex;
+        justify-content: center;
+        margin-top: 37px;
+      }
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 11px;
+        padding: 14px 26px;
+        border: 1px solid rgba(0, 229, 255, 0.45);
+        border-radius: 7px;
+        color: #b3f5ff;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 229, 255, 0.12),
+          rgba(0, 229, 255, 0.04)
+        );
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 750;
+        letter-spacing: 1.15px;
+        text-transform: uppercase;
+        transition:
+          background 0.3s ease,
+          border-color 0.3s ease,
+          transform 0.3s ease;
+      }
+      .cta-button i {
+        font-size: 12px;
+        transition: transform 0.3s ease;
+      }
+      .cta-button:hover {
+        background: rgba(0, 229, 255, 0.16);
+        border-color: #00e5ff;
+        transform: translateY(-2px);
+      }
+      .cta-button:hover i {
+        transform: translateX(4px);
+      }
+      @media (max-width: 900px) {
+        .why-section {
+          padding: 65px 22px;
+        }
+        .feature-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 18px;
+        }
+        .feature-card {
+          min-height: 245px;
+          padding: 25px;
+        }
+        .why-heading {
+          margin-bottom: 42px;
+        }
+      }
+      @media (max-width: 560px) {
+        .why-section {
+          padding: 54px 18px 60px;
+        }
+        .why-heading {
+          margin-bottom: 32px;
+        }
+        .eyebrow {
+          font-size: 10px;
+          letter-spacing: 2.5px;
+          margin-bottom: 15px;
+        }
+        .why-heading h2 {
+          font-size: 31px;
+          letter-spacing: -0.8px;
+        }
+        .why-heading p {
+          font-size: 13px;
+          max-width: 340px;
+          margin: auto;
+        }
+        .feature-grid {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+        .feature-card {
+          min-height: 0;
+          padding: 23px 22px 25px;
+        }
+        .card-top {
+          margin-bottom: 21px;
+        }
+        .feature-icon {
+          width: 56px;
+          height: 56px;
+          border-radius: 18px;
+          font-size: 21px;
+        }
+        .card-number {
+          font-size: 40px;
+        }
+        .feature-card h3 {
+          font-size: 19px;
+          margin-bottom: 9px;
+        }
+        .feature-card p {
+          font-size: 13px;
+          max-width: none;
+        }
+        .why-cta {
+          margin-top: 27px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *:before,
+        *:after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="why-section" aria-labelledby="why-title">
+      <div class="why-inner">
+        <header class="why-heading">
+          <span class="eyebrow">WHY UGFXLAB</span>
+          <h2 id="why-title">Learn. Execute. Refine. <span>Repeat.</span></h2>
+          <!-- <p>
+            UGFXLAB was founded in 2021 with one goal — to help traders become
+            more knowledgeable, disciplined and independent in the markets.
+          </p> -->
+          <p style="margin-top: 14px; color: #b3f5ff; font-weight: 500">
+            Our approach is built around the Market Makers Method (BTMM),
+            combined with years of practical trading experience, refinement and
+            real-market application.
+          </p>
+        </header>
+        <div class="feature-grid">
+          <!-- Card 01 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
+              </div>
+              <span class="card-number">01</span>
+            </div>
+            <h3>KNOW YOUR EDGE</h3>
+            <p>
+              Understand why you're taking a trade instead of blindly following
+              signals.
+            </p>
+          </article>
+          <!-- Card 02 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              </div>
+              <span class="card-number">02</span>
+            </div>
+            <h3>MANAGE YOUR RISK</h3>
+            <p>
+              Protect your capital and learn to think beyond individual trades.
+            </p>
+          </article>
+          <!-- Card 03 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+              </div>
+              <span class="card-number">03</span>
+            </div>
+            <h3>BUILD YOUR PROCESS</h3>
+            <p>
+              Develop a structured approach that you can repeat across different
+              market conditions.
+            </p>
+          </article>
+          <!-- Card 04 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i class="fa-solid fa-crosshairs" aria-hidden="true"></i>
+              </div>
+              <span class="card-number">04</span>
+            </div>
+            <h3>EXECUTE WITH DISCIPLINE</h3>
+            <p>
+              Learn to follow your plan regardless of wins, losses or emotions.
+            </p>
+          </article>
+          <!-- Card 05 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i
+                  class="fa-solid fa-people-arrows-left-right"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <span class="card-number">05</span>
+            </div>
+            <h3>1-on-1 Guidance</h3>
+            <p>
+              Get direct mentorship, trade reviews and personalized progress
+              feedback.
+            </p>
+          </article>
+          <!-- Card 06 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+              </div>
+              <span class="card-number">06</span>
+            </div>
+            <h3>Proven Results</h3>
+            <p>
+              Follow a complete roadmap covering structure, liquidity and
+              entries.
+            </p>
+          </article>
+        </div>
+        <div class="why-cta">
+          <a
+            class="cta-button"
+            href="https://t.me/EduStocksFx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Explore UGFXLAB
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

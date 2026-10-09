@@ -1,19 +1,1303 @@
+<!-- -----why secret candle---- -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Secret Candle AI · Auto‑move Swipeable Cards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .body-ai {
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        min-height: 85vh;
+      }
+      .section-wrapper {
+        max-width: 1200px;
+        width: 100%;
+        background: #000;
+        padding: 2rem 0.5rem 2.8rem 0.5rem;
+        color: #fff;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .section-wrapper::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 250px;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(212, 168, 69, 0.05) 0%,
+          rgba(0, 0, 0, 0) 70%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+      .section-wrapper * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .section-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(212, 168, 69, 0.06);
+        text-align: center;
+      }
+      .section-header h2 {
+        font-size: clamp(1.8rem, 4.5vw, 3rem);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        margin: 0;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(244, 228, 1, 0.856) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 0 30px rgba(212, 168, 69, 0.06));
+      }
+      .section-header .subhead {
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.35);
+        margin-top: 0.4rem;
+        letter-spacing: 0.2px;
+      }
+      .section-header .subhead i {
+        color: #d4a845;
+        opacity: 0.4;
+        margin: 0 0.3rem;
+      }
+
+      .carousel-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding: 0.5rem 0 1.2rem 0;
+        touch-action: pan-y;
+        cursor: grab;
+        user-select: none;
+      }
+      .carousel-wrapper:active {
+        cursor: grabbing;
+      }
+      .carousel-track {
+        display: flex;
+        gap: 1.5rem;
+        width: max-content;
+        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform;
+        pointer-events: none;
+        padding-left: 0;
+        margin-left: 0;
+      }
+      .carousel-track .feature-card {
+        pointer-events: auto;
+      }
+
+      .feature-card {
+        flex: 0 0 auto;
+        width: 350px;
+        max-width: 85vw;
+        background:
+          radial-gradient(
+            circle at top right,
+            rgba(212, 168, 69, 0.12),
+            transparent 35%
+          ),
+          linear-gradient(160deg, #141414 0%, #0b0b0b 55%, #050505 100%);
+        border: 1px solid rgba(212, 168, 69, 0.28);
+        border-radius: 24px;
+        padding: 2rem 1.4rem 1.8rem;
+        text-align: center;
+        backdrop-filter: blur(2px);
+        box-shadow:
+          0 10px 35px rgba(0, 0, 0, 0.55),
+          inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        transition: all 0.25s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: default;
+      }
+      .feature-card:hover {
+        background: linear-gradient(
+          160deg,
+          #1b1b1b 0%,
+          #101010 60%,
+          #070707 100%
+        );
+        border-color: #d4a845;
+        box-shadow:
+          0 20px 50px rgba(212, 168, 69, 0.18),
+          0 0 30px rgba(212, 168, 69, 0.1);
+        transform: scale(1.02);
+      }
+
+      .cards-iconn {
+        font-size: 2.6rem;
+        color: #e8c86a;
+        margin-bottom: 0.8rem;
+        filter: drop-shadow(0 0 25px rgba(212, 168, 69, 0.06));
+        transition: all 0.3s ease;
+        background: rgba(212, 168, 69, 0.02);
+        width: 76px;
+        height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 60px;
+        border: 0.5px solid rgba(212, 168, 69, 0.04);
+      }
+      .feature-card:hover .cards-iconn {
+        filter: drop-shadow(0 0 50px rgba(212, 168, 69, 0.12));
+        transform: scale(1.05);
+        border-color: rgba(212, 168, 69, 0.08);
+      }
+      .card-name {
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: #ffffff;
+        letter-spacing: -0.01em;
+        margin-bottom: 0.4rem;
+        line-height: 1.3;
+      }
+      .card-desc {
+        font-weight: 400;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.5;
+        margin-bottom: 0.8rem;
+        min-height: 3rem;
+      }
+      .card-benefit {
+        font-weight: 600;
+        font-size: 0.78rem;
+        color: #f5d77b;
+        background: rgba(212, 168, 69, 0.06);
+        padding: 0.35rem 1.4rem;
+        border-radius: 60px;
+        border: 0.5px solid rgba(212, 168, 69, 0.06);
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        backdrop-filter: blur(2px);
+      }
+
+      .cta-section {
+        margin-top: 1rem;
+        padding-top: 1.8rem;
+        border-top: 1px solid rgba(212, 168, 69, 0.05);
+        display: flex;
+        justify-content: center;
+      }
+      .cta-button {
+        background: #c08a00;
+        border: 0.5px solid rgba(212, 168, 69, 0.08);
+        border-radius: 60px;
+        color: black;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 0.75rem 2.4rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(4px);
+      }
+      .cta-button i {
+        font-size: 0.75rem;
+        color: #e8c86a;
+        transition: transform 0.3s ease;
+      }
+      .cta-button:hover {
+        background: rgba(212, 168, 69, 0.06);
+        border-color: rgba(212, 168, 69, 0.15);
+        color: #fae39f;
+        transform: scale(1.02);
+      }
+      .cta-button:hover i {
+        transform: translateX(6px);
+      }
+
+      .swipe-hint {
+        display: none;
+        color: rgba(212, 168, 69, 0.2);
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+        margin-top: 0.2rem;
+      }
+
+      @media (max-width: 768px) {
+        .section-wrapper {
+          padding: 1.5rem 1.5rem 2.2rem 1.5rem;
+        }
+        .carousel-wrapper {
+          padding: 0.2rem 0 0.8rem 0;
+        }
+        .carousel-track {
+          gap: 1rem;
+        }
+        .feature-card {
+          width: 260px;
+          max-width: 80vw;
+          padding: 1.6rem 1.2rem 1.4rem;
+          border-radius: 20px;
+        }
+        .cards-iconn {
+          width: 64px;
+          height: 64px;
+          font-size: 2rem;
+        }
+        .card-name {
+          font-size: 1rem;
+        }
+        .card-desc {
+          font-size: 0.8rem;
+          min-height: 2.6rem;
+        }
+        .card-benefit {
+          font-size: 0.7rem;
+          padding: 0.25rem 1.2rem;
+        }
+        .section-header h2 {
+          font-size: 1.6rem;
+        }
+        .cta-button {
+          padding: 0.65rem 1.8rem;
+          font-size: 0.75rem;
+        }
+        .swipe-hint {
+          display: block;
+        }
+      }
+      @media (max-width: 480px) {
+        .feature-card {
+          width: 300px;
+          max-width: 78vw;
+          padding: 1.3rem 0.9rem 1.2rem;
+          border-radius: 18px;
+        }
+        .cards-iconn {
+          width: 54px;
+          height: 54px;
+          font-size: 1.6rem;
+        }
+        .card-name {
+          font-size: 18px;
+        }
+        .card-desc {
+          font-size: 15px;
+          min-height: 2.2rem;
+        }
+        .card-benefit {
+          font-size: 12px;
+          padding: 0.2rem 1rem;
+        }
+        .section-header h2 {
+          font-size: 24px;
+        }
+        .carousel-track {
+          gap: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="body-ai">
+      <div class="section-wrapper">
+        <div class="section-header">
+          <h2>Why Secret Candle AI?</h2>
+          <div class="subhead">
+            <i class="fas fa-gem"></i> Institutional‑grade intelligence,
+            distilled into clear signals.
+          </div>
+        </div>
+
+        <div class="carousel-wrapper" id="carouselWrapper">
+          <div class="carousel-track" id="carouselTrack"></div>
+        </div>
+        <div class="swipe-hint">
+          <i class="fas fa-arrows-left-right"></i> swipe to explore
+        </div>
+
+        <div class="cta-section">
+          <a
+            href="https://t.me/EduStocksFx"
+            class="cta-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fas fa-arrow-right"></i> Explore Secret Candle AI
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const features = [
+          {
+            icon: "fa-fire",
+            name: "Secret Candle Detection",
+            desc: "Instantly identifies high-impact candles that reveal potential market direction before major moves.",
+            benefit: "Predict Market Moves",
+          },
+          {
+            icon: "fa-brain",
+            name: "AI Market Bias",
+            desc: "Advanced AI evaluates market sentiment to deliver clear bullish or bearish directional bias.",
+            benefit: "Trade with Confidence",
+          },
+          {
+            icon: "fa-cubes",
+            name: "Institutional Order Blocks",
+            desc: "Automatically detects institutional accumulation and distribution zones where price reacts most.",
+            benefit: "Find Smart Money Levels",
+          },
+          {
+            icon: "fa-arrow-trend-up",
+            name: "Smart Buy & Sell Signals",
+            desc: "Receive high-probability trade signals based on multiple market confirmations—not guesswork.",
+            benefit: "Higher Quality Entries",
+          },
+          {
+            icon: "fa-chart-line",
+            name: "Auto Trendline Mapping",
+            desc: "Automatically maps trend structure to help identify breakouts, reversals, and trend continuation.",
+            benefit: "Read Trends Faster",
+          },
+          {
+            icon: "fa-bolt",
+            name: "Dynamic Support & Resistance",
+            desc: "Highlights key price zones where buying and selling pressure is most likely to emerge.",
+            benefit: "Plan Better Trades",
+          },
+          {
+            icon: "fa-layer-group",
+            name: "Multi-Timeframe Intelligence",
+            desc: "Combines higher and lower timeframe analysis to filter noise and improve trade accuracy.",
+            benefit: "Better Trade Precision",
+          },
+        ];
+
+        const track = document.getElementById("carouselTrack");
+        const wrapper = document.getElementById("carouselWrapper");
+        if (!track || !wrapper) return;
+
+        function buildCard(f) {
+          return `<div class="feature-card">
+            <div class="cards-iconn"><i class="fas ${f.icon}"></i></div>
+            <div class="card-name">${f.name}</div>
+            <div class="card-desc">${f.desc}</div>
+            <div class="card-benefit">${f.benefit}</div>
+          </div>`;
+        }
+
+        let html = "";
+        features.forEach((f) => (html += buildCard(f)));
+        // clone first card for seamless loop
+        html += buildCard(features[0]);
+        html += buildCard(features[1]);
+        track.innerHTML = html;
+
+        let currentIndex = 0;
+        const totalCards = features.length;
+        let isTransitioning = false;
+        let autoPlayTimer = null;
+        const AUTO_INTERVAL = 3200;
+
+        function getMaxIndex() {
+          return totalCards + 1; // 0 … totalCards (clone)
+        }
+
+        function getTranslateForIndex(index) {
+          const firstCard = document.querySelector(".feature-card");
+          if (!firstCard) return 0;
+          const cardRect = firstCard.getBoundingClientRect();
+          const gapPx = parseFloat(getComputedStyle(track).gap) || 24;
+          const cardFullWidth = cardRect.width + gapPx;
+          // No left padding - start from 0
+          return -(index * cardFullWidth);
+        }
+
+        function slideTo(index, animate = true) {
+          if (isTransitioning) return;
+          const max = getMaxIndex();
+          if (index < 0) index = 0;
+          if (index > max) index = max;
+
+          isTransitioning = true;
+          currentIndex = index;
+          const tx = getTranslateForIndex(index);
+          track.style.transition = animate
+            ? "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+            : "none";
+          track.style.transform = `translateX(${tx}px)`;
+
+          setTimeout(
+            () => {
+              isTransitioning = false;
+              if (index >= totalCards) {
+                track.style.transition = "none";
+                const newTx = getTranslateForIndex(0);
+                track.style.transform = `translateX(${newTx}px)`;
+                currentIndex = 0;
+                void track.offsetHeight;
+              }
+            },
+            animate ? 550 : 50,
+          );
+        }
+
+        function nextSlide() {
+          let next = currentIndex + 1;
+          if (next > totalCards) next = 0;
+          slideTo(next, true);
+        }
+
+        function startAutoPlay() {
+          if (autoPlayTimer) clearInterval(autoPlayTimer);
+          autoPlayTimer = setInterval(nextSlide, AUTO_INTERVAL);
+        }
+
+        function stopAutoPlay() {
+          if (autoPlayTimer) {
+            clearInterval(autoPlayTimer);
+            autoPlayTimer = null;
+          }
+        }
+
+        function resumeAutoPlay() {
+          stopAutoPlay();
+          setTimeout(startAutoPlay, 3000);
+        }
+
+        // Initial centering: show first card at left edge
+        setTimeout(() => {
+          slideTo(0, false);
+          startAutoPlay();
+        }, 100);
+
+        let resizeTimeout;
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(() => {
+            slideTo(currentIndex, false);
+          }, 150);
+        });
+
+        // ----- TOUCH SWIPE -----
+        let startX = 0,
+          startY = 0,
+          isDragging = false,
+          startTranslate = 0,
+          isSwiping = false;
+
+        wrapper.addEventListener(
+          "touchstart",
+          (e) => {
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            isDragging = true;
+            isSwiping = false;
+            stopAutoPlay();
+            const style = window.getComputedStyle(track);
+            const matrix = style.transform;
+            if (matrix !== "none") {
+              const values = matrix.match(/matrix.*\((.+)\)/);
+              if (values) {
+                const nums = values[1].split(", ");
+                if (nums.length === 6) {
+                  startTranslate = parseFloat(nums[4]) || 0;
+                }
+              }
+            }
+            track.style.transition = "none";
+          },
+          { passive: true },
+        );
+
+        wrapper.addEventListener(
+          "touchmove",
+          (e) => {
+            if (!isDragging) return;
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+            if (
+              Math.abs(deltaX) > 10 &&
+              Math.abs(deltaX) > Math.abs(deltaY) * 0.7
+            ) {
+              isSwiping = true;
+              e.preventDefault();
+              const newTranslate = startTranslate + deltaX;
+              track.style.transform = `translateX(${newTranslate}px)`;
+            }
+          },
+          { passive: false },
+        );
+
+        wrapper.addEventListener(
+          "touchend",
+          (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            if (!isSwiping) {
+              resumeAutoPlay();
+              track.style.transition = "";
+              slideTo(currentIndex, true);
+              return;
+            }
+            const touch = e.changedTouches[0];
+            const deltaX = touch.clientX - startX;
+            let step = 0;
+            if (deltaX < -40) step = 1;
+            else if (deltaX > 40) step = -1;
+
+            let newIndex = currentIndex + step;
+            if (newIndex < 0) newIndex = 0;
+            if (newIndex > totalCards) newIndex = totalCards;
+
+            slideTo(newIndex, true);
+            isSwiping = false;
+            resumeAutoPlay();
+          },
+          { passive: true },
+        );
+
+        wrapper.addEventListener(
+          "touchcancel",
+          () => {
+            isDragging = false;
+            isSwiping = false;
+            slideTo(currentIndex, true);
+            resumeAutoPlay();
+          },
+          { passive: true },
+        );
+
+        // ----- MOUSE DRAG -----
+        let mouseDown = false,
+          mouseStartX = 0,
+          mouseStartTranslate = 0;
+        wrapper.addEventListener("mousedown", (e) => {
+          if (e.button !== 0) return;
+          mouseDown = true;
+          mouseStartX = e.clientX;
+          stopAutoPlay();
+          const style = window.getComputedStyle(track);
+          const matrix = style.transform;
+          if (matrix !== "none") {
+            const values = matrix.match(/matrix.*\((.+)\)/);
+            if (values) {
+              const nums = values[1].split(", ");
+              if (nums.length === 6) {
+                mouseStartTranslate = parseFloat(nums[4]) || 0;
+              }
+            }
+          }
+          track.style.transition = "none";
+        });
+
+        document.addEventListener("mousemove", (e) => {
+          if (!mouseDown) return;
+          const deltaX = e.clientX - mouseStartX;
+          if (Math.abs(deltaX) > 8) {
+            const newTranslate = mouseStartTranslate + deltaX;
+            track.style.transform = `translateX(${newTranslate}px)`;
+          }
+        });
+
+        document.addEventListener("mouseup", (e) => {
+          if (!mouseDown) return;
+          mouseDown = false;
+          const deltaX = e.clientX - mouseStartX;
+          let step = 0;
+          if (deltaX < -40) step = 1;
+          else if (deltaX > 40) step = -1;
+          let newIndex = currentIndex + step;
+          if (newIndex < 0) newIndex = 0;
+          if (newIndex > totalCards) newIndex = totalCards;
+          slideTo(newIndex, true);
+          resumeAutoPlay();
+        });
+
+        // Keyboard arrows
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight") {
+            stopAutoPlay();
+            let newIndex = Math.min(currentIndex + 1, totalCards);
+            slideTo(newIndex, true);
+            resumeAutoPlay();
+            e.preventDefault();
+          } else if (e.key === "ArrowLeft") {
+            stopAutoPlay();
+            let newIndex = Math.max(currentIndex - 1, 0);
+            slideTo(newIndex, true);
+            resumeAutoPlay();
+            e.preventDefault();
+          }
+        });
+
+        // Hover pause
+        wrapper.addEventListener("mouseenter", stopAutoPlay);
+        wrapper.addEventListener("mouseleave", resumeAutoPlay);
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- -----Market Analysis------ -->
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UGFXLAB — refined</title>
-    <!-- Google Font & Font Awesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>market dashboard · dark only</title>
+    <!-- Font Awesome -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- TradingView widget modules -->
+    <script
+      type="module"
+      src="https://widgets.tradingview-widget.com/w/en/tv-forex-table.js"
+    ></script>
+    <script
+      type="module"
+      src="https://widgets.tradingview-widget.com/w/en/tv-market-overview.js"
+    ></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #000 !important;
+      }
+
+      .body-Dash {
+        background: #000;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+
+      .dashboard-card {
+        background: #000;
+        max-width: 1400px;
+        width: 100%;
+        border-radius: 40px;
+        padding: 20px 24px 24px 24px;
+        box-shadow:
+          0 30px 60px rgba(0, 0, 0, 0.9),
+          0 0 0 1px rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.02);
+      }
+
+      .card-heading {
+        text-align: center;
+        margin-bottom: 22px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card-heading h1 {
+        font-size: 42px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgb(0 215 255 / 90%) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 auto;
+      }
+
+      .card-heading h1 i {
+        -webkit-text-fill-color: initial;
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 1.8rem;
+        opacity: 0.7;
+      }
+
+      .card-heading .sub {
+        font-size: 0.85rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.2);
+        letter-spacing: 0.4px;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0.2);
+        margin-top: 2px;
+        display: block;
+        font-variant: small-caps;
+      }
+
+      .toggle-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 22px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .toggle-btn {
+        background: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.35);
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 10px 24px;
+        border-radius: 60px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        letter-spacing: 0.3px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.02);
+        flex: 0 1 auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .toggle-btn i {
+        font-size: 1.1rem;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+      }
+
+      .toggle-btn:hover {
+        color: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(255, 255, 255, 0.06);
+      }
+
+      .toggle-btn.active {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+      }
+
+      .toggle-btn.active i {
+        opacity: 1;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .widget-stage {
+        width: 100%;
+        background: #000;
+        border-radius: 28px;
+        overflow: hidden;
+        min-height: 480px;
+        position: relative;
+        border: 1px solid rgba(255, 255, 255, 0.02);
+      }
+
+      .widget-panel {
+        display: none;
+        width: 100%;
+        height: 100%;
+        min-height: 460px;
+        background: #000;
+        animation: fadeIn 0.25s ease;
+      }
+
+      .widget-panel.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0.3;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      /* force all TradingView containers to be black */
+      .widget-panel .tradingview-widget-container {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 460px;
+        display: flex;
+        flex-direction: column;
+        background: #000 !important;
+      }
+
+      .widget-panel .tradingview-widget-container__widget {
+        flex: 1;
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 400px;
+        background: #000 !important;
+      }
+
+      .widget-panel iframe,
+      .widget-panel object,
+      .widget-panel embed {
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 400px;
+        display: block;
+        background: #000 !important;
+      }
+
+      .tradingview-widget-copyright {
+        background: #000 !important;
+        padding: 10px 16px 14px 16px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+        border-top: 1px solid rgba(255, 255, 255, 0.03);
+        text-align: center;
+        width: 100%;
+        border-radius: 0 0 28px 28px;
+      }
+
+      .tradingview-widget-copyright a {
+        color: rgba(100, 160, 255, 0.6);
+        text-decoration: none;
+      }
+      .tradingview-widget-copyright .blue-text {
+        color: rgba(100, 160, 255, 0.6);
+      }
+      .tradingview-widget-copyright .trademark {
+        color: rgba(255, 255, 255, 0.2);
+        margin-left: 4px;
+      }
+      .tradingview-widget-copyright .comma,
+      .tradingview-widget-copyright .and {
+        color: rgba(255, 255, 255, 0.2);
+      }
+
+      /* panel specific min-heights */
+      .panel-chart .tradingview-widget-container__widget {
+        min-height: 460px;
+      }
+      .panel-forex .tradingview-widget-container__widget {
+        min-height: 460px;
+      }
+      .panel-crypto .tradingview-widget-container__widget {
+        min-height: 480px;
+      }
+      .panel-news .tradingview-widget-container__widget {
+        min-height: 480px;
+      }
+
+      /* responsive */
+      @media (max-width: 700px) {
+        .dashboard-card {
+          padding: 16px 12px 20px 12px;
+          border-radius: 28px;
+        }
+        .card-heading h1 {
+          font-size: 1.4rem;
+          gap: 8px;
+        }
+        .card-heading h1 i {
+          font-size: 1.3rem;
+        }
+        .card-heading .sub {
+          font-size: 0.7rem;
+        }
+        .toggle-bar {
+          gap: 8px;
+          padding-bottom: 10px;
+          margin-bottom: 16px;
+        }
+        .toggle-btn {
+          font-size: 0.75rem;
+          padding: 8px 16px;
+          flex: 1 1 auto;
+          justify-content: center;
+        }
+        .widget-stage {
+          min-height: 380px;
+        }
+        .widget-panel {
+          min-height: 360px;
+        }
+        .widget-panel .tradingview-widget-container {
+          min-height: 360px;
+        }
+        .widget-panel .tradingview-widget-container__widget {
+          min-height: 320px;
+        }
+      }
+
+      @media (max-width: 450px) {
+        .toggle-btn {
+          font-size: 0.7rem;
+          padding: 6px 12px;
+          gap: 5px;
+        }
+        .toggle-btn i {
+          font-size: 0.9rem;
+        }
+        .dashboard-card {
+          padding: 12px 8px 16px 8px;
+        }
+        .card-heading h1 {
+          font-size: 1.2rem;
+        }
+        .card-heading .sub {
+          font-size: 0.6rem;
+        }
+        .widget-stage {
+          min-height: 320px;
+        }
+        .widget-panel {
+          min-height: 300px;
+        }
+        .widget-panel .tradingview-widget-container {
+          min-height: 300px;
+        }
+        .widget-panel .tradingview-widget-container__widget {
+          min-height: 260px;
+        }
+      }
+
+      /* enforce black everywhere */
+      .widget-panel,
+      .widget-stage,
+      .dashboard-card,
+      body,
+      html {
+        background: #000 !important;
+      }
+      .tradingview-widget-container {
+        background: #000 !important;
+      }
+
+      tv-forex-table,
+      tv-market-overview {
+        display: block;
+        width: 100%;
+        min-height: 400px;
+        background: #000;
+        color: #fff;
+      }
+
+      .panel-news .tradingview-widget-container {
+        min-height: 480px;
+      }
+      .panel-news .tradingview-widget-container__widget {
+        min-height: 440px;
+      }
+
+      /* force all iframes to have black background */
+      iframe {
+        background: #000 !important;
+      }
+
+      /* override any inline white background from TradingView */
+      [style*="background: white"],
+      [style*="background:#fff"],
+      [style*="background-color: white"],
+      [style*="background-color:#fff"] {
+        background: #000 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="body-Dash">
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h1>Market Analysis</h1>
+          <span class="sub">
+            <i
+              class="fas fa-circle"
+              style="
+                font-size: 0.3rem;
+                vertical-align: middle;
+                margin: 0 6px;
+                opacity: 0.4;
+              "
+            ></i>
+            one card · live markets
+            <i
+              class="fas fa-circle"
+              style="
+                font-size: 0.3rem;
+                vertical-align: middle;
+                margin: 0 6px;
+                opacity: 0.4;
+              "
+            ></i>
+          </span>
+        </div>
+
+        <div class="toggle-bar">
+          <button class="toggle-btn active" data-target="chart">
+            <i class="fas fa-chart-simple"></i> Chart
+          </button>
+          <button class="toggle-btn" data-target="forex">
+            <i class="fas fa-globe"></i> Forex
+          </button>
+          <button class="toggle-btn" data-target="crypto">
+            <i class="fab fa-bitcoin"></i> Crypto
+          </button>
+          <button class="toggle-btn" data-target="news">
+            <i class="fas fa-newspaper"></i> News
+          </button>
+        </div>
+
+        <div class="widget-stage">
+          <!-- PANEL 1: Chart (XAUUSD) – active -->
+          <div id="panel-chart" class="widget-panel panel-chart active">
+            <div
+              class="tradingview-widget-container"
+              style="height: 100%; width: 100%; background: #000 !important"
+            >
+              <div
+                class="tradingview-widget-container__widget"
+                style="
+                  height: calc(100% - 32px);
+                  width: 100%;
+                  background: #000 !important;
+                "
+              ></div>
+              <div class="tradingview-widget-copyright">
+                <a
+                  href="https://www.tradingview.com/symbols/XAUUSD/?exchange=OANDA"
+                  rel="noopener nofollow"
+                  target="_blank"
+                  ><span class="blue-text">XAUUSD chart</span></a
+                ><span class="trademark"> by TradingView</span>
+              </div>
+              <script
+                type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"
+                async
+              >
+                {
+                  "allow_symbol_change": true,
+                  "calendar": false,
+                  "details": false,
+                  "hide_side_toolbar": false,
+                  "hide_top_toolbar": true,
+                  "hide_legend": false,
+                  "hide_volume": false,
+                  "hotlist": false,
+                  "interval": "D",
+                  "locale": "en",
+                  "save_image": false,
+                  "style": "1",
+                  "symbol": "OANDA:XAUUSD",
+                  "theme": "dark",
+                  "timezone": "Etc/UTC",
+                  "backgroundColor": "#0F0F0F",
+                  "gridColor": "rgba(242, 242, 242, 0.06)",
+                  "watchlist": [],
+                  "withdateranges": true,
+                  "compareSymbols": [],
+                  "studies": [],
+                  "autosize": true
+                }
+              </script>
+            </div>
+          </div>
+
+          <!-- PANEL 2: Forex table -->
+          <div id="panel-forex" class="widget-panel panel-forex">
+            <div style="padding: 10px 12px 0 12px; background: #000">
+              <tv-forex-table
+                currencies="EUR,USD,JPY,GBP,AUD,CNY,SEK,ZAR,DKK,SGD,MXN,PLN,CAD"
+                displayed-value="dailyChange"
+              ></tv-forex-table>
+            </div>
+            <div
+              class="tradingview-widget-copyright"
+              style="border-top: none; padding-top: 6px"
+            >
+              <span class="blue-text">Forex cross rates</span
+              ><span class="trademark"> by TradingView</span>
+            </div>
+          </div>
+
+          <!-- PANEL 3: Crypto & market overview (BSE movers) -->
+          <div id="panel-crypto" class="widget-panel panel-crypto">
+            <div style="padding: 10px 12px 0 12px; background: #000">
+              <tv-market-overview
+                exchange="BSE"
+                time-frame="3M"
+                item-size="compact"
+                mode="market-movers"
+                chart-size="large"
+              ></tv-market-overview>
+            </div>
+            <div
+              class="tradingview-widget-copyright"
+              style="border-top: none; padding-top: 6px"
+            >
+              <span class="blue-text">BSE market movers</span
+              ><span class="trademark"> by TradingView</span>
+            </div>
+          </div>
+
+          <!-- PANEL 4: News / Timeline -->
+          <div id="panel-news" class="widget-panel panel-news">
+            <div
+              class="tradingview-widget-container"
+              style="height: 100%; width: 100%; background: #000 !important"
+            >
+              <div
+                class="tradingview-widget-container__widget"
+                style="
+                  height: calc(100% - 32px);
+                  width: 100%;
+                  background: #000 !important;
+                "
+              ></div>
+              <div class="tradingview-widget-copyright">
+                <a
+                  href="https://www.tradingview.com/news/top-providers/tradingview/"
+                  rel="noopener nofollow"
+                  target="_blank"
+                  ><span class="blue-text">Top stories</span></a
+                ><span class="trademark"> by TradingView</span>
+              </div>
+              <script
+                type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js"
+                async
+              >
+                {
+                  "displayMode": "regular",
+                  "feedMode": "all_symbols",
+                  "colorTheme": "dark",
+                  "isTransparent": false,
+                  "locale": "en",
+                  "width": "100%",
+                  "height": "100%"
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      (function () {
+        const buttons = document.querySelectorAll(".toggle-btn");
+        const panels = {
+          chart: document.getElementById("panel-chart"),
+          forex: document.getElementById("panel-forex"),
+          crypto: document.getElementById("panel-crypto"),
+          news: document.getElementById("panel-news"),
+        };
+
+        function activatePanel(targetId) {
+          Object.values(panels).forEach((p) => p.classList.remove("active"));
+          const target = panels[targetId];
+          if (target) target.classList.add("active");
+
+          buttons.forEach((btn) => {
+            btn.classList.remove("active");
+            if (btn.dataset.target === targetId) {
+              btn.classList.add("active");
+            }
+          });
+        }
+
+        buttons.forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            const target = this.dataset.target;
+            if (target && panels[target]) {
+              activatePanel(target);
+            }
+          });
+        });
+
+        // ensure chart is active
+        const activePanel = document.querySelector(".widget-panel.active");
+        if (!activePanel || activePanel.id !== "panel-chart") {
+          activatePanel("chart");
+        } else {
+          const currentId = activePanel.id.replace("panel-", "");
+          buttons.forEach((btn) => {
+            btn.classList.toggle("active", btn.dataset.target === currentId);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- -----forex trading---- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Edu Stockx · Knowledge · Precision · Confidence</title>
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
     <style>
       * {
@@ -22,413 +1306,567 @@
         box-sizing: border-box;
       }
 
-      html {
-        scroll-behavior: smooth;
+      :root {
+        --black: #000000;
+        --green: #073f25;
+        --green-light: #386f53;
+        --gold: #e6ac1a;
+        --gold-light: #f8d951;
+        --bronze: #a0520b;
+        --text: #f4f4f4;
+        --muted: #979d94;
+        --card-bg: rgba(53, 53, 53, 0.76);
+        --border-subtle: rgba(255, 255, 255, 0.04);
       }
 
-      body {
-        font-family: "Inter", sans-serif;
-        background: #02090e;
-        color: #ffffff;
-      }
-
-      /* ===== NAVBAR — professional, compact ===== */
-      .navbar {
-        width: 100%;
-        height: 80px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        padding: 0 4%;
-        background: #02090e;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        transition: all 0.3s ease;
-      }
-
-      .navbar.scrolled {
-        height: 76px;
-        background: rgba(2, 9, 14, 0.96);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      }
-
-      /* ===== BRAND — tighter ===== */
-      .brand {
-        display: flex;
-        align-items: center;
-        min-width: 240px;
-        text-decoration: none;
-      }
-
-      .brand img {
-        width: 190px;
-        height: auto;
-        object-fit: contain;
-        display: block;
-      }
-
-      .brand-name {
-        margin-left: 11px;
-        font-size: 26px;
-        line-height: 1;
-        font-weight: 700;
-        letter-spacing: -1px;
-        color: #f0f4f7;
-      }
-
-      .brand-name span {
-        color: #09c8ec;
-      }
-
-      /* ===== NAVIGATION — reduced font, balanced spacing ===== */
-      .nav-menu {
-        flex: 1;
-        height: 100%;
+      .body-rmi {
+        background: #000000;
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 38px;
+        margin: 0;
+        padding: 1rem;
+        font-family: "Inter", sans-serif;
       }
 
-      .nav-link {
-        height: 100%;
+      .solution-section {
+        width: 100%;
+        max-width: 1440px;
+        background: var(--black);
+        border-radius: 2.2rem;
         position: relative;
-        display: flex;
-        align-items: center;
-        color: #eef2f5;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 500;
-        letter-spacing: -0.2px;
-        white-space: nowrap;
-        transition: color 0.2s ease;
+        overflow: hidden;
+        box-shadow:
+          0 20px 40px -12px rgba(0, 0, 0, 0.9),
+          0 0 0 1px rgba(230, 172, 26, 0.03);
+        backdrop-filter: blur(2px);
+        border: 1px solid rgba(255, 255, 255, 0.01);
+        transition: all 0.3s;
+        text-align: center;
       }
 
-      .nav-link:hover {
-        color: #09c8ec;
-      }
-
-      /* Active underline – slimmer & closer to text */
-      .nav-link::after {
+      .solution-section::before {
         content: "";
         position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 26px;
-        height: 3px;
-        border-radius: 20px;
-        background: #09c8ec;
-        transform: scaleX(0);
-        transition: transform 0.25s ease;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 70% 10%,
+            rgba(230, 172, 26, 0.03) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 20% 90%,
+            rgba(7, 63, 37, 0.08) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+        z-index: 0;
       }
 
-      .nav-link.active::after {
-        transform: scaleX(1);
+      .solution-container {
+        max-width: 1360px;
+        margin: 0 auto;
+        padding: 2.8rem 2.5rem 2.5rem 2.5rem;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
-      /* ===== JOIN BUTTON — compact, refined ===== */
-      .community-btn {
-        min-width: 190px;
-        height: 45px;
+      /* bridge chip – new content */
+      .bridge-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: rgba(230, 172, 26, 0.07);
+        padding: 0.4rem 1.4rem;
+        border-radius: 60px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        color: var(--gold-light);
+        margin-bottom: 1.2rem;
+        border: 1px solid rgba(230, 172, 26, 0.12);
+        backdrop-filter: blur(2px);
+        transition: all 0.25s;
+      }
+      .bridge-chip i {
+        font-size: 0.7rem;
+        color: var(--gold);
+      }
+
+      .solution-heading {
+        font-size: clamp(2rem, 4.2vw, 3rem);
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--text);
+        max-width: 880px;
+        margin-bottom: 0.6rem;
+        letter-spacing: -0.02em;
+        text-align: center;
+      }
+      .highlight {
+        color: var(--gold);
+        background: linear-gradient(
+          120deg,
+          rgba(230, 172, 26, 0.08) 0%,
+          rgba(230, 172, 26, 0.01) 80%
+        );
+        display: inline-block;
+        padding: 0 0.1rem;
+      }
+
+      .solution-description {
+        font-size: clamp(1rem, 1.6vw, 1.15rem);
+        line-height: 1.5;
+        color: var(--muted);
+        max-width: 700px;
+        margin-bottom: 1.8rem;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      /* cards grid – wider on desktop */
+      .rmi-gridd {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.8rem;
+        margin: 1.5rem 0 1.5rem;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .rmi-card {
+        flex: 1 1 260px; /* increased base width */
+        max-width: 370px; /* wider max-width */
+        min-width: 220px;
+        background: linear-gradient(65deg, rgb(0, 0, 0), #0f1200);
+        backdrop-filter: blur(2px);
+        border-radius: 1.8rem;
+        padding: 1.8rem 1.6rem 1.6rem;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--border-subtle);
+        transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+        opacity: 0;
+        transform: translateY(28px);
+        will-change: transform, opacity;
+        text-align: left;
+      }
+
+      .rmi-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .rmi-card:hover {
+        transform: translateY(-5px) scale(1.01);
+        box-shadow:
+          0 20px 32px -10px rgba(0, 0, 0, 0.9),
+          0 0 0 1px rgba(230, 172, 26, 0.12);
+        border-color: rgba(230, 172, 26, 0.12);
+        background: rgba(0, 0, 0, 0.101);
+      }
+
+      .card-icon {
+        font-size: 1.8rem;
+        color: var(--gold);
+        margin-bottom: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(230, 172, 26, 0.06);
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        border: 1px solid rgba(230, 172, 26, 0.04);
+        transition: 0.2s;
+      }
+      .rmi-card:hover .cards-iconn {
+        background: rgba(230, 172, 26, 0.1);
+        border-color: rgba(230, 172, 26, 0.15);
+      }
+
+      .rmi-card h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 0.4rem;
+        letter-spacing: -0.01em;
+      }
+      .rmi-card p {
+        color: var(--muted);
+        line-height: 1.5;
+        font-size: 0.9rem;
+        margin-bottom: 0.9rem;
+      }
+
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 0.3rem;
+      }
+      .feature-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 0.4rem;
+        font-size: 0.85rem;
+        color: #c5cdc0;
+      }
+      .feature-list li i {
+        width: 1rem;
+        font-size: 0.75rem;
+        color: var(--gold-light);
+      }
+
+      /* data snapshot – philosophy pillars */
+      .data-snapshot {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4.2rem;
+        background: rgba(255, 255, 255, 0.015);
+        backdrop-filter: blur(2px);
+        border-radius: 1.8rem;
+        padding: 0.8rem 1.8rem;
+        margin: 1rem 0 0.5rem;
+        border: 1px solid rgba(230, 172, 26, 0.04);
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.7);
+        transition: all 0.3s;
+        width: 100%;
+        max-width: 1174px;
+      }
+
+      .metric-item {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        flex: 0 1 160px;
+        min-width: 200px;
+        padding: 0.2rem 0;
+        opacity: 0;
+        transform: translateY(14px);
+        transition: all 0.5s cubic-bezier(0.15, 0.9, 0.25, 1);
+        justify-content: center;
+      }
+      .metric-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .metric-icon {
+        background: rgba(7, 63, 37, 0.2);
+        width: 58px;
+        height: 49px;
+        border-radius: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-        padding: 0 18px;
-        background: #09c8ec;
-        color: #031017;
-        text-decoration: none;
-        border-radius: 8px;
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: -0.2px;
-        transition: all 0.25s ease;
+        font-size: 25px;
+        color: var(--gold);
+        border: 1px solid rgba(230, 172, 26, 0.05);
+        flex-shrink: 0;
       }
-
-      .community-btn i {
-        font-size: 20px;
-      }
-
-      .community-btn:hover {
-        transform: translateY(-2px);
-        background: #1ad9f2;
-        box-shadow: 0 8px 25px rgba(11, 210, 237, 0.2);
-      }
-
-      /* ===== MOBILE TOGGLE ===== */
-      .menu-toggle {
-        display: none;
-        width: 44px;
-        height: 44px;
-        border: none;
-        background: transparent;
-        cursor: pointer;
+      .metric-text {
+        display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
+        text-align: left;
+      }
+      .metric-number {
+        font-size: 25px;
+        font-weight: 600;
+        color: var(--text);
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+      }
+      .metric-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+        color: #a1a1a1;
+        text-transform: uppercase;
+        opacity: 0.7;
       }
 
-      .menu-toggle span {
-        width: 22px;
+      .attract-line {
         height: 2px;
-        background: #ffffff;
-        border-radius: 10px;
-        transition: 0.3s;
+        width: 50px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        border-radius: 4px;
+        margin-top: 1.2rem;
+        opacity: 0.5;
       }
 
-      /* ===== MOBILE MENU ===== */
-      .mobile-menu {
-        display: none;
-      }
-
-      /* ===== TABLET (≤1250px) ===== */
-      @media (max-width: 1250px) {
-        .navbar {
-          padding: 0 3%;
+      /* responsive */
+      @media (max-width: 820px) {
+        .solution-container {
+          padding: 1.8rem 1.2rem 1.8rem;
         }
-
-        .brand {
-          min-width: 200px;
+        .solution-section {
+          border-radius: 1.8rem;
         }
-
-        .brand img {
-          width: 48px;
-          height: 48px;
-        }
-
-        .brand-name {
-          font-size: 23px;
-          margin-left: 9px;
-        }
-
-        .nav-menu {
-          gap: 22px;
-        }
-
-        .nav-link {
-          font-size: 14px;
-        }
-
-        .nav-link::after {
-          bottom: 22px;
-          height: 3px;
-        }
-
-        .community-btn {
-          min-width: 200px;
-          height: 46px;
-          font-size: 14px;
-          padding: 0 18px;
-        }
-
-        .community-btn i {
-          font-size: 18px;
-        }
-      }
-
-      /* ===== MOBILE (≤1050px) ===== */
-      @media (max-width: 1050px) {
-        .navbar {
-          height: 78px;
-        }
-
-        .navbar.scrolled {
-          height: 70px;
-        }
-
-        .nav-menu,
-        .community-btn {
-          display: none;
-        }
-
-        .brand {
-          min-width: auto;
-        }
-
-        .brand img {
-          width: 46px;
-          height: 46px;
-        }
-
-        .brand-name {
-          font-size: 22px;
-          letter-spacing: -0.8px;
-          margin-left: 8px;
-        }
-
-        .menu-toggle {
-          display: flex;
-          margin-left: auto;
-        }
-
-        /* Mobile dropdown */
-        .mobile-menu {
-          position: fixed;
-          top: 78px;
-          left: 0;
-          width: 100%;
-          padding: 18px 6% 28px;
-          background: #02090e;
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-          z-index: 999;
-          transform: translateY(-120%);
-          transition: transform 0.35s ease;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-          box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.6);
-        }
-
-        .mobile-menu.open {
-          transform: translateY(0);
-        }
-
-        .mobile-menu a {
-          color: #ffffff;
-          text-decoration: none;
-          padding: 14px 4px;
-          font-size: 15px;
-          font-weight: 500;
-          letter-spacing: -0.2px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .mobile-menu a:hover {
-          color: #09c8ec;
-        }
-
-        .mobile-community-btn {
-          margin-top: 14px;
-          background: #09c8ec;
-          color: #021017 !important;
-          border-radius: 8px;
-          text-align: center;
-          font-weight: 700 !important;
-          border: none !important;
-          padding: 14px 5px;
-          display: flex;
-          align-items: center;
+        .data-snapshot {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.8rem;
+          padding: 0.8rem 1rem;
           justify-content: center;
-          gap: 6px;
-          font-size: 15px;
+        }
+        .metric-item {
+          flex: 1 0 100px;
+          min-width: 100px;
+          gap: 0.6rem;
+        }
+        .rmi-gridd {
+          flex-direction: column;
+          gap: 1.2rem;
+          align-items: center;
+        }
+        .rmi-card {
+          padding: 1.4rem;
+          min-width: unset;
+          max-width: 460px;
+          width: 100%;
+          flex: 0 1 auto;
+        }
+        .metric-number {
+          font-size: 1.3rem;
         }
       }
 
-      /* ===== SMALL MOBILE (≤550px) ===== */
-      @media (max-width: 550px) {
-        .navbar {
-          padding: 0 16px;
+      @media (max-width: 480px) {
+        .solution-container {
+          padding: 1.2rem 0.8rem 1.2rem;
         }
+        .solution-heading {
+          font-size: 29px;
+        }
+        .bridge-chip {
+          font-size: 0.6rem;
+          padding: 0.2rem 1rem;
+        }
+        .cards-iconn {
+          width: 44px;
+          height: 44px;
+          font-size: 1.3rem;
+        }
+        .rmi-card h3 {
+          font-size: 1.2rem;
+        }
+        .metric-item {
+          flex: 1 0 80px;
+          min-width: 80px;
+        }
+        .metric-icon {
+          width: 38px;
+          height: 38px;
+          font-size: 1rem;
+        }
+        .rmi-card {
+          padding: 1.2rem;
+        }
+      }
 
-        .brand img {
-          width: 40px;
-          height: 40px;
-        }
+      /* hidden-init + stagger */
+      .hidden-init {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.7s cubic-bezier(0.15, 0.9, 0.25, 1),
+          transform 0.7s cubic-bezier(0.15, 0.9, 0.25, 1);
+      }
+      .hidden-init.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-        .brand-name {
-          font-size: 19px;
-          letter-spacing: -0.5px;
-          margin-left: 7px;
-        }
+      .stagger-children > * {
+        transition-delay: 0s;
+      }
+      .stagger-children > *:nth-child(1) {
+        transition-delay: 0.04s;
+      }
+      .stagger-children > *:nth-child(2) {
+        transition-delay: 0.12s;
+      }
+      .stagger-children > *:nth-child(3) {
+        transition-delay: 0.2s;
+      }
+      .stagger-children > *:nth-child(4) {
+        transition-delay: 0.28s;
+      }
 
-        .mobile-menu {
-          top: 78px;
-          padding: 16px 5% 26px;
-        }
+      .rmi-gridd {
+        justify-content: center;
       }
     </style>
   </head>
   <body>
-    <!-- ===== HEADER ===== -->
-    <header class="navbar" id="navbar">
-      <!-- LOGO + NAME -->
-      <a href="#" class="brand">
-        <img src="Photos/UGFXLABLogo.png" alt="UGFXLAB Logo" />
-        <!-- <span class="brand-name">UGFX<span>LAB</span></span> -->
-      </a>
+    <div class="body-rmi">
+      <section class="solution-section" id="Solution-Section">
+        <div class="solution-container">
+          <!-- Chip -->
+          <div class="bridge-chip hidden-init" id="chip">
+            <i class="fas fa-arrow-right"></i>
+            <span>FROM NOISE TO CONFIDENCE</span>
+            <i class="fas fa-gem"></i>
+          </div>
 
-      <!-- DESKTOP NAV -->
-      <nav class="nav-menu">
-        <a href="#home" class="nav-link active">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#community" class="nav-link">Community</a>
-        <a href="#mentorship" class="nav-link">Mentorship</a>
-        <a href="#results" class="nav-link">Results</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
+          <!-- Heading -->
+          <h2 class="solution-heading hidden-init" id="heading">
+            <span class="highlight">Secret Candle AI</span> — Where AI Meets<br />
+            <span class="highlight">Trading Precision</span>
+          </h2>
 
-      <!-- JOIN BUTTON -->
-      <a href="#community" class="community-btn">
-        <i class="fa-brands fa-telegram"></i>
-        <span>Join Free Community</span>
-      </a>
+          <p class="solution-description hidden-init" id="desc">
+            Harness the power of Secret Candle AI to analyze market structure,
+            identify institutional activity, and uncover high-probability
+            trading opportunities. Our AI-driven system helps traders make
+            confident, data-backed decisions instead of relying on emotions or
+            guesswork.
+          </p>
 
-      <!-- HAMBURGER -->
-      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </header>
+          <!-- Cards – wider, more spacious -->
+          <div class="rmi-gridd stagger-children" id="cardGrid">
+            <div class="rmi-card hidden-init" id="card1">
+              <div class="cards-iconn">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <h3>Understand the Market</h3>
+              <p>
+                Gain a deeper view of price action with AI-powered market
+                intelligence.
+              </p>
+              <ul class="feature-list">
+                <li><i class="fas fa-circle-check"></i> AI Market Bias</li>
+                <li>
+                  <i class="fas fa-chart-simple"></i> Multi-Timeframe Analysis
+                </li>
+                <li>
+                  <i class="fas fa-brain"></i> Dynamic Support & Resistance
+                </li>
+              </ul>
+            </div>
 
-    <!-- MOBILE NAV -->
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#community">Community</a>
-      <a href="#mentorship">Mentorship</a>
-      <a href="#results">Results</a>
-      <a href="#contact">Contact</a>
-      <a href="#community" class="mobile-community-btn">
-        <i class="fa-brands fa-telegram"></i>
-        &nbsp; Join Free Community
-      </a>
+            <div class="rmi-card hidden-init" id="card2">
+              <div class="cards-iconn">
+                <i class="fas fa-user-astronaut"></i>
+              </div>
+              <h3>Discover Smart Opportunities</h3>
+              <p>Identify high-quality setups before the crowd.</p>
+              <ul class="feature-list">
+                <li>
+                  <i class="fas fa-heart-pulse"></i> Secret Candle AI Detection
+                </li>
+                <li>
+                  <i class="fas fa-shield-halved"></i> Institutional Order
+                  Blocks
+                </li>
+                <li><i class="fas fa-arrows-spin"></i> Trade Quality Filter</li>
+              </ul>
+            </div>
+
+            <div class="rmi-card hidden-init" id="card3">
+              <div class="cards-iconn">
+                <i class="fas fa-arrow-trend-up"></i>
+              </div>
+              <h3>Trade with Confidence</h3>
+              <p>
+                Markets change every day, but strong trading principles never
+                do. Execute every trade with discipline and AI confirmation.
+              </p>
+              <ul class="feature-list">
+                <li>
+                  <i class="fas fa-layer-group"></i> High-Probability Setups
+                </li>
+                <li>
+                  <i class="fas fa-repeat"></i> Smarter Buy & Sell Decisions
+                </li>
+                <li>
+                  <i class="fas fa-seedling"></i> Consistent Trading Performance
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Snapshot: Philosophy pillars (4 items) -->
+          <div class="data-snapshot" id="snapshot">
+            <div class="metric-item hidden-init" id="m1">
+              <div class="metric-icon"><i class="fas fa-book-open"></i></div>
+              <div class="metric-text">
+                <span class="metric-number">Analyze</span>
+                <span class="metric-label">The Market with AI</span>
+              </div>
+            </div>
+            <div class="metric-item hidden-init" id="m2">
+              <div class="metric-icon"><i class="fas fa-lightbulb"></i></div>
+              <div class="metric-text">
+                <span class="metric-number">Detect</span>
+                <span class="metric-label">Find High Quality Setups</span>
+              </div>
+            </div>
+            <div class="metric-item hidden-init" id="m3">
+              <div class="metric-icon"><i class="fas fa-handshake"></i></div>
+              <div class="metric-text">
+                <span class="metric-number">Execute</span>
+                <span class="metric-label">Trade with Confidence</span>
+              </div>
+            </div>
+            <div class="metric-item hidden-init" id="m4">
+              <div class="metric-icon">
+                <i class="fas fa-arrow-up-wide-short"></i>
+              </div>
+              <div class="metric-text">
+                <span class="metric-number">Grow</span>
+                <span class="metric-label">Master Consistency</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="attract-line hidden-init" id="line"></div>
+        </div>
+      </section>
     </div>
 
-    <!-- ===== JAVASCRIPT ===== -->
     <script>
       (function () {
-        // Navbar scroll effect
-        const navbar = document.getElementById("navbar");
-        window.addEventListener("scroll", function () {
-          if (window.scrollY > 30) {
-            navbar.classList.add("scrolled");
-          } else {
-            navbar.classList.remove("scrolled");
-          }
-        });
+        const hiddenElements = document.querySelectorAll(".hidden-init");
 
-        // Mobile menu toggle
-        const menuToggle = document.getElementById("menuToggle");
-        const mobileMenu = document.getElementById("mobileMenu");
-
-        menuToggle.addEventListener("click", function (e) {
-          e.stopPropagation();
-          mobileMenu.classList.toggle("open");
-        });
-
-        // Close mobile menu when a link is clicked
-        document.querySelectorAll(".mobile-menu a").forEach(function (link) {
-          link.addEventListener("click", function () {
-            mobileMenu.classList.remove("open");
-          });
-        });
-
-        // Active link switching (desktop)
-        const navLinks = document.querySelectorAll(".nav-link");
-        navLinks.forEach(function (link) {
-          link.addEventListener("click", function (e) {
-            navLinks.forEach(function (item) {
-              item.classList.remove("active");
+        const resetObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const el = entry.target;
+              if (!entry.isIntersecting) {
+                el.classList.remove("visible");
+              } else {
+                if (el.classList.contains("metric-item")) {
+                  const metricItems = document.querySelectorAll(".metric-item");
+                  const idx = Array.from(metricItems).indexOf(el);
+                  const delay = idx * 120;
+                  setTimeout(() => {
+                    el.classList.add("visible");
+                  }, delay);
+                } else {
+                  el.classList.add("visible");
+                }
+              }
             });
-            this.classList.add("active");
-          });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -30px 0px",
+          },
+        );
+
+        hiddenElements.forEach((el) => {
+          resetObserver.observe(el);
         });
+
+        console.log("Edu Stockx · Knowledge · Precision · Confidence");
       })();
     </script>
   </body>
