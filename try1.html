@@ -1,23 +1,19 @@
-<!-- -----why secret candle---- -->
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>Secret Candle AI · Auto‑move Swipeable Cards</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB</title>
+    <!-- Google Font & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <style>
       * {
@@ -25,348 +21,3734 @@
         padding: 0;
         box-sizing: border-box;
       }
-      .body-ai {
-        background: #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem;
-        margin: 0;
-        font-family: "Inter", sans-serif;
-        min-height: 85vh;
+
+      html {
+        scroll-behavior: smooth;
       }
-      .section-wrapper {
-        max-width: 1200px;
+
+      body {
+        font-family: Inter, Arial, sans-serif;
+        background: #02090e;
+        color: #ffffff;
+      }
+
+      /* ===== NAVBAR — professional, compact ===== */
+      .navbar {
         width: 100%;
-        background: #000;
-        padding: 2rem 0.5rem 2.8rem 0.5rem;
-        color: #fff;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
+        height: 80px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        padding: 0 4%;
+        background: #02090e;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        transition: all 0.3s ease;
       }
-      .section-wrapper::before {
+
+      .navbar.scrolled {
+        height: 76px;
+        background: rgba(2, 9, 14, 0.96);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      /* ===== BRAND — tighter ===== */
+      .brand {
+        display: flex;
+        align-items: center;
+        min-width: 240px;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 190px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      .brand-name {
+        margin-left: 11px;
+        font-size: 26px;
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: -1px;
+        color: #f0f4f7;
+      }
+
+      .brand-name span {
+        color: #09c8ec;
+      }
+
+      /* ===== NAVIGATION — reduced font, balanced spacing ===== */
+      .nav-menu {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 38px;
+      }
+
+      .nav-link {
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        color: #eef2f5;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.2px;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+
+      .nav-link:hover {
+        color: #09c8ec;
+      }
+
+      /* Active underline – slimmer & closer to text */
+      .nav-link::after {
         content: "";
         position: absolute;
-        top: -60px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 600px;
-        height: 250px;
-        background: radial-gradient(
-          ellipse at center,
-          rgba(212, 168, 69, 0.05) 0%,
-          rgba(0, 0, 0, 0) 70%
-        );
-        pointer-events: none;
-        z-index: 0;
-      }
-      .section-wrapper * {
-        position: relative;
-        z-index: 1;
+        left: 0;
+        right: 0;
+        bottom: 26px;
+        height: 3px;
+        border-radius: 20px;
+        background: #09c8ec;
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
       }
 
-      .section-header {
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(212, 168, 69, 0.06);
-        text-align: center;
+      .nav-link.active::after {
+        transform: scaleX(1);
       }
-      .section-header h2 {
-        font-size: clamp(1.8rem, 4.5vw, 3rem);
-        font-weight: 600;
-        letter-spacing: -0.02em;
-        display: inline-flex;
+
+      /* ===== JOIN BUTTON — compact, refined ===== */
+      .community-btn {
+        min-width: 190px;
+        height: 45px;
+        display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.6rem;
-        margin: 0;
-        text-align: center;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.95) 0%,
-          rgba(244, 228, 1, 0.856) 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0 0 30px rgba(212, 168, 69, 0.06));
-      }
-      .section-header .subhead {
-        font-size: 0.95rem;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.35);
-        margin-top: 0.4rem;
-        letter-spacing: 0.2px;
-      }
-      .section-header .subhead i {
-        color: #d4a845;
-        opacity: 0.4;
-        margin: 0 0.3rem;
-      }
-
-      .carousel-wrapper {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        padding: 0.5rem 0 1.2rem 0;
-        touch-action: pan-y;
-        cursor: grab;
-        user-select: none;
-      }
-      .carousel-wrapper:active {
-        cursor: grabbing;
-      }
-      .carousel-track {
-        display: flex;
-        gap: 1.5rem;
-        width: max-content;
-        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        will-change: transform;
-        pointer-events: none;
-        padding-left: 0;
-        margin-left: 0;
-      }
-      .carousel-track .feature-card {
-        pointer-events: auto;
-      }
-
-      .feature-card {
-        flex: 0 0 auto;
-        width: 350px;
-        max-width: 85vw;
-        background:
-          radial-gradient(
-            circle at top right,
-            rgba(212, 168, 69, 0.12),
-            transparent 35%
-          ),
-          linear-gradient(160deg, #141414 0%, #0b0b0b 55%, #050505 100%);
-        border: 1px solid rgba(212, 168, 69, 0.28);
-        border-radius: 24px;
-        padding: 2rem 1.4rem 1.8rem;
-        text-align: center;
-        backdrop-filter: blur(2px);
-        box-shadow:
-          0 10px 35px rgba(0, 0, 0, 0.55),
-          inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        gap: 10px;
+        padding: 0 18px;
+        background: #09c8ec;
+        color: #031017;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.2px;
         transition: all 0.25s ease;
-        display: flex;
+      }
+
+      .community-btn i {
+        font-size: 20px;
+      }
+
+      .community-btn:hover {
+        transform: translateY(-2px);
+        background: #1ad9f2;
+        box-shadow: 0 8px 25px rgba(11, 210, 237, 0.2);
+      }
+
+      /* ===== MOBILE TOGGLE ===== */
+      .menu-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
         flex-direction: column;
         align-items: center;
-        cursor: default;
-      }
-      .feature-card:hover {
-        background: linear-gradient(
-          160deg,
-          #1b1b1b 0%,
-          #101010 60%,
-          #070707 100%
-        );
-        border-color: #d4a845;
-        box-shadow:
-          0 20px 50px rgba(212, 168, 69, 0.18),
-          0 0 30px rgba(212, 168, 69, 0.1);
-        transform: scale(1.02);
+        justify-content: center;
+        gap: 5px;
       }
 
-      .cards-iconn {
-        font-size: 2.6rem;
-        color: #e8c86a;
-        margin-bottom: 0.8rem;
-        filter: drop-shadow(0 0 25px rgba(212, 168, 69, 0.06));
-        transition: all 0.3s ease;
-        background: rgba(212, 168, 69, 0.02);
-        width: 76px;
-        height: 76px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 60px;
-        border: 0.5px solid rgba(212, 168, 69, 0.04);
-      }
-      .feature-card:hover .cards-iconn {
-        filter: drop-shadow(0 0 50px rgba(212, 168, 69, 0.12));
-        transform: scale(1.05);
-        border-color: rgba(212, 168, 69, 0.08);
-      }
-      .card-name {
-        font-weight: 700;
-        font-size: 1.15rem;
-        color: #ffffff;
-        letter-spacing: -0.01em;
-        margin-bottom: 0.4rem;
-        line-height: 1.3;
-      }
-      .card-desc {
-        font-weight: 400;
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.5);
-        line-height: 1.5;
-        margin-bottom: 0.8rem;
-        min-height: 3rem;
-      }
-      .card-benefit {
-        font-weight: 600;
-        font-size: 0.78rem;
-        color: #f5d77b;
-        background: rgba(212, 168, 69, 0.06);
-        padding: 0.35rem 1.4rem;
-        border-radius: 60px;
-        border: 0.5px solid rgba(212, 168, 69, 0.06);
-        letter-spacing: 0.3px;
-        text-transform: uppercase;
-        backdrop-filter: blur(2px);
+      .menu-toggle span {
+        width: 22px;
+        height: 2px;
+        background: #ffffff;
+        border-radius: 10px;
+        transition: 0.3s;
       }
 
-      .cta-section {
-        margin-top: 1rem;
-        padding-top: 1.8rem;
-        border-top: 1px solid rgba(212, 168, 69, 0.05);
-        display: flex;
-        justify-content: center;
-      }
-      .cta-button {
-        background: #c08a00;
-        border: 0.5px solid rgba(212, 168, 69, 0.08);
-        border-radius: 60px;
-        color: black;
-        font-size: 0.85rem;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-        text-transform: uppercase;
-        text-decoration: none;
-        padding: 0.75rem 2.4rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.6rem;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(4px);
-      }
-      .cta-button i {
-        font-size: 0.75rem;
-        color: #e8c86a;
-        transition: transform 0.3s ease;
-      }
-      .cta-button:hover {
-        background: rgba(212, 168, 69, 0.06);
-        border-color: rgba(212, 168, 69, 0.15);
-        color: #fae39f;
-        transform: scale(1.02);
-      }
-      .cta-button:hover i {
-        transform: translateX(6px);
-      }
-
-      .swipe-hint {
+      /* ===== MOBILE MENU ===== */
+      .mobile-menu {
         display: none;
-        color: rgba(212, 168, 69, 0.2);
-        font-size: 0.7rem;
-        letter-spacing: 0.5px;
-        margin-top: 0.2rem;
       }
 
-      @media (max-width: 768px) {
-        .section-wrapper {
-          padding: 1.5rem 1.5rem 2.2rem 1.5rem;
+      /* ===== TABLET (≤1250px) ===== */
+      @media (max-width: 1250px) {
+        .navbar {
+          padding: 0 3%;
         }
-        .carousel-wrapper {
-          padding: 0.2rem 0 0.8rem 0;
+
+        .brand {
+          min-width: 200px;
         }
-        .carousel-track {
-          gap: 1rem;
+
+        .brand img {
+          width: 48px;
+          height: 48px;
         }
-        .feature-card {
-          width: 260px;
-          max-width: 80vw;
-          padding: 1.6rem 1.2rem 1.4rem;
-          border-radius: 20px;
+
+        .brand-name {
+          font-size: 23px;
+          margin-left: 9px;
         }
-        .cards-iconn {
-          width: 64px;
-          height: 64px;
-          font-size: 2rem;
+
+        .nav-menu {
+          gap: 22px;
         }
-        .card-name {
-          font-size: 1rem;
+
+        .nav-link {
+          font-size: 14px;
         }
-        .card-desc {
-          font-size: 0.8rem;
-          min-height: 2.6rem;
+
+        .nav-link::after {
+          bottom: 22px;
+          height: 3px;
         }
-        .card-benefit {
-          font-size: 0.7rem;
-          padding: 0.25rem 1.2rem;
+
+        .community-btn {
+          min-width: 200px;
+          height: 46px;
+          font-size: 14px;
+          padding: 0 18px;
         }
-        .section-header h2 {
-          font-size: 1.6rem;
-        }
-        .cta-button {
-          padding: 0.65rem 1.8rem;
-          font-size: 0.75rem;
-        }
-        .swipe-hint {
-          display: block;
-        }
-      }
-      @media (max-width: 480px) {
-        .feature-card {
-          width: 300px;
-          max-width: 78vw;
-          padding: 1.3rem 0.9rem 1.2rem;
-          border-radius: 18px;
-        }
-        .cards-iconn {
-          width: 54px;
-          height: 54px;
-          font-size: 1.6rem;
-        }
-        .card-name {
+
+        .community-btn i {
           font-size: 18px;
         }
-        .card-desc {
+      }
+
+      /* ===== MOBILE (≤1050px) ===== */
+      @media (max-width: 1050px) {
+        .navbar {
+          height: 78px;
+        }
+
+        .navbar.scrolled {
+          height: 70px;
+        }
+
+        .nav-menu,
+        .community-btn {
+          display: none;
+        }
+
+        .brand {
+          min-width: auto;
+        }
+
+        .brand img {
+          width: 46px;
+          height: 46px;
+        }
+
+        .brand-name {
+          font-size: 22px;
+          letter-spacing: -0.8px;
+          margin-left: 8px;
+        }
+
+        .menu-toggle {
+          display: flex;
+          margin-left: auto;
+        }
+
+        /* Mobile dropdown */
+        .mobile-menu {
+          position: fixed;
+          top: 78px;
+          left: 0;
+          width: 100%;
+          padding: 18px 6% 28px;
+          background: #02090e;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          z-index: 999;
+          transform: translateY(-120%);
+          transition: transform 0.35s ease;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+          box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.6);
+        }
+
+        .mobile-menu.open {
+          transform: translateY(0);
+        }
+
+        .mobile-menu a {
+          color: #ffffff;
+          text-decoration: none;
+          padding: 14px 4px;
           font-size: 15px;
-          min-height: 2.2rem;
+          font-weight: 500;
+          letter-spacing: -0.2px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .card-benefit {
-          font-size: 12px;
-          padding: 0.2rem 1rem;
+
+        .mobile-menu a:hover {
+          color: #09c8ec;
         }
-        .section-header h2 {
-          font-size: 24px;
+
+        .mobile-community-btn {
+          margin-top: 14px;
+          background: #09c8ec;
+          color: #021017 !important;
+          border-radius: 8px;
+          text-align: center;
+          font-weight: 700 !important;
+          border: none !important;
+          padding: 14px 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-size: 15px;
         }
-        .carousel-track {
-          gap: 0.8rem;
+      }
+
+      /* ===== SMALL MOBILE (≤550px) ===== */
+      @media (max-width: 550px) {
+        .navbar {
+          padding: 0 16px;
+        }
+
+        .brand img {
+          width: 40px;
+          height: 40px;
+        }
+
+        .brand-name {
+          font-size: 19px;
+          letter-spacing: -0.5px;
+          margin-left: 7px;
+        }
+
+        .mobile-menu {
+          top: 78px;
+          padding: 16px 5% 26px;
         }
       }
     </style>
   </head>
   <body>
-    <section class="body-ai">
-      <div class="section-wrapper">
-        <div class="section-header">
-          <h2>Why Secret Candle AI?</h2>
-          <div class="subhead">
-            <i class="fas fa-gem"></i> Institutional‑grade intelligence,
-            distilled into clear signals.
+    <!-- ===== HEADER ===== -->
+    <header class="navbar" id="navbar">
+      <!-- LOGO + NAME -->
+      <a href="#" class="brand">
+        <img src="Photos/UGFXLABLogo.png" alt="UGFXLAB Logo" />
+        <!-- <span class="brand-name">UGFX<span>LAB</span></span> -->
+      </a>
+
+      <!-- DESKTOP NAV -->
+      <nav class="nav-menu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#community" class="nav-link">Community</a>
+        <a href="#mentorship" class="nav-link">Mentorship</a>
+        <a href="#results" class="nav-link">Results</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- JOIN BUTTON -->
+      <a href="#community" class="community-btn">
+        <i class="fa-brands fa-telegram"></i>
+        <span>Join Free Community</span>
+      </a>
+
+      <!-- HAMBURGER -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#community">Community</a>
+      <a href="#mentorship">Mentorship</a>
+      <a href="#results">Results</a>
+      <a href="#contact">Contact</a>
+      <a href="#community" class="mobile-community-btn">
+        <i class="fa-brands fa-telegram"></i>
+        &nbsp; Join Free Community
+      </a>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      (function () {
+        // Navbar scroll effect
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 30) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuToggle.addEventListener("click", function (e) {
+          e.stopPropagation();
+          mobileMenu.classList.toggle("open");
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll(".mobile-menu a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.remove("open");
+          });
+        });
+
+        // Active link switching (desktop)
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            navLinks.forEach(function (item) {
+              item.classList.remove("active");
+            });
+            this.classList.add("active");
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- --- Hero--- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>UGFXLAB — Trading Education & Mentorship</title>
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== PALETTE ===== */
+      :root {
+        --black: #03070a;
+        --black-soft: #081116;
+        --cyan: #00d9ff;
+        --lime: #b8ff2c;
+        --white: #f5f7f8;
+        --muted: #8b9aa3;
+        --border: rgba(255, 255, 255, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--black);
+        overflow-x: hidden;
+        font-family: Inter, Arial, sans-serif;
+        color: var(--white);
+        /* height: 200vh; */
+      }
+
+      /* =========================================================
+         UGFXLAB HERO — IMAGE + VIDEO BACKGROUND
+      ========================================================= */
+
+      .hero {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 85px 5% 30px;
+
+        overflow: hidden;
+        isolation: isolate;
+        text-align: center;
+
+        background: #02070b;
+      }
+
+      /* VIDEO BACKGROUND */
+      .bg-video {
+        position: absolute;
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        z-index: -3;
+
+        opacity: 0.42;
+
+        filter: brightness(0.48) contrast(1.15) saturate(1.15);
+
+        pointer-events: none;
+      }
+
+      /* IMAGE BACKGROUND */
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+
+        z-index: -2;
+
+        background-image:
+          linear-gradient(
+            90deg,
+            rgba(1, 7, 11, 0.92) 0%,
+            rgba(1, 7, 11, 0.55) 30%,
+            rgba(1, 7, 11, 0.3) 50%,
+            rgba(1, 7, 11, 0.65) 75%,
+            rgba(1, 7, 11, 0.94) 100%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(1, 7, 11, 0.72) 0%,
+            rgba(1, 7, 11, 0.2) 45%,
+            rgba(1, 7, 11, 0.88) 100%
+          ),
+          url("Photos/Transparent Center Bull Market Banner.png");
+
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        opacity: 0.95;
+      }
+
+      /* DARK CINEMATIC OVERLAY */
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+
+        z-index: -1;
+
+        background:
+          radial-gradient(
+            circle at 50% 42%,
+            rgba(0, 217, 255, 0.11),
+            transparent 32%
+          ),
+          radial-gradient(
+            circle at 15% 65%,
+            rgba(0, 217, 255, 0.1),
+            transparent 32%
+          ),
+          radial-gradient(
+            circle at 85% 65%,
+            rgba(184, 255, 44, 0.07),
+            transparent 30%
+          ),
+          linear-gradient(180deg, rgba(2, 7, 11, 0.15), rgba(2, 7, 11, 0.48));
+      }
+
+      /* SUBTLE TRADING GRID */
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+
+        z-index: -1;
+
+        background-image:
+          linear-gradient(rgba(0, 217, 255, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 217, 255, 0.035) 1px, transparent 1px);
+
+        background-size: 70px 70px;
+
+        mask-image: linear-gradient(
+          to bottom,
+          transparent,
+          black 25%,
+          black 65%,
+          transparent 100%
+        );
+
+        pointer-events: none;
+      }
+
+      /* AMBIENT GLOW */
+      .blur {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(130px);
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .blur1 {
+        width: 520px;
+        height: 520px;
+
+        background: rgba(0, 217, 255, 0.08);
+
+        top: -180px;
+        left: -180px;
+      }
+
+      .blur2 {
+        width: 450px;
+        height: 450px;
+
+        background: rgba(184, 255, 44, 0.055);
+
+        right: -180px;
+        bottom: -180px;
+      }
+
+      .blur3 {
+        width: 350px;
+        height: 350px;
+
+        background: rgba(0, 217, 255, 0.055);
+
+        left: 45%;
+        top: 40%;
+      }
+
+      /* ===== FIXED CONTENT BLOCK ===== */
+      .hero-container {
+        position: relative;
+        z-index: 5;
+
+        width: 100%;
+        max-width: 1080px;
+
+        margin: 0 auto;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        min-height: 600px;
+      }
+
+      /* eyebrow */
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 26px;
+        border-radius: 50px;
+        background: rgba(8, 17, 22, 0.75);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(14px);
+        gap: 10px;
+        box-shadow: 0 0 30px rgba(0, 217, 255, 0.04);
+        margin-bottom: 36px;
+        flex-shrink: 0;
+      }
+      .hero-badge i {
+        color: var(--lime);
+        font-size: 0.85rem;
+      }
+      .hero-badge span {
+        color: var(--white);
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      /* headline wrapper — fixed height */
+      .hero-title-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 130px; /* fixed height prevents any movement */
+        margin-bottom: 60px;
+        flex-shrink: 0;
+      }
+
+      .typed-headline {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(3rem, 6.2vw, 65px);
+        line-height: 0.98;
+        font-weight: 700;
+        letter-spacing: -3px;
+        display: inline;
+        color: #ffffff;
+        text-shadow: 0 0 40px rgba(255, 255, 255, 0.06);
+        width: 680px;
+      }
+
+      /* white part of the headline */
+      .typing-white {
+        display: inline;
+        white-space: normal;
+        color: #ffffff;
+        -webkit-text-fill-color: #ffffff;
+      }
+
+      /* cyan part of the headline */
+      .typing-cyan {
+        display: inline;
+        white-space: normal;
+        background: linear-gradient(
+          90deg,
+          #ffffff 0%,
+          #ffffff 55%,
+          #00d9ff 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 0 25px rgba(0, 217, 255, 0.18));
+      }
+
+      .typed-cursor {
+        display: inline;
+        margin-left: 4px;
+        vertical-align: baseline;
+        font-size: inherit;
+        color: var(--cyan);
+        opacity: 1;
+        animation: blink 0.8s infinite;
+        font-weight: 300;
+        text-shadow: 0 0 20px var(--cyan);
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.1;
+        }
+      }
+
+      /* body text */
+      .hero-text {
+        max-width: 680px;
+        color: var(--muted);
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin: 0 auto 28px auto;
+        font-weight: 400;
+        flex-shrink: 0;
+      }
+
+      .hero-text strong {
+        color: var(--white);
+        font-weight: 600;
+      }
+
+      /* ===== 4 FEATURE POINTS ===== */
+      .hero-features {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 26px;
+
+        margin: 18px 0 30px;
+
+        width: 100%;
+      }
+
+      .hero-feature {
+        display: flex;
+        align-items: center;
+
+        gap: 12px;
+
+        text-align: left;
+
+        color: #ffffff;
+
+        font-size: 0.86rem;
+
+        font-weight: 600;
+
+        line-height: 1.35;
+
+        white-space: nowrap;
+      }
+
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: rgba(5, 18, 25, 0.78);
+
+        border: 1px solid rgba(0, 217, 255, 0.15);
+
+        color: #00d9ff;
+
+        font-size: 1.05rem;
+
+        box-shadow: 0 0 25px rgba(0, 217, 255, 0.08);
+      }
+
+      .hero-feature:nth-child(4) .feature-icon {
+        color: #b8ff2c;
+      }
+
+      .hero-feature:nth-child(6) .feature-icon {
+        color: #00d9ff;
+      }
+
+      .hero-feature:nth-child(8) .feature-icon {
+        color: #b8ff2c;
+      }
+
+      .feature-line {
+        width: 1px;
+        height: 35px;
+
+        background: rgba(255, 255, 255, 0.13);
+      }
+
+      /* CTA */
+      .hero-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 18px;
+
+        margin-top: 4px;
+      }
+
+      .primary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 14px;
+
+        min-width: 350px;
+
+        padding: 19px 38px;
+
+        border-radius: 60px;
+
+        background: linear-gradient(90deg, #00d9ff, #00ff87);
+        color: #000000;
+
+        font-size: 1rem;
+
+        font-weight: 800;
+
+        text-decoration: none;
+
+        border: none;
+
+        transition: 0.35s ease;
+      }
+
+      .primary-btn:hover {
+        transform: translateY(-4px);
+
+        box-shadow:
+          0 15px 45px rgba(0, 217, 255, 0.2),
+          0 10px 35px rgba(184, 255, 44, 0.15);
+      }
+
+      .secondary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 12px;
+
+        min-width: 250px;
+
+        padding: 18px 32px;
+
+        border-radius: 60px;
+
+        border: 1px solid rgba(255, 255, 255, 0.65);
+
+        color: #ffffff;
+
+        background: rgba(2, 7, 11, 0.25);
+
+        backdrop-filter: blur(10px);
+
+        text-decoration: none;
+
+        font-size: 1rem;
+
+        font-weight: 700;
+
+        transition: 0.3s ease;
+      }
+
+      .secondary-btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+
+        border-color: #00d9ff;
+
+        transform: translateY(-3px);
+      }
+
+      /* trust / community line */
+      .hero-trust {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        gap: 18px;
+
+        margin-top: 28px;
+
+        color: rgba(255, 255, 255, 0.65);
+
+        font-size: 0.72rem;
+
+        font-weight: 600;
+
+        letter-spacing: 3px;
+      }
+
+      .trust-line {
+        width: 45px;
+        height: 1px;
+
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 850px) {
+        .hero-container {
+          min-height: 560px;
+        }
+        .hero-title-wrapper {
+          height: 110px;
+        }
+      }
+
+      @media (max-width: 750px) {
+        .hero {
+          padding: 100px 20px 80px;
+        }
+        .hero-container {
+          min-height: 520px;
+        }
+        .hero-title-wrapper {
+          height: 100px;
+          margin-bottom: 20px;
+        }
+        .hero-text {
+          font-size: 1rem;
+          padding: 0 8px;
+          margin-bottom: 22px;
+        }
+        .primary-btn {
+          padding: 16px 34px;
+          font-size: 1rem;
+        }
+        .hero-badge {
+          padding: 8px 18px;
+          margin-bottom: 28px;
+        }
+        .hero-badge span {
+          font-size: 0.72rem;
+        }
+        .hero-trust {
+          margin-top: 34px;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .hero {
+          padding: 80px 16px 60px;
+        }
+        .hero-container {
+          min-height: 480px;
+        }
+        .hero-title-wrapper {
+          height: 80px;
+          margin-bottom: 16px;
+        }
+        .typed-headline {
+          font-size: clamp(1.7rem, 8vw, 2.4rem);
+          letter-spacing: -1px;
+        }
+        .hero-text {
+          font-size: 0.92rem;
+          margin-bottom: 18px;
+        }
+        .hero-badge {
+          padding: 7px 14px;
+          margin-bottom: 22px;
+        }
+        .hero-badge span {
+          font-size: 0.65rem;
+          letter-spacing: 0.3px;
+        }
+        .hero-badge i {
+          font-size: 0.7rem;
+        }
+        .primary-btn {
+          padding: 14px 28px;
+          font-size: 0.92rem;
+          gap: 10px;
+        }
+        .trust-info h4 {
+          font-size: 0.8rem;
+        }
+        .trust-info p {
+          font-size: 0.68rem;
+        }
+        .hero-trust {
+          padding: 10px 16px;
+          gap: 12px;
+          margin-top: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <video autoplay muted loop playsinline class="bg-video">
+        <source src="Photos/ES-2.webm" type="video/webm" />
+      </video>
+
+      <div class="hero-overlay"></div>
+      <div class="hero-grid"></div>
+      <!-- <div class="blur blur1"></div>
+      <div class="blur blur2"></div>
+      <div class="blur blur3"></div> -->
+
+      <div class="hero-container">
+        <!-- EYEBROW -->
+        <div class="hero-badge">
+          <i class="fa-solid fa-bolt"></i>
+          <span>TRADING EDUCATION • MENTORSHIP • COMMUNITY</span>
+        </div>
+
+        <!-- TYPING HEADLINE — split white / cyan -->
+        <div class="hero-title-wrapper">
+          <div class="typed-headline">
+            <span class="typing-white" id="typed-white"></span>
+            <span class="typing-cyan" id="typed-cyan"></span>
+            <span class="typed-cursor" id="static-cursor">|</span>
           </div>
         </div>
 
-        <div class="carousel-wrapper" id="carouselWrapper">
-          <div class="carousel-track" id="carouselTrack"></div>
-        </div>
-        <div class="swipe-hint">
-          <i class="fas fa-arrows-left-right"></i> swipe to explore
+        <!-- MAIN TEXT -->
+        <p class="hero-text">
+          Build a <strong>structured trading process</strong>, understand your
+          edge, manage risk and learn how to
+          <strong>execute with consistency</strong>.
+        </p>
+
+        <!-- 4 FEATURE POINTS -->
+        <!-- <div class="hero-features">
+          <div class="hero-feature">
+            <div class="feature-icon">
+              <i class="fa-solid fa-book-open"></i>
+            </div>
+            <span>Structured<br />Learning</span>
+          </div>
+
+          <div class="feature-line"></div>
+
+          <div class="hero-feature">
+            <div class="feature-icon">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <span>Practical<br />Strategies</span>
+          </div>
+
+          <div class="feature-line"></div>
+
+          <div class="hero-feature">
+            <div class="feature-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <span>Mentorship<br />& Support</span>
+          </div>
+
+          <div class="feature-line"></div>
+
+          <div class="hero-feature">
+            <div class="feature-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <span>Real Market<br />Application</span>
+          </div>
+        </div> -->
+
+        <!-- CTA -->
+        <div class="hero-buttons">
+          <a href="#" class="primary-btn">
+            Explore UGFXLAB
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+          <a href="#" class="secondary-btn">
+            <i class="fa-solid fa-play"></i>
+            Watch Intro
+          </a>
         </div>
 
-        <div class="cta-section">
+        <!-- COMMUNITY LINE -->
+        <div class="hero-trust">
+          <span class="trust-line"></span>
+
+          <span> JOIN A GROWING COMMUNITY OF SERIOUS TRADERS </span>
+
+          <span class="trust-line"></span>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        // ========== TYPING EFFECT — split white / cyan ==========
+        const typedWhite = document.getElementById("typed-white");
+        const typedCyan = document.getElementById("typed-cyan");
+        const cursorSpan = document.getElementById("static-cursor");
+
+        if (typedWhite && typedCyan) {
+          // Each message has a white part and a cyan part
+          const messages = [
+            { white: "Become the Trader ", cyan: "You Know You Can Be" },
+            { white: "Build Your Edge ", cyan: "Master Consistency" },
+            { white: "Structured Process ", cyan: "Repeatable Results" },
+            { white: "Trade with Clarity ", cyan: "Execute with Confidence" },
+          ];
+
+          let messageIndex = 0;
+          let charPos = 0;
+          let isDeleting = false;
+          let typingTimeout = null;
+
+          function updateTyping() {
+            const msg = messages[messageIndex % messages.length];
+            const fullWhite = msg.white;
+            const fullCyan = msg.cyan;
+
+            // Total characters in the full message
+            const totalLen = fullWhite.length + fullCyan.length;
+
+            if (!isDeleting && charPos <= totalLen) {
+              // Determine how much of the white and cyan parts to show
+              const whiteChars = Math.min(charPos, fullWhite.length);
+              const cyanChars = Math.max(0, charPos - fullWhite.length);
+
+              typedWhite.textContent = fullWhite.substring(0, whiteChars);
+              typedCyan.textContent = fullCyan.substring(0, cyanChars);
+
+              if (cursorSpan) cursorSpan.style.display = "inline";
+
+              if (charPos === totalLen) {
+                // Fully typed, pause then start deleting
+                typingTimeout = setTimeout(() => {
+                  isDeleting = true;
+                  updateTyping();
+                }, 2800);
+                return;
+              } else {
+                charPos++;
+                typingTimeout = setTimeout(updateTyping, 65);
+              }
+            } else if (isDeleting && charPos >= 0) {
+              const whiteChars = Math.min(charPos, fullWhite.length);
+              const cyanChars = Math.max(0, charPos - fullWhite.length);
+
+              typedWhite.textContent = fullWhite.substring(0, whiteChars);
+              typedCyan.textContent = fullCyan.substring(0, cyanChars);
+
+              if (cursorSpan) cursorSpan.style.display = "inline";
+
+              if (charPos === 0) {
+                // Finished deleting, move to next message
+                isDeleting = false;
+                messageIndex++;
+                charPos = 0;
+                typingTimeout = setTimeout(updateTyping, 200);
+              } else {
+                charPos--;
+                typingTimeout = setTimeout(updateTyping, 35);
+              }
+            }
+          }
+
+          typedWhite.textContent = "";
+          typedCyan.textContent = "";
+          if (cursorSpan) cursorSpan.style.display = "inline";
+          updateTyping();
+        }
+
+        // ========== VIDEO FALLBACK ==========
+        const videoBg = document.querySelector(".bg-video");
+        if (videoBg) {
+          videoBg.addEventListener("error", function () {
+            this.style.display = "none";
+          });
+          videoBg.play().catch(() => {});
+        }
+
+        console.log(
+          "UGFXLAB — fixed content space, white→cyan headline, stable layout.",
+        );
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- -------ticker tape ----- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TradingView Dark Ticker Tape</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        overflow-x: hidden;
+        background: #0b0f19;
+      }
+
+      .ticker-container {
+        width: 100vw;
+        background: #0b0f19;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ticker-container">
+      <!-- TradingView Widget BEGIN -->
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+
+        <script
+          type="text/javascript"
+          src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+          async
+        >
+          {
+              "symbols": [
+                  {
+                      "description": "S&P 500",
+                      "proName": "FOREXCOM:SPXUSD"
+                  },
+                  {
+                      "description": "Nasdaq",
+                      "proName": "FOREXCOM:NSXUSD"
+                  },
+                  {
+                      "description": "Dow Jones",
+                      "proName": "FOREXCOM:DJI"
+                  },
+                  {
+                      "description": "EUR/USD",
+                      "proName": "FX:EURUSD"
+                  },
+                  {
+                      "description": "Bitcoin",
+                      "proName": "BITSTAMP:BTCUSD"
+                  },
+                  {
+                      "description": "Ethereum",
+                      "proName": "BITSTAMP:ETHUSD"
+                  },
+                  {
+                      "description": "Gold",
+                      "proName": "CMCMARKETS:GOLD"
+                  },
+                  {
+                      "description": "Apple",
+                      "proName": "NASDAQ:AAPL"
+                  },
+                  {
+                      "description": "MicroStrategy",
+                      "proName": "NASDAQ:MSTR"
+                  },
+                  {
+                      "description": "SPCX",
+                      "proName": "NASDAQ:SPCX"
+                  }
+              ],
+              "showSymbolLogo": true,
+              "isTransparent": false,
+              "displayMode": "adaptive",
+              "colorTheme": "dark",
+              "locale": "en"
+          }
+        </script>
+      </div>
+      <!-- TradingView Widget END -->
+    </div>
+  </body>
+</html>
+
+<!-- ---- about ---   -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>More Than Just Trading — UGFXLAB</title>
+    <style>
+      :root {
+        --black: #03070a;
+        --black-soft: #081116;
+        --cyan: #09c8ec;
+        --white: #f5f7f8;
+        --text: #91a0a8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--black);
+        color: var(--white);
+        font-family: Inter, Arial, sans-serif;
+        overflow-x: hidden;
+      }
+
+      .expertise {
+        width: 100%;
+        min-height: 100vh;
+        background: var(--black);
+        padding: 72px 30px 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .expertise-inner {
+        width: 100%;
+        max-width: 1250px;
+        margin: 0 auto;
+      }
+
+      /* ===== HEADING ===== */
+      .expertise-title {
+        font-size: 58px;
+        line-height: 1.02;
+        font-weight: 400;
+        letter-spacing: -2.4px;
+        width: 800px;
+        max-width: 100%;
+        margin-bottom: 25px;
+      }
+
+      .expertise-title .cyan-text {
+        color: var(--cyan);
+        display: block;
+      }
+
+      /* ===== MAIN CONTENT ===== */
+      .expertise-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.38fr) minmax(0, 1fr);
+        gap: 50px;
+        align-items: start;
+        position: relative;
+      }
+
+      /* ===== VIDEO ===== */
+      .expertise-image {
+        width: 100%;
+        height: 418px;
+        border-radius: 14px;
+        overflow: hidden;
+        background: var(--black-soft);
+        position: relative;
+      }
+
+      .expertise-image video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      .expertise-image:hover video {
+        transform: scale(1.025);
+      }
+
+      /* ===== RIGHT SIDE ===== */
+      .expertise-right {
+        position: relative;
+        padding-top: 34px;
+      }
+
+      /* ===== CYAN STAR ===== */
+      .expertise-star {
+        position: absolute;
+        top: -104px;
+        left: -50px;
+        width: 108px;
+        height: 108px;
+        pointer-events: none;
+      }
+
+      .expertise-star::before {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 108px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--cyan);
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+
+      .expertise-star::after {
+        content: "";
+        position: absolute;
+        width: 108px;
+        height: 8px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--cyan);
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+
+      .star-center {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background: var(--white);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 5;
+      }
+
+      /* ===== DESCRIPTION ===== */
+      .expertise-description {
+        width: 100%;
+        max-width: 585px;
+        color: var(--text);
+        font-size: 17px;
+        line-height: 1.58;
+        font-weight: 400;
+        margin: 0 0 48px;
+      }
+
+      .expertise-description .highlight {
+        color: var(--white);
+      }
+
+      /* ===== BUTTON ===== */
+      .story-btn {
+        display: inline-flex;
+        align-items: center;
+        height: 60px;
+        padding-left: 28px;
+        padding-right: 8px;
+        gap: 22px;
+        color: var(--white);
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 400;
+        border: 1px solid rgba(9, 200, 236, 0.65);
+        border-radius: 50px;
+        transition:
+          background 0.3s ease,
+          border-color 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .story-btn-arrow {
+        width: 43px;
+        height: 43px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--cyan);
+        color: var(--black);
+        font-size: 22px;
+        transition: transform 0.3s ease;
+      }
+
+      .story-btn:hover {
+        background: rgba(9, 200, 236, 0.06);
+        border-color: var(--cyan);
+        transform: translateY(-2px);
+      }
+
+      .story-btn:hover .story-btn-arrow {
+        transform: translateX(4px);
+      }
+
+      /* =====================================================
+       REFINED ANIMATION SYSTEM
+       - Only runs once per page load
+       - Only when section enters viewport
+       - Staggered, smooth, premium feel
+    ===================================================== */
+
+      /* All animated elements start hidden + shifted */
+      .anim {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+        transition:
+          opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+
+      /* The star gets a special pop + spin */
+      .expertise-star.anim {
+        opacity: 0;
+        transform: scale(0.4) rotate(-45deg);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      /* Staggered delays for the entrance sequence */
+      .expertise-title.anim {
+        transition-delay: 0.1s;
+      }
+
+      .expertise-image.anim {
+        transition-delay: 0.25s;
+      }
+
+      .expertise-right .expertise-star.anim {
+        transition-delay: 0.4s;
+      }
+
+      .expertise-right .expertise-description.anim {
+        transition-delay: 0.55s;
+      }
+
+      .expertise-right .story-btn.anim {
+        transition-delay: 0.7s;
+      }
+
+      /* ===== FINAL REVEALED STATE ===== */
+      .expertise--animated .anim {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .expertise--animated .expertise-star.anim {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+
+      /* ===== TABLET ===== */
+      @media (max-width: 900px) {
+        .expertise {
+          padding: 60px 24px;
+        }
+
+        .expertise-title {
+          font-size: 52px;
+          margin-bottom: 42px;
+        }
+
+        .expertise-layout {
+          grid-template-columns: 1fr;
+          gap: 45px;
+        }
+
+        .expertise-image {
+          height: 420px;
+        }
+
+        .expertise-right {
+          padding-top: 0;
+        }
+
+        .expertise-star {
+          position: relative;
+          top: auto;
+          left: auto;
+          margin-bottom: 25px;
+        }
+
+        .expertise-description {
+          max-width: 650px;
+        }
+      }
+
+      /* ===== MOBILE ===== */
+      @media (max-width: 600px) {
+        .expertise {
+          padding: 50px 18px;
+        }
+
+        .expertise-title {
+          font-size: 43px;
+          letter-spacing: -1.6px;
+          margin-bottom: 32px;
+        }
+
+        .expertise-layout {
+          gap: 38px;
+        }
+
+        .expertise-image {
+          height: 300px;
+          border-radius: 11px;
+        }
+
+        .expertise-description {
+          font-size: 16px;
+          line-height: 1.6;
+          margin-bottom: 32px;
+        }
+
+        .expertise-star {
+          width: 75px;
+          height: 75px;
+        }
+
+        .expertise-star::before {
+          height: 75px;
+          width: 6px;
+        }
+
+        .expertise-star::after {
+          width: 75px;
+          height: 6px;
+        }
+
+        .star-center {
+          width: 11px;
+          height: 11px;
+        }
+
+        .story-btn {
+          height: 56px;
+          font-size: 16px;
+        }
+
+        .story-btn-arrow {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="expertise" id="expertiseSection">
+      <div class="expertise-inner">
+        <!-- HEADING -->
+        <h1 class="expertise-title anim">
+          Stop Searching for the
+          <span class="cyan-text"> Next Strategy. </span>
+        </h1>
+
+        <!-- TWO COLUMN CONTENT -->
+        <div class="expertise-layout">
+          <!-- VIDEO -->
+          <div class="expertise-image anim">
+            <video
+              controls
+              playsinline
+              poster="https://images.pexels.com/photos/27051702/pexels-photo-27051702.jpeg?auto=compress&cs=tinysrgb&w=1400"
+            >
+              <source
+                src="https://www.pexels.com/download/video/35606120/"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <!-- RIGHT CONTENT -->
+          <div class="expertise-right">
+            <!-- CYAN STAR -->
+            <div class="expertise-star anim">
+              <div class="star-center"></div>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <p class="expertise-description anim">
+              MORE THAN JUST TRADING
+              <br /><br />
+              Trading isn't about finding a perfect strategy that wins every
+              trade. It's about developing an edge, understanding the market,
+              managing your risk and becoming disciplined enough to execute your
+              process repeatedly.
+              <br /><br />
+              At
+              <span class="highlight"> UGFXLAB </span>
+              , we help traders build that foundation through practical
+              education, market analysis, mentorship and a community of traders
+              walking the same path.
+            </p>
+
+            <!-- BUTTON -->
+            <a href="#" class="story-btn anim">
+              <span> Explore Our Community </span>
+              <span class="story-btn-arrow"> → </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const section = document.getElementById("expertiseSection");
+        let hasAnimated = false;
+
+        // Use IntersectionObserver to trigger animation once on scroll into view
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+                // Add class that triggers all transitions
+                section.classList.add("expertise--animated");
+                // Stop observing — ensures animation only plays once per refresh
+                observer.unobserve(section);
+              }
+            });
+          },
+          {
+            threshold: 0.25,
+            rootMargin: "0px 0px -60px 0px", // Slight offset for a natural trigger point
+          },
+        );
+
+        observer.observe(section);
+
+        // Fallback: if the section is already in view on page load,
+        // the observer will fire immediately. No additional logic needed.
+        // But if the browser doesn't support IntersectionObserver (very old),
+        // we add a simple fallback.
+        if (!("IntersectionObserver" in window)) {
+          // Old browser fallback: just show everything after a tiny delay
+          setTimeout(() => {
+            section.classList.add("expertise--animated");
+          }, 300);
+        }
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ------ Services------ -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>UGFXLAB | Choose Your Path</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --black: #03070a;
+
+        --black-soft: #081116;
+
+        --cyan: #09c8ec;
+
+        --gold: #e9bd62;
+
+        --purple: #a855f7; /* accent for The Lab */
+
+        --white: #f5f7f8;
+
+        --muted: #a8b2ba;
+      }
+
+      * {
+        margin: 0;
+
+        padding: 0;
+
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+
+        background: var(--black);
+
+        color: var(--white);
+      }
+
+      .path-section {
+        position: relative;
+
+        isolation: isolate;
+
+        overflow: hidden;
+
+        padding: 76px 36px 86px;
+
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        padding: 63px 36px 86px;
+        background:
+          radial-gradient(
+            circle at 50% 8%,
+            rgb(0 201 255 / 21%),
+            transparent 26%
+          ),
+          radial-gradient(
+            circle at 50% 55%,
+            rgb(24 154 181 / 10%),
+            transparent 38%
+          ),
+          linear-gradient(180deg, #090909 0%, #020202 100%);
+      }
+
+      /* .path-section::before {
+        content: "";
+    position: absolute;
+    z-index: -1;
+    top: -180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(900px, 100%);
+    height: 420px;
+    background: radial-gradient(ellipse, rgba(0, 229, 255, 0.09), transparent 68%);
+    pointer-events: none;
+      } */
+
+      .path-container {
+        width: 100%;
+
+        max-width: 1200px;
+
+        margin: auto;
+      }
+
+      /* Heading */
+
+      .path-heading {
+        text-align: center;
+
+        margin: 0 auto 44px;
+
+        max-width: 1000px;
+      }
+
+      .eyebrowpath {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 15px;
+
+        margin-bottom: 20px;
+
+        color: var(--cyan);
+
+        font-size: 12px;
+
+        font-weight: 600;
+
+        letter-spacing: 5px;
+
+        text-transform: uppercase;
+      }
+
+      .eyebrowpath::before,
+      .eyebrowpath::after {
+        content: "";
+
+        width: 32px;
+
+        height: 1px;
+
+        background: var(--cyan);
+      }
+
+      .path-heading h1 {
+        font-size: 58px;
+        line-height: 1.02;
+        font-weight: 400;
+        letter-spacing: -2.4px;
+        max-width: 100%;
+        margin-bottom: 25px;
+      }
+
+      .path-heading h1 span {
+        color: var(--cyan);
+      }
+
+      .path-heading p {
+        color: #aab4bc;
+
+        font-size: 16px;
+
+        line-height: 1.85;
+
+        font-weight: 400;
+      }
+
+      /* ------------------------------------------------------------
+
+         GRID – base: 1 column (mobile)
+
+      ------------------------------------------------------------ */
+
+      .path-grid {
+        display: grid;
+
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+
+        gap: 20px;
+
+        align-items: stretch;
+      }
+
+      /* ------------------------------------------------------------
+
+         CARD BASE – default cyan accent
+
+      ------------------------------------------------------------ */
+
+      .path-card {
+        --accent: var(--cyan);
+
+        --accent-rgb: 9, 200, 236;
+
+        position: relative;
+
+        display: flex;
+
+        flex-direction: column;
+
+        min-width: 0;
+
+        overflow: hidden;
+
+        border-radius: 15px;
+
+        border: 1px solid rgba(var(--accent-rgb), 0.36);
+
+        background: linear-gradient(
+          155deg,
+          rgba(var(--accent-rgb), 0.105) 0%,
+
+          rgba(11, 19, 24, 0.8) 28%,
+
+          rgba(3, 7, 10, 0.94) 75%,
+
+          rgba(var(--accent-rgb), 0.075) 100%
+        );
+
+        backdrop-filter: blur(18px);
+
+        -webkit-backdrop-filter: blur(18px);
+
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.1),
+          inset 0 -25px 45px rgba(var(--accent-rgb), 0.035),
+          0 15px 40px rgba(0, 0, 0, 0.22);
+
+        transition:
+          transform 0.4s ease,
+          border-color 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+
+      /* ------------------------------------------------------------
+
+         PURPLE accent for "The Lab"
+
+      ------------------------------------------------------------ */
+
+      .path-card.purple {
+        --accent: var(--purple);
+
+        --accent-rgb: 168, 85, 247;
+      }
+
+      /* gold class kept for safety, but overridden to cyan */
+
+      .path-card.gold {
+        --accent: var(--cyan);
+
+        --accent-rgb: 9, 200, 236;
+      }
+
+      /* Top light falling on the glass */
+
+      .path-card::before {
+        content: "";
+
+        position: absolute;
+
+        z-index: 2;
+
+        top: 0;
+
+        left: 8%;
+
+        right: 8%;
+
+        height: 1px;
+
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.75),
+          var(--accent),
+          transparent
+        );
+
+        opacity: 0.8;
+
+        pointer-events: none;
+      }
+
+      .path-card::after {
+        content: "";
+
+        position: absolute;
+
+        pointer-events: none;
+
+        inset: 0;
+
+        background: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0.045),
+          transparent 22%,
+
+          transparent 75%,
+
+          rgba(var(--accent-rgb), 0.045)
+        );
+
+        opacity: 0.8;
+      }
+
+      .path-card:hover {
+        transform: translateY(-7px);
+
+        border-color: rgba(var(--accent-rgb), 0.8);
+
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.15),
+          0 0 25px rgba(var(--accent-rgb), 0.09),
+          0 22px 50px rgba(0, 0, 0, 0.4);
+      }
+
+      /* Card images */
+
+      .card-image {
+        position: relative;
+
+        height: 190px;
+
+        overflow: hidden;
+
+        background: #081116;
+      }
+
+      .card-image img {
+        width: 100%;
+
+        height: 100%;
+
+        display: block;
+
+        object-fit: cover;
+
+        opacity: 0.82;
+
+        transition:
+          transform 0.7s ease,
+          opacity 0.5s ease;
+      }
+
+      .path-card:hover .card-image img {
+        transform: scale(1.045);
+
+        opacity: 0.98;
+      }
+
+      .card-image::after {
+        content: "";
+
+        position: absolute;
+
+        inset: 0;
+
+        background:
+          linear-gradient(
+            to bottom,
+
+            transparent 48%,
+
+            rgba(3, 7, 10, 0.38) 72%,
+
+            #060b0f 100%
+          ),
+          linear-gradient(90deg, rgba(var(--accent-rgb), 0.08), transparent 75%);
+      }
+
+      /* Card body */
+
+      .card-content {
+        position: relative;
+
+        z-index: 3;
+
+        flex: 1;
+
+        display: flex;
+
+        flex-direction: column;
+
+        padding: 22px 23px 24px; /* top padding added since number removed */
+
+        margin-top: -1px;
+      }
+
+      /* REMOVED .card-number entirely – no numbering */
+
+      .card-content h2 {
+        font-size: 25px;
+
+        line-height: 1.35;
+
+        letter-spacing: -0.65px;
+
+        font-weight: 750;
+
+        margin-bottom: 4px;
+
+        white-space: nowrap;
+      }
+
+      .card-content h2 span {
+        color: var(--accent);
+      }
+
+      .card-subtitle {
+        color: #d3d9dd;
+
+        font-size: 15px;
+
+        line-height: 1.5;
+      }
+
+      .card-divider {
+        width: 100%;
+
+        height: 1px;
+
+        background: linear-gradient(
+          90deg,
+          rgba(var(--accent-rgb), 0.3),
+          rgba(255, 255, 255, 0.14),
+          rgba(var(--accent-rgb), 0.13)
+        );
+
+        margin: 15px 0;
+      }
+
+      .card-description {
+        color: #bec7cd;
+
+        font-size: 13.5px;
+
+        line-height: 1.75;
+
+        font-weight: 400;
+      }
+
+      /* Price */
+
+      .card-bottom {
+        margin-top: auto;
+
+        padding-top: 24px;
+      }
+
+      .card-price {
+        color: var(--accent);
+
+        font-size: 25px;
+
+        line-height: 1.35;
+
+        font-weight: 750;
+
+        letter-spacing: -0.8px;
+
+        margin-bottom: 17px;
+
+        white-space: nowrap;
+      }
+
+      .card-price small {
+        font-size: 14px;
+
+        font-weight: 400;
+
+        letter-spacing: 0;
+
+        color: var(--accent);
+      }
+
+      .card-price .amount {
+        font-size: 25px;
+
+        font-weight: 750;
+      }
+
+      /* CTA */
+
+      .card-button {
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 12px;
+
+        width: 100%;
+
+        min-height: 49px;
+
+        padding: 12px 10px;
+
+        border-radius: 10px;
+
+        border: 1px solid rgba(var(--accent-rgb), 0.85);
+
+        background: rgba(var(--accent-rgb), 0.045);
+
+        color: var(--white);
+
+        text-decoration: none;
+
+        text-align: center;
+
+        font-family: inherit;
+
+        font-size: 12px;
+
+        font-weight: 650;
+
+        white-space: nowrap;
+
+        box-shadow: inset 0 0 14px rgba(var(--accent-rgb), 0.035);
+
+        transition:
+          background 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .card-button .arrow {
+        color: var(--accent);
+
+        font-size: 19px;
+
+        line-height: 1;
+
+        transition: transform 0.3s ease;
+      }
+
+      .card-button:hover {
+        background: rgba(var(--accent-rgb), 0.13);
+
+        box-shadow:
+          inset 0 0 18px rgba(var(--accent-rgb), 0.08),
+          0 0 18px rgba(var(--accent-rgb), 0.12);
+      }
+
+      .card-button:hover .arrow {
+        transform: translateX(4px);
+      }
+
+      /* Entrance animation */
+
+      .js-enabled .path-card {
+        opacity: 0;
+
+        transform: translateY(22px);
+      }
+
+      .js-enabled .path-card.visible {
+        opacity: 1;
+
+        transform: translateY(0);
+
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease,
+          border-color 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+
+      .js-enabled .path-card.visible:hover {
+        transform: translateY(-7px);
+      }
+
+      /* Stagger delays based on new order:
+
+         1st: FxLabTrades, 2nd: The Lab, 3rd: 1-on-1, 4th: Free Community */
+
+      .path-card:nth-child(1) {
+        transition-delay: 0s;
+      }
+
+      .path-card:nth-child(2) {
+        transition-delay: 0.08s;
+      }
+
+      .path-card:nth-child(3) {
+        transition-delay: 0.16s;
+      }
+
+      .path-card:nth-child(4) {
+        transition-delay: 0.24s;
+      }
+
+      /* ------------------------------------------------------------
+
+         RESPONSIVE
+
+      ------------------------------------------------------------ */
+
+      /* ----- 1500px+ : original 4 columns, but we keep the 3+1 order?&#x20;
+
+         We keep the special order for consistency: 3 top, 1 bottom.
+
+         Because request says "3 cards in a line ... & the 4 card in a row"
+
+         So even on large screens we maintain the 3+1 layout.
+
+         Let's apply the 3+1 layout from 1200px and above.
+
+      ----- */
+
+      /* 1500px+ – still 3+1 layout */
+
+      @media (min-width: 1500px) {
+        .path-section {
+          padding-left: 50px;
+
+          padding-right: 50px;
+        }
+
+        .card-image {
+          height: 205px;
+        }
+
+        .card-content {
+          padding-left: 25px;
+
+          padding-right: 25px;
+        }
+
+        /* 3+1 grid */
+
+        .path-grid {
+          display: grid;
+
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+
+          gap: 24px;
+        }
+
+        .path-card.fxlabtrades {
+          grid-column: 1 / 2;
+
+          grid-row: 1 / 2;
+        }
+
+        .path-card.the-lab {
+          grid-column: 2 / 3;
+
+          grid-row: 1 / 2;
+        }
+
+        .path-card.one-on-one {
+          grid-column: 3 / 4;
+
+          grid-row: 1 / 2;
+        }
+
+        .path-card.free-community {
+          grid-column: 1 / -1;
+
+          grid-row: 2 / 3;
+        }
+
+        /* Free community horizontal layout on wide screens */
+
+        .path-card.free-community {
+          flex-direction: row;
+
+          align-items: stretch;
+        }
+
+        .path-card.free-community .card-image {
+          width: 38%;
+
+          height: auto;
+
+          min-height: 240px;
+
+          flex-shrink: 0;
+        }
+
+        .path-card.free-community .card-content {
+          width: 62%;
+
+          padding: 32px 36px 32px 32px;
+
+          margin-top: 0;
+
+          justify-content: center;
+        }
+
+        .path-card.free-community .card-image::after {
+          background:
+            linear-gradient(
+              to right,
+
+              transparent 30%,
+
+              rgba(3, 7, 10, 0.6) 70%,
+
+              #060b0f 100%
+            ),
+            linear-gradient(
+              90deg,
+              rgba(var(--accent-rgb), 0.08),
+              transparent 75%
+            );
+        }
+
+        .path-card.free-community .card-content h2 {
+          white-space: normal;
+        }
+
+        .path-card.the-lab.purple {
+          --accent: var(--purple);
+
+          --accent-rgb: 168, 85, 247;
+        }
+
+        .path-card.gold {
+          --accent: var(--cyan);
+
+          --accent-rgb: 9, 200, 236;
+        }
+
+        .path-card.fxlabtrades .card-image,
+        .path-card.the-lab .card-image,
+        .path-card.one-on-one .card-image {
+          height: 205px;
+        }
+      }
+
+      /* ----- 1200px – 1499px : 3+1 layout ----- */
+
+      @media (min-width: 1200px) and (max-width: 1499px) {
+        .path-section {
+          padding-left: 36px;
+
+          padding-right: 36px;
+        }
+
+        .path-grid {
+          display: grid;
+
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+
+          gap: 22px;
+        }
+
+        /* Row 1: FxLabTrades, The Lab, 1-on-1 */
+
+        .path-card.fxlabtrades {
+          grid-column: 1 / 2;
+
+          grid-row: 1 / 2;
+        }
+
+        .path-card.the-lab {
+          grid-column: 2 / 3;
+
+          grid-row: 1 / 2;
+        }
+
+        .path-card.one-on-one {
+          grid-column: 3 / 4;
+
+          grid-row: 1 / 2;
+        }
+
+        /* Row 2: Free Community full width */
+
+        .path-card.free-community {
+          grid-column: 1 / -1;
+
+          grid-row: 2 / 3;
+        }
+
+        /* Free community horizontal layout */
+
+        .path-card.free-community {
+          flex-direction: row;
+
+          align-items: stretch;
+        }
+
+        .path-card.free-community .card-image {
+          width: 38%;
+
+          height: auto;
+
+          min-height: 220px;
+
+          flex-shrink: 0;
+        }
+
+        .path-card.free-community .card-content {
+          width: 62%;
+
+          padding: 28px 32px 28px 28px;
+
+          margin-top: 0;
+
+          justify-content: center;
+        }
+
+        .path-card.free-community .card-image::after {
+          background:
+            linear-gradient(
+              to right,
+
+              transparent 30%,
+
+              rgba(3, 7, 10, 0.6) 70%,
+
+              #060b0f 100%
+            ),
+            linear-gradient(
+              90deg,
+              rgba(var(--accent-rgb), 0.08),
+              transparent 75%
+            );
+        }
+
+        .path-card.free-community .card-content h2 {
+          white-space: normal;
+        }
+
+        .path-card.free-community {
+          --accent: var(--cyan);
+
+          --accent-rgb: 9, 200, 236;
+        }
+
+        .path-card.the-lab.purple {
+          --accent: var(--purple);
+
+          --accent-rgb: 168, 85, 247;
+        }
+
+        .path-card.gold {
+          --accent: var(--cyan);
+
+          --accent-rgb: 9, 200, 236;
+        }
+
+        .path-card.fxlabtrades .card-image,
+        .path-card.the-lab .card-image,
+        .path-card.one-on-one .card-image {
+          height: 200px;
+        }
+      }
+
+      /* ----- 1100px – 1199px : 3+1 layout too? we keep 3+1 ----- */
+
+      @media (min-width: 1100px) and (max-width: 1199px) {
+        .path-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+
+          gap: 22px;
+        }
+
+        .path-card.fxlabtrades {
+          grid-column: 1 / 2;
+
+          grid-row: 1 / 2;
+        }
+
+        .path-card.the-lab {
+          grid-column: 2 / 3;
+
+          grid-row: 1 / 2;
+        }
+
+        .path-card.one-on-one {
+          grid-column: 3 / 4;
+
+          grid-row: 1 / 2;
+        }
+
+        .path-card.free-community {
+          grid-column: 1 / -1;
+
+          grid-row: 2 / 3;
+        }
+
+        .path-card.free-community {
+          flex-direction: row;
+
+          align-items: stretch;
+        }
+
+        .path-card.free-community .card-image {
+          width: 38%;
+
+          height: auto;
+
+          min-height: 210px;
+
+          flex-shrink: 0;
+        }
+
+        .path-card.free-community .card-content {
+          width: 62%;
+
+          padding: 26px 30px 26px 26px;
+
+          margin-top: 0;
+
+          justify-content: center;
+        }
+
+        .path-card.free-community .card-image::after {
+          background:
+            linear-gradient(
+              to right,
+
+              transparent 30%,
+
+              rgba(3, 7, 10, 0.6) 70%,
+
+              #060b0f 100%
+            ),
+            linear-gradient(
+              90deg,
+              rgba(var(--accent-rgb), 0.08),
+              transparent 75%
+            );
+        }
+
+        .path-card.free-community .card-content h2 {
+          white-space: normal;
+        }
+
+        .path-card.free-community {
+          --accent: var(--cyan);
+
+          --accent-rgb: 9, 200, 236;
+        }
+
+        .path-card.the-lab.purple {
+          --accent: var(--purple);
+
+          --accent-rgb: 168, 85, 247;
+        }
+
+        .path-card.gold {
+          --accent: var(--cyan);
+
+          --accent-rgb: 9, 200, 236;
+        }
+
+        .path-card.fxlabtrades .card-image,
+        .path-card.the-lab .card-image,
+        .path-card.one-on-one .card-image {
+          height: 190px;
+        }
+      }
+
+      /* ----- max-width: 1099px : 2 columns (tablet) ----- */
+
+      @media (max-width: 1099px) {
+        .path-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+
+          gap: 22px;
+        }
+
+        /* reset all placements */
+
+        .path-card.free-community,
+        .path-card.fxlabtrades,
+        .path-card.the-lab,
+        .path-card.one-on-one {
+          grid-column: auto;
+
+          grid-row: auto;
+        }
+
+        .card-image {
+          height: 220px;
+        }
+
+        .card-content {
+          padding: 20px 25px 25px;
+        }
+
+        .card-content h2 {
+          font-size: 22px;
+        }
+
+        .path-card.free-community {
+          flex-direction: column;
+        }
+
+        .path-card.free-community .card-image {
+          width: 100%;
+
+          height: 220px;
+        }
+
+        .path-card.free-community .card-content {
+          width: 100%;
+
+          padding: 20px 25px 25px;
+
+          margin-top: -1px;
+        }
+
+        .path-card.free-community .card-content h2 {
+          white-space: normal;
+        }
+
+        .path-card.free-community .card-image::after {
+          background:
+            linear-gradient(
+              to bottom,
+
+              transparent 48%,
+
+              rgba(3, 7, 10, 0.38) 72%,
+
+              #060b0f 100%
+            ),
+            linear-gradient(
+              90deg,
+              rgba(var(--accent-rgb), 0.08),
+              transparent 75%
+            );
+        }
+      }
+
+      /* ----- mobile 600px and below ----- */
+
+      @media (max-width: 600px) {
+        .path-section {
+          padding: 55px 17px;
+        }
+
+        .path-heading {
+          margin-bottom: 32px;
+        }
+
+        .eyebrowpath {
+          font-size: 10px;
+
+          letter-spacing: 3px;
+
+          gap: 10px;
+        }
+
+        .path-heading h1 {
+          font-size: 35px;
+
+          letter-spacing: -1.4px;
+
+          line-height: 1.2;
+        }
+
+        .path-heading p {
+          font-size: 14px;
+
+          line-height: 1.8;
+        }
+
+        .path-grid {
+          grid-template-columns: 1fr;
+
+          gap: 22px;
+        }
+
+        .card-image {
+          height: 220px;
+        }
+
+        .card-content {
+          padding: 18px 22px 23px;
+        }
+
+        .card-content h2 {
+          font-size: 23px;
+
+          white-space: normal;
+        }
+
+        .card-description {
+          font-size: 14px;
+        }
+
+        .card-bottom {
+          padding-top: 20px;
+        }
+
+        .path-card.free-community {
+          flex-direction: column;
+        }
+
+        .path-card.free-community .card-image {
+          width: 100%;
+
+          height: 220px;
+        }
+
+        .path-card.free-community .card-content {
+          width: 100%;
+
+          padding: 18px 22px 23px;
+
+          margin-top: -1px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+
+          transition-duration: 0.01ms !important;
+
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* Centered content + premium glass price and CTA, matching the reference */
+      .path-card .card-content {
+        text-align: center;
+        align-items: center;
+      }
+
+      .path-card .card-content h2,
+      .path-card .card-subtitle,
+      .path-card .card-description {
+        width: 100%;
+        text-align: center;
+      }
+
+      .path-card .card-divider {
+        width: 100%;
+        max-width: 100%;
+        margin: 17px auto;
+      }
+
+      .path-card .card-bottom {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 22px;
+      }
+
+      .path-card .card-price {
+        width: min(100%, 172px);
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        margin: 0 auto 22px;
+        padding: 14px 22px;
+        border: 1px solid rgba(var(--accent-rgb), 0.48);
+        border-radius: 8px;
+        background: linear-gradient(
+          135deg,
+          rgba(var(--accent-rgb), 0.13),
+          rgb(0 0 0 / 66%) 38%,
+          rgb(0 0 0) 58%,
+          rgba(var(--accent-rgb), 0.07)
+        );
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.09),
+          inset 0 -12px 24px rgba(var(--accent-rgb), 0.035),
+          0 8px 26px rgba(0, 0, 0, 0.16);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        font-size: 29px;
+        line-height: 1.1;
+        letter-spacing: -1px;
+      }
+
+      .path-card .card-price small {
+        font-size: 13px;
+      }
+
+      .path-card .card-price .amount {
+        font-size: 29px;
+      }
+
+      .path-card .card-button {
+        width: 100%;
+        min-height: 62px;
+        padding: 15px 18px;
+        gap: 16px;
+        border-radius: 23px;
+        border: 1px solid rgba(var(--accent-rgb), 0.92);
+        background: linear-gradient(
+          135deg,
+          rgba(var(--accent-rgb), 0.13),
+          rgba(3, 10, 14, 0.62) 52%,
+          rgba(var(--accent-rgb), 0.09)
+        );
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.13),
+          inset 0 -10px 22px rgba(var(--accent-rgb), 0.045),
+          0 0 18px rgba(var(--accent-rgb), 0.08);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        font-size: 15px;
+      }
+
+      .path-card .card-button .arrow {
+        font-size: 25px;
+      }
+
+      .path-card .card-button:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(var(--accent-rgb), 0.22),
+          rgba(3, 10, 14, 0.68) 52%,
+          rgba(var(--accent-rgb), 0.14)
+        );
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.18),
+          0 0 24px rgba(var(--accent-rgb), 0.17);
+      }
+
+      /* Keep the horizontal community card centered without breaking its layout */
+      .path-card.free-community .card-content {
+        align-items: center;
+        text-align: center;
+      }
+
+      @media (max-width: 600px) {
+        .path-card .card-price {
+          min-height: 68px;
+          font-size: 32px;
+          border-radius: 19px;
+          margin-bottom: 18px;
+        }
+        .path-card .card-price .amount {
+          font-size: 32px;
+        }
+        .path-card .card-button {
+          min-height: 58px;
+          border-radius: 19px;
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="path-section">
+      <div class="path-container">
+        <header class="path-heading">
+          <div class="eyebrowpath">Choose Your Path</div>
+
+          <h1>Your Trading Journey <span>Starts Here.</span></h1>
+
+          <p>
+            Whether you're just beginning or looking for personalised
+            guidance,<br />
+
+            UGFXLAB gives you multiple ways to learn and grow.
+          </p>
+        </header>
+
+        <div class="path-grid">
+          <!-- 1. FXLABTRADES (first in visual order) -->
+
+          <article class="path-card fxlabtrades">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=850&q=85"
+                alt="Forex market trading charts"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h2>FXLAB<span>TRADES</span></h2>
+
+              <p class="card-subtitle">Trade With Us</p>
+
+              <div class="card-divider"></div>
+
+              <p class="card-description">
+                Weekly market outlooks, trade setups, real-time management
+                updates and educational breakdowns.
+              </p>
+
+              <div class="card-bottom">
+                <div class="card-price">
+                  <small>From </small><span class="amount">$40</span
+                  ><small>/month</small>
+                </div>
+
+                <a class="card-button" href="#fxlabtrades">
+                  Explore FxlabTrades
+
+                  <span class="arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. THE LAB (purple accent) -->
+
+          <article class="path-card the-lab purple">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=850&q=85"
+                alt="Learning and trading education"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h2>THE <span>LAB</span></h2>
+
+              <p class="card-subtitle">Build Your Foundation</p>
+
+              <div class="card-divider"></div>
+
+              <p class="card-description">
+                A six-month structured mentorship covering market foundations,
+                technical analysis, methodology, risk management, psychology and
+                consistency.
+              </p>
+
+              <div class="card-bottom">
+                <div class="card-price">$599</div>
+
+                <a class="card-button" href="#the-lab">
+                  Explore THE LAB
+
+                  <span class="arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. ONE-ON-ONE MENTORSHIP -->
+
+          <article class="path-card one-on-one">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=850&q=85"
+                alt="Premium private mentorship workspace"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h2>1-ON-1 <span>MENTORSHIP</span></h2>
+
+              <p class="card-subtitle">Go Further</p>
+
+              <div class="card-divider"></div>
+
+              <p class="card-description">
+                Personalised mentorship for serious traders focused on
+                consistency, funding and scaling.
+              </p>
+
+              <div class="card-bottom">
+                <div class="card-price">
+                  <small>From </small><span class="amount">$1,999</span>
+                </div>
+
+                <a class="card-button" href="#mentorship">
+                  Explore 1-on-1
+
+                  <span class="arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. FREE COMMUNITY (full width row) -->
+
+          <article class="path-card free-community">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?auto=format&fit=crop&w=850&q=85"
+                alt="Online trading community"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="card-content">
+              <h2><span>FREE</span> COMMUNITY</h2>
+
+              <p class="card-subtitle">Start Learning</p>
+
+              <div class="card-divider"></div>
+
+              <p class="card-description">
+                Market outlooks, trading education, trade breakdowns, lessons
+                and community content.
+              </p>
+
+              <div class="card-bottom">
+                <div class="card-price">FREE</div>
+
+                <a class="card-button" href="#free-community">
+                  Join the Community
+
+                  <span class="arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.documentElement.classList.add("js-enabled");
+
+      const cards = document.querySelectorAll(".path-card");
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+
+          {
+            threshold: 0.12,
+          },
+        );
+
+        cards.forEach((card) => observer.observe(card));
+      } else {
+        cards.forEach((card) => card.classList.add("visible"));
+      }
+    </script>
+  </body>
+</html>
+
+<!-- --- why us --- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB | Why Choose Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        background: #000;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: Inter, Arial, sans-serif;
+        background: #000;
+        color: #f7f7f7;
+      }
+      .why-section {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        width: 100%;
+        padding: 76px 24px 84px;
+        background: #000;
+      }
+      .why-inner {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .why-heading {
+        text-align: center;
+        margin: 0 auto 62px;
+        max-width: 760px;
+      }
+      .eyebrowwhy {
+        display: inline-block;
+        color: #00e5ff;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 19px;
+      }
+      .why-heading h2 {
+        font-size: clamp(32px, 4vw, 44px);
+        line-height: 1.14;
+        letter-spacing: -1.25px;
+        font-weight: 800;
+        color: #fff;
+        margin: 0 auto 19px;
+      }
+      .why-heading h2 span {
+        display: block;
+        background: linear-gradient(100deg, #b3f5ff 8%, #00e5ff 85%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .why-heading p {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #b9b9b9;
+        font-weight: 400;
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 25px;
+      }
+      .feature-card {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        min-height: 258px;
+        padding: 31px 31px 27px;
+        text-align: left;
+        border: 1px solid rgba(0, 229, 255, 0.3);
+        border-radius: 10px;
+        background:
+          radial-gradient(
+            ellipse at 100% 0%,
+            rgba(0, 229, 255, 0.1),
+            transparent 43%
+          ),
+          linear-gradient(145deg, #0c0c0b 0%, #080808 72%);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.035),
+          0 12px 35px rgba(0, 0, 0, 0.28);
+        transition:
+          transform 0.35s ease,
+          border-color 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+      .feature-card:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 8%;
+        width: 84%;
+        height: 145px;
+        background: radial-gradient(
+          ellipse at top,
+          rgba(0, 229, 255, 0.13),
+          rgba(0, 229, 255, 0.04) 38%,
+          transparent 74%
+        );
+        pointer-events: none;
+        transition: opacity 0.35s ease;
+      }
+      .feature-card:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 24%;
+        width: 52%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 229, 255, 0.85),
+          transparent
+        );
+        box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+        opacity: 0.75;
+        pointer-events: none;
+      }
+      .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(0, 229, 255, 0.7);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.055),
+          0 18px 42px rgba(0, 0, 0, 0.5),
+          0 0 25px rgba(0, 229, 255, 0.08);
+      }
+      .feature-card:hover:before {
+        opacity: 1;
+      }
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 27px;
+      }
+      .feature-icon {
+        width: 64px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 21px;
+        color: #080806;
+        font-size: 24px;
+        background: linear-gradient(
+          155deg,
+          #d4faff 0%,
+          #00e5ff 52%,
+          #0088a3 100%
+        );
+        box-shadow:
+          0 9px 22px rgba(0, 229, 255, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.55);
+      }
+      .card-number {
+        font-size: 47px;
+        line-height: 1;
+        font-weight: 500;
+        letter-spacing: -2px;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(0, 229, 255, 0.3);
+        font-variant-numeric: tabular-nums;
+      }
+      .feature-card h3 {
+        font-size: 21px;
+        line-height: 1.3;
+        font-weight: 750;
+        letter-spacing: -0.55px;
+        color: #f8f8f8;
+        margin-bottom: 13px;
+        text-transform: uppercase;
+      }
+      .feature-card p {
+        font-size: 13.5px;
+        line-height: 1.8;
+        color: #c0c0c0;
+        font-weight: 400;
+        max-width: 310px;
+      }
+      .why-cta {
+        display: flex;
+        justify-content: center;
+        margin-top: 37px;
+      }
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 11px;
+        padding: 14px 26px;
+        border: 1px solid rgba(0, 229, 255, 0.45);
+        border-radius: 7px;
+        color: #b3f5ff;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 229, 255, 0.12),
+          rgba(0, 229, 255, 0.04)
+        );
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 750;
+        letter-spacing: 1.15px;
+        text-transform: uppercase;
+        transition:
+          background 0.3s ease,
+          border-color 0.3s ease,
+          transform 0.3s ease;
+      }
+      .cta-button i {
+        font-size: 12px;
+        transition: transform 0.3s ease;
+      }
+      .cta-button:hover {
+        background: rgba(0, 229, 255, 0.16);
+        border-color: #00e5ff;
+        transform: translateY(-2px);
+      }
+      .cta-button:hover i {
+        transform: translateX(4px);
+      }
+
+      /* =====================================================
+       ONE-TIME SCROLL-TRIGGERED ANIMATION
+       - Plays only once per page load
+       - Cards animate only when scrolled into view
+       - Staggered, polished, dynamic
+    ===================================================== */
+
+      /* Initial hidden state for heading + CTA */
+      .anim {
+        opacity: 0;
+        transform: translateY(45px);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+
+      /* Heading elements staggered */
+      .why-heading .eyebrowwhy {
+        transform: translateY(30px);
+        transition-delay: 0.05s;
+      }
+      .why-heading h2 {
+        transform: translateY(35px);
+        transition-delay: 0.15s;
+      }
+      .why-heading p {
+        transform: translateY(30px);
+        transition-delay: 0.25s;
+      }
+
+      /* ===== CARDS: hidden until their own observer fires ===== */
+      .feature-card {
+        opacity: 0;
+        transform: translateY(60px) scale(0.94);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+
+      /* When card enters viewport, JS adds .card--visible */
+      .feature-card.card--visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      /* CTA */
+      .why-cta {
+        opacity: 0;
+        transform: translateY(35px);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: 0.85s;
+        will-change: opacity, transform;
+      }
+
+      /* ===== FINAL REVEALED STATE ===== */
+      .why-section--animated .anim,
+      .why-section--animated .why-cta {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .why-section--animated .why-heading .eyebrowwhy,
+      .why-section--animated .why-heading h2,
+      .why-section--animated .why-heading p {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 900px) {
+        .why-section {
+          padding: 65px 22px;
+        }
+        .feature-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 18px;
+        }
+        .feature-card {
+          min-height: 245px;
+          padding: 25px;
+        }
+        .why-heading {
+          margin-bottom: 42px;
+        }
+      }
+      @media (max-width: 560px) {
+        .why-section {
+          padding: 54px 18px 60px;
+        }
+        .why-heading {
+          margin-bottom: 32px;
+        }
+        .eyebrowwhy {
+          font-size: 10px;
+          letter-spacing: 2.5px;
+          margin-bottom: 15px;
+        }
+        .why-heading h2 {
+          font-size: 31px;
+          letter-spacing: -0.8px;
+        }
+        .why-heading p {
+          font-size: 13px;
+          max-width: 340px;
+          margin: auto;
+        }
+        .feature-grid {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+        .feature-card {
+          min-height: 0;
+          padding: 23px 22px 25px;
+        }
+        .card-top {
+          margin-bottom: 21px;
+        }
+        .feature-icon {
+          width: 56px;
+          height: 56px;
+          border-radius: 18px;
+          font-size: 21px;
+        }
+        .card-number {
+          font-size: 40px;
+        }
+        .feature-card h3 {
+          font-size: 19px;
+          margin-bottom: 9px;
+        }
+        .feature-card p {
+          font-size: 13px;
+          max-width: none;
+        }
+        .why-cta {
+          margin-top: 27px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *:before,
+        *:after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+        .anim,
+        .feature-card,
+        .why-cta {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="why-section" id="whySection" aria-labelledby="why-title">
+      <div class="why-inner">
+        <header class="why-heading">
+          <span class="eyebrowwhy anim">WHY UGFXLAB</span>
+          <h2 id="why-title" class="anim">
+            Learn. Execute. Refine. <span>Repeat.</span>
+          </h2>
+          <p
+            class="anim"
+            style="margin-top: 14px; color: #b3f5ff; font-weight: 500"
+          >
+            Our approach is built around the Market Makers Method (BTMM),
+            combined with years of practical trading experience, refinement and
+            real-market application.
+          </p>
+        </header>
+
+        <div class="feature-grid" id="featureGrid">
+          <!-- Card 01 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
+              </div>
+              <span class="card-number">01</span>
+            </div>
+            <h3>KNOW YOUR EDGE</h3>
+            <p>
+              Understand why you're taking a trade instead of blindly following
+              signals.
+            </p>
+          </article>
+          <!-- Card 02 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              </div>
+              <span class="card-number">02</span>
+            </div>
+            <h3>MANAGE YOUR RISK</h3>
+            <p>
+              Protect your capital and learn to think beyond individual trades.
+            </p>
+          </article>
+          <!-- Card 03 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+              </div>
+              <span class="card-number">03</span>
+            </div>
+            <h3>BUILD YOUR PROCESS</h3>
+            <p>
+              Develop a structured approach that you can repeat across different
+              market conditions.
+            </p>
+          </article>
+          <!-- Card 04 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i class="fa-solid fa-crosshairs" aria-hidden="true"></i>
+              </div>
+              <span class="card-number">04</span>
+            </div>
+            <h3>EXECUTE WITH DISCIPLINE</h3>
+            <p>
+              Learn to follow your plan regardless of wins, losses or emotions.
+            </p>
+          </article>
+          <!-- Card 05 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i
+                  class="fa-solid fa-people-arrows-left-right"
+                  aria-hidden="true"
+                ></i>
+              </div>
+              <span class="card-number">05</span>
+            </div>
+            <h3>1-on-1 Guidance</h3>
+            <p>
+              Get direct mentorship, trade reviews and personalized progress
+              feedback.
+            </p>
+          </article>
+          <!-- Card 06 -->
+          <article class="feature-card">
+            <div class="card-top">
+              <div class="feature-icon">
+                <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+              </div>
+              <span class="card-number">06</span>
+            </div>
+            <h3>Proven Results</h3>
+            <p>
+              Follow a complete roadmap covering structure, liquidity and
+              entries.
+            </p>
+          </article>
+        </div>
+
+        <div class="why-cta">
           <a
-            href="https://t.me/EduStocksFx"
             class="cta-button"
+            href="https://t.me/EduStocksFx"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <i class="fas fa-arrow-right"></i> Explore Secret Candle AI
+            Explore UGFXLAB
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
           </a>
         </div>
       </div>
@@ -374,314 +3756,75 @@
 
     <script>
       (function () {
-        const features = [
-          {
-            icon: "fa-fire",
-            name: "Secret Candle Detection",
-            desc: "Instantly identifies high-impact candles that reveal potential market direction before major moves.",
-            benefit: "Predict Market Moves",
-          },
-          {
-            icon: "fa-brain",
-            name: "AI Market Bias",
-            desc: "Advanced AI evaluates market sentiment to deliver clear bullish or bearish directional bias.",
-            benefit: "Trade with Confidence",
-          },
-          {
-            icon: "fa-cubes",
-            name: "Institutional Order Blocks",
-            desc: "Automatically detects institutional accumulation and distribution zones where price reacts most.",
-            benefit: "Find Smart Money Levels",
-          },
-          {
-            icon: "fa-arrow-trend-up",
-            name: "Smart Buy & Sell Signals",
-            desc: "Receive high-probability trade signals based on multiple market confirmations—not guesswork.",
-            benefit: "Higher Quality Entries",
-          },
-          {
-            icon: "fa-chart-line",
-            name: "Auto Trendline Mapping",
-            desc: "Automatically maps trend structure to help identify breakouts, reversals, and trend continuation.",
-            benefit: "Read Trends Faster",
-          },
-          {
-            icon: "fa-bolt",
-            name: "Dynamic Support & Resistance",
-            desc: "Highlights key price zones where buying and selling pressure is most likely to emerge.",
-            benefit: "Plan Better Trades",
-          },
-          {
-            icon: "fa-layer-group",
-            name: "Multi-Timeframe Intelligence",
-            desc: "Combines higher and lower timeframe analysis to filter noise and improve trade accuracy.",
-            benefit: "Better Trade Precision",
-          },
-        ];
+        const section = document.getElementById("whySection");
+        const cards = document.querySelectorAll(".feature-card");
+        let hasAnimated = false;
 
-        const track = document.getElementById("carouselTrack");
-        const wrapper = document.getElementById("carouselWrapper");
-        if (!track || !wrapper) return;
+        // Respect reduced motion
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
 
-        function buildCard(f) {
-          return `<div class="feature-card">
-            <div class="cards-iconn"><i class="fas ${f.icon}"></i></div>
-            <div class="card-name">${f.name}</div>
-            <div class="card-desc">${f.desc}</div>
-            <div class="card-benefit">${f.benefit}</div>
-          </div>`;
+        if (prefersReducedMotion) {
+          section.classList.add("why-section--animated");
+          cards.forEach((c) => c.classList.add("card--visible"));
+          return;
         }
 
-        let html = "";
-        features.forEach((f) => (html += buildCard(f)));
-        // clone first card for seamless loop
-        html += buildCard(features[0]);
-        html += buildCard(features[1]);
-        track.innerHTML = html;
-
-        let currentIndex = 0;
-        const totalCards = features.length;
-        let isTransitioning = false;
-        let autoPlayTimer = null;
-        const AUTO_INTERVAL = 3200;
-
-        function getMaxIndex() {
-          return totalCards + 1; // 0 … totalCards (clone)
-        }
-
-        function getTranslateForIndex(index) {
-          const firstCard = document.querySelector(".feature-card");
-          if (!firstCard) return 0;
-          const cardRect = firstCard.getBoundingClientRect();
-          const gapPx = parseFloat(getComputedStyle(track).gap) || 24;
-          const cardFullWidth = cardRect.width + gapPx;
-          // No left padding - start from 0
-          return -(index * cardFullWidth);
-        }
-
-        function slideTo(index, animate = true) {
-          if (isTransitioning) return;
-          const max = getMaxIndex();
-          if (index < 0) index = 0;
-          if (index > max) index = max;
-
-          isTransitioning = true;
-          currentIndex = index;
-          const tx = getTranslateForIndex(index);
-          track.style.transition = animate
-            ? "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
-            : "none";
-          track.style.transform = `translateX(${tx}px)`;
-
-          setTimeout(
-            () => {
-              isTransitioning = false;
-              if (index >= totalCards) {
-                track.style.transition = "none";
-                const newTx = getTranslateForIndex(0);
-                track.style.transform = `translateX(${newTx}px)`;
-                currentIndex = 0;
-                void track.offsetHeight;
+        /* =====================================================
+         1. SECTION OBSERVER — triggers heading + CTA only
+      ===================================================== */
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+                section.classList.add("why-section--animated");
+                sectionObserver.unobserve(section);
               }
-            },
-            animate ? 550 : 50,
-          );
-        }
+            });
+          },
+          {
+            threshold: 0.15,
+            rootMargin: "0px 0px -40px 0px",
+          },
+        );
+        sectionObserver.observe(section);
 
-        function nextSlide() {
-          let next = currentIndex + 1;
-          if (next > totalCards) next = 0;
-          slideTo(next, true);
-        }
+        /* =====================================================
+         2. CARD OBSERVER — each card animates when it
+            personally enters the viewport.
+            Cards are staggered slightly once detected.
+      ===================================================== */
+        let visibleCardCount = 0;
 
-        function startAutoPlay() {
-          if (autoPlayTimer) clearInterval(autoPlayTimer);
-          autoPlayTimer = setInterval(nextSlide, AUTO_INTERVAL);
-        }
-
-        function stopAutoPlay() {
-          if (autoPlayTimer) {
-            clearInterval(autoPlayTimer);
-            autoPlayTimer = null;
-          }
-        }
-
-        function resumeAutoPlay() {
-          stopAutoPlay();
-          setTimeout(startAutoPlay, 3000);
-        }
-
-        // Initial centering: show first card at left edge
-        setTimeout(() => {
-          slideTo(0, false);
-          startAutoPlay();
-        }, 100);
-
-        let resizeTimeout;
-        window.addEventListener("resize", () => {
-          clearTimeout(resizeTimeout);
-          resizeTimeout = setTimeout(() => {
-            slideTo(currentIndex, false);
-          }, 150);
-        });
-
-        // ----- TOUCH SWIPE -----
-        let startX = 0,
-          startY = 0,
-          isDragging = false,
-          startTranslate = 0,
-          isSwiping = false;
-
-        wrapper.addEventListener(
-          "touchstart",
-          (e) => {
-            const touch = e.touches[0];
-            startX = touch.clientX;
-            startY = touch.clientY;
-            isDragging = true;
-            isSwiping = false;
-            stopAutoPlay();
-            const style = window.getComputedStyle(track);
-            const matrix = style.transform;
-            if (matrix !== "none") {
-              const values = matrix.match(/matrix.*\((.+)\)/);
-              if (values) {
-                const nums = values[1].split(", ");
-                if (nums.length === 6) {
-                  startTranslate = parseFloat(nums[4]) || 0;
-                }
+        const cardObserver = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const card = entry.target;
+                // Stagger each newly visible card by index order
+                const delay = (visibleCardCount % 3) * 0.12;
+                card.style.transitionDelay = delay + "s";
+                card.classList.add("card--visible");
+                visibleCardCount++;
+                obs.unobserve(card);
               }
-            }
-            track.style.transition = "none";
+            });
           },
-          { passive: true },
+          {
+            threshold: 0.18,
+            rootMargin: "0px 0px -60px 0px",
+          },
         );
 
-        wrapper.addEventListener(
-          "touchmove",
-          (e) => {
-            if (!isDragging) return;
-            const touch = e.touches[0];
-            const deltaX = touch.clientX - startX;
-            const deltaY = touch.clientY - startY;
-            if (
-              Math.abs(deltaX) > 10 &&
-              Math.abs(deltaX) > Math.abs(deltaY) * 0.7
-            ) {
-              isSwiping = true;
-              e.preventDefault();
-              const newTranslate = startTranslate + deltaX;
-              track.style.transform = `translateX(${newTranslate}px)`;
-            }
-          },
-          { passive: false },
-        );
+        cards.forEach((card) => cardObserver.observe(card));
 
-        wrapper.addEventListener(
-          "touchend",
-          (e) => {
-            if (!isDragging) return;
-            isDragging = false;
-            if (!isSwiping) {
-              resumeAutoPlay();
-              track.style.transition = "";
-              slideTo(currentIndex, true);
-              return;
-            }
-            const touch = e.changedTouches[0];
-            const deltaX = touch.clientX - startX;
-            let step = 0;
-            if (deltaX < -40) step = 1;
-            else if (deltaX > 40) step = -1;
-
-            let newIndex = currentIndex + step;
-            if (newIndex < 0) newIndex = 0;
-            if (newIndex > totalCards) newIndex = totalCards;
-
-            slideTo(newIndex, true);
-            isSwiping = false;
-            resumeAutoPlay();
-          },
-          { passive: true },
-        );
-
-        wrapper.addEventListener(
-          "touchcancel",
-          () => {
-            isDragging = false;
-            isSwiping = false;
-            slideTo(currentIndex, true);
-            resumeAutoPlay();
-          },
-          { passive: true },
-        );
-
-        // ----- MOUSE DRAG -----
-        let mouseDown = false,
-          mouseStartX = 0,
-          mouseStartTranslate = 0;
-        wrapper.addEventListener("mousedown", (e) => {
-          if (e.button !== 0) return;
-          mouseDown = true;
-          mouseStartX = e.clientX;
-          stopAutoPlay();
-          const style = window.getComputedStyle(track);
-          const matrix = style.transform;
-          if (matrix !== "none") {
-            const values = matrix.match(/matrix.*\((.+)\)/);
-            if (values) {
-              const nums = values[1].split(", ");
-              if (nums.length === 6) {
-                mouseStartTranslate = parseFloat(nums[4]) || 0;
-              }
-            }
-          }
-          track.style.transition = "none";
-        });
-
-        document.addEventListener("mousemove", (e) => {
-          if (!mouseDown) return;
-          const deltaX = e.clientX - mouseStartX;
-          if (Math.abs(deltaX) > 8) {
-            const newTranslate = mouseStartTranslate + deltaX;
-            track.style.transform = `translateX(${newTranslate}px)`;
-          }
-        });
-
-        document.addEventListener("mouseup", (e) => {
-          if (!mouseDown) return;
-          mouseDown = false;
-          const deltaX = e.clientX - mouseStartX;
-          let step = 0;
-          if (deltaX < -40) step = 1;
-          else if (deltaX > 40) step = -1;
-          let newIndex = currentIndex + step;
-          if (newIndex < 0) newIndex = 0;
-          if (newIndex > totalCards) newIndex = totalCards;
-          slideTo(newIndex, true);
-          resumeAutoPlay();
-        });
-
-        // Keyboard arrows
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "ArrowRight") {
-            stopAutoPlay();
-            let newIndex = Math.min(currentIndex + 1, totalCards);
-            slideTo(newIndex, true);
-            resumeAutoPlay();
-            e.preventDefault();
-          } else if (e.key === "ArrowLeft") {
-            stopAutoPlay();
-            let newIndex = Math.max(currentIndex - 1, 0);
-            slideTo(newIndex, true);
-            resumeAutoPlay();
-            e.preventDefault();
-          }
-        });
-
-        // Hover pause
-        wrapper.addEventListener("mouseenter", stopAutoPlay);
-        wrapper.addEventListener("mouseleave", resumeAutoPlay);
+        // Fallback for very old browsers
+        if (!("IntersectionObserver" in window)) {
+          section.classList.add("why-section--animated");
+          cards.forEach((c) => c.classList.add("card--visible"));
+        }
       })();
     </script>
   </body>
@@ -730,7 +3873,7 @@
 
       .dashboard-card {
         background: #000;
-        max-width: 1400px;
+        max-width: 1240px;
         width: 100%;
         border-radius: 40px;
         padding: 20px 24px 24px 24px;
@@ -842,7 +3985,7 @@
       .widget-stage {
         width: 100%;
         background: #000;
-        border-radius: 28px;
+        border-radius: 5px;
         overflow: hidden;
         min-height: 480px;
         position: relative;
@@ -1280,7 +4423,580 @@
   </body>
 </html>
 
-<!-- -----forex trading---- -->
+<!-- --- experience ---  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB | Real Experience</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --cyan: #09c8ec;
+        --black: #030506;
+        --white: #f7f9fb;
+        --muted: #b7c0c8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--black);
+        color: var(--white);
+      }
+
+      /* FULL-WIDTH BACKGROUND */
+      .experience-section {
+        position: relative;
+        width: 100%;
+        min-height: 512px;
+        overflow: hidden;
+        isolation: isolate;
+        background-color: #030506;
+        background-image:
+          linear-gradient(
+            90deg,
+            rgb(0 0 0) 0%,
+            rgb(0 0 0 / 98%) 38%,
+            rgb(0 0 0 / 80%) 64%,
+            rgba(2, 5, 7, 0.3) 100%
+          ),
+          linear-gradient(0deg, rgba(2, 5, 7, 0.7), transparent 60%),
+          url(Photos/mountain-bg.png);
+        background-size: cover;
+        background-position: center 48%;
+      }
+
+      .experience-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse at 82% 70%,
+          rgba(9, 200, 236, 0.13),
+          transparent 36%
+        );
+      }
+
+      .experience-container {
+        width: min(1200px, calc(100% - 48px));
+        min-height: 510px;
+        margin: 0 auto;
+        padding: 66px 0 58px;
+        display: grid;
+        grid-template-columns: 1.65fr 1fr;
+        align-items: center;
+        gap: 48px;
+      }
+
+      .experience-left {
+        min-width: 0;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 22px;
+        color: var(--cyan);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::after {
+        content: "";
+        width: 75px;
+        height: 1px;
+        background: linear-gradient(90deg, var(--cyan), transparent);
+      }
+
+      .experience-title {
+        max-width: 700px;
+        font-size: clamp(34px, 3.5vw, 44px);
+        line-height: 1.13;
+        font-weight: 600;
+        letter-spacing: -1.8px;
+        color: #f8fafc;
+      }
+
+      .experience-title span {
+        display: block;
+      }
+
+      .title-divider {
+        position: relative;
+        width: 100%;
+        height: 2px;
+        margin: 22px 0 30px;
+        border: none;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 200, 255, 0.02) 0%,
+          rgba(0, 200, 255, 0.12) 18%,
+          rgba(0, 200, 255, 0.42) 38%,
+          rgba(0, 200, 255, 0.12) 65%,
+          rgba(0, 200, 255, 0.02) 100%
+        );
+      }
+
+      .title-divider::before {
+        content: "";
+        position: absolute;
+        left: 25%;
+        top: 0px;
+        width: 324px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #00d9ff 35%,
+          #8af4ff 50%,
+          #00cfff 70%,
+          transparent
+        );
+      }
+
+      .experience-stats {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr 1.35fr 0.85fr;
+        align-items: stretch;
+        text-align: center;
+      }
+
+      .stat {
+        min-width: 0;
+        padding: 1px 17px 0 0;
+      }
+
+      .stat + .stat {
+        border-left: 1px solid rgba(9, 200, 236, 0.4);
+        padding-left: 19px;
+      }
+
+      .stat-number {
+        margin-bottom: 13px;
+        color: var(--cyan);
+        font-size: clamp(24px, 2.6vw, 35px);
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: -1px;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .stat-label {
+        max-width: 150px;
+        color: #c0c7cd;
+        font-size: 13px;
+        line-height: 1.7;
+        font-weight: 400;
+      }
+
+      /* GLASS TESTIMONIAL */
+      .experience-right {
+        position: relative;
+        min-width: 0;
+      }
+
+      .testimonial-card {
+        position: relative;
+        padding: 29px 29px 27px;
+        overflow: hidden;
+        border: 1px solid rgba(9, 200, 236, 0.68);
+        border-radius: 17px;
+        background: linear-gradient(
+          135deg,
+          rgba(12, 20, 25, 0.85),
+          rgba(4, 9, 13, 0.74)
+        );
+        box-shadow:
+          0 0 30px rgba(9, 200, 236, 0.07),
+          inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+
+      .testimonial-card::before {
+        content: "";
+        position: absolute;
+        left: 25%;
+        top: 0px;
+        width: 324px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #00d9ff 35%,
+          #8af4ff 50%,
+          #00cfff 70%,
+          transparent
+        );
+      }
+
+      .quote-mark {
+        display: block;
+        margin-bottom: 7px;
+        color: var(--cyan);
+        font-size: 31px;
+        line-height: 1;
+        font-weight: 800;
+      }
+
+      .testimonial-text {
+        color: #e1e7eb;
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 1.85;
+      }
+
+      .testimonial-author {
+        display: block;
+        margin-top: 15px;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      /* =====================================================
+       ONE-TIME SCROLL-TRIGGERED ENTRANCE
+    ===================================================== */
+      .experience-left,
+      .experience-right {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+
+      .experience-right {
+        transition-delay: 0.2s;
+      }
+
+      .experience-section--animated .experience-left,
+      .experience-section--animated .experience-right {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* TABLET */
+      @media (max-width: 1000px) {
+        .experience-container {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          padding: 58px 0;
+        }
+
+        .experience-section {
+          background-position: center;
+        }
+
+        .experience-title {
+          max-width: 750px;
+        }
+
+        .experience-stats {
+          max-width: 760px;
+        }
+
+        .experience-right {
+          max-width: 650px;
+        }
+      }
+
+      /* MOBILE */
+      @media (max-width: 600px) {
+        .experience-container {
+          width: calc(100% - 36px);
+          padding: 45px 0;
+          gap: 30px;
+        }
+
+        .experience-section {
+          background-image:
+            linear-gradient(90deg, rgba(2, 5, 7, 0.96), rgba(2, 5, 7, 0.8)),
+            linear-gradient(0deg, rgba(2, 5, 7, 0.85), transparent),
+            url("https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=1200&auto=format&fit=crop&q=80");
+          background-position: center;
+        }
+
+        .eyebrow {
+          gap: 10px;
+          margin-bottom: 18px;
+          font-size: 9px;
+          letter-spacing: 2.3px;
+        }
+
+        .eyebrow::after {
+          width: 30px;
+        }
+
+        .experience-title {
+          font-size: clamp(31px, 8vw, 42px);
+          letter-spacing: -1.3px;
+        }
+
+        .title-divider {
+          margin: 22px 0;
+        }
+
+        .experience-stats {
+          grid-template-columns: 1fr 1fr;
+          row-gap: 23px;
+        }
+
+        .stat {
+          padding-right: 12px;
+        }
+
+        .stat + .stat {
+          padding-left: 14px;
+        }
+
+        .stat:nth-child(3) {
+          border-left: none;
+          padding-left: 0;
+        }
+
+        .stat-number {
+          font-size: 27px;
+          margin-bottom: 9px;
+        }
+
+        .stat-label {
+          font-size: 12px;
+          line-height: 1.6;
+        }
+
+        .testimonial-card {
+          padding: 24px 21px;
+          border-radius: 13px;
+        }
+
+        .testimonial-text {
+          font-size: 13px;
+          line-height: 1.8;
+        }
+
+        .testimonial-author {
+          font-size: 14px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .experience-left,
+        .experience-right {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="experience-section" id="experienceSection">
+      <div class="experience-container">
+        <div class="experience-left">
+          <div class="eyebrow">Built from real market experience.</div>
+
+          <h1 class="experience-title">
+            <span>Real Experience. Real Traders.</span>
+            <span>Real Progress.</span>
+          </h1>
+
+          <div class="title-divider"></div>
+
+          <div class="experience-stats">
+            <!-- Stat 01: Years (counts up) -->
+            <div class="stat">
+              <div class="stat-number" data-target="5" data-suffix="+ Years">
+                0+ Years
+              </div>
+              <p class="stat-label">Trading the financial markets</p>
+            </div>
+
+            <!-- Stat 02: Traders (counts up) -->
+            <div class="stat">
+              <div class="stat-number" data-target="5000" data-suffix="+">
+                0+
+              </div>
+              <p class="stat-label">Traders in the UGFXLAB community</p>
+            </div>
+
+            <!-- Stat 03: Payouts (counts up) -->
+            <div class="stat">
+              <div
+                class="stat-number"
+                data-target="50"
+                data-prefix="$"
+                data-suffix="K+"
+              >
+                $0K+
+              </div>
+              <p class="stat-label">
+                Trading payouts across multiple prop firms
+              </p>
+            </div>
+
+            <!-- Stat 04: Year (stays static — no data-target) -->
+            <div class="stat">
+              <div class="stat-number">2021</div>
+              <p class="stat-label">UGFXLAB founded</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-right">
+          <div class="testimonial-card">
+            <span class="quote-mark">“</span>
+
+            <p class="testimonial-text">
+              I'm not a perfect trader, and I don't pretend to be one. What I've
+              learned is that profitability doesn't come from constantly
+              searching for the next strategy. It comes from knowing your edge,
+              managing risk and becoming obsessed with executing your process
+              consistently.
+            </p>
+
+            <span class="testimonial-author"> — UGFXLAB </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const section = document.getElementById("experienceSection");
+        const statNumbers = document.querySelectorAll(
+          ".stat-number[data-target]",
+        );
+
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        /* ---------- Number count-up helper ---------- */
+        function countUp(el) {
+          const target = parseFloat(el.getAttribute("data-target"));
+          const prefix = el.getAttribute("data-prefix") || "";
+          const suffix = el.getAttribute("data-suffix") || "";
+
+          // Detect if we need decimals (e.g. 1.5) — here all are integers
+          const isDecimal = target % 1 !== 0;
+          const decimals = isDecimal ? 1 : 0;
+
+          const duration = 1600; // ms
+          const startTime = performance.now();
+
+          function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+          }
+
+          function formatValue(val) {
+            if (decimals === 0) {
+              return Math.round(val).toLocaleString("en-US");
+            }
+            return val.toFixed(decimals);
+          }
+
+          function tick(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeOutCubic(progress);
+            const current = eased * target;
+
+            el.textContent = prefix + formatValue(current) + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              // Ensure final exact value
+              el.textContent = prefix + formatValue(target) + suffix;
+            }
+          }
+
+          requestAnimationFrame(tick);
+        }
+
+        /* ---------- Reduced motion: skip animation ---------- */
+        if (prefersReducedMotion) {
+          section.classList.add("experience-section--animated");
+          statNumbers.forEach((el) => {
+            const target = parseFloat(el.getAttribute("data-target"));
+            const prefix = el.getAttribute("data-prefix") || "";
+            const suffix = el.getAttribute("data-suffix") || "";
+            el.textContent = prefix + target.toLocaleString("en-US") + suffix;
+          });
+          return;
+        }
+
+        let hasAnimated = false;
+
+        /* ---------- Section observer: entrance + count-up ---------- */
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+
+                // Entrance animation for columns
+                section.classList.add("experience-section--animated");
+
+                // Start counting each number
+                statNumbers.forEach((el) => countUp(el));
+
+                observer.unobserve(section);
+              }
+            });
+          },
+          {
+            threshold: 0.25,
+            rootMargin: "0px 0px -60px 0px",
+          },
+        );
+
+        observer.observe(section);
+
+        /* Fallback */
+        if (!("IntersectionObserver" in window)) {
+          section.classList.add("experience-section--animated");
+          statNumbers.forEach((el) => countUp(el));
+        }
+
+        /* ---------- Hover response for desktop stats ---------- */
+        const stats = document.querySelectorAll(".stat");
+        stats.forEach((stat) => {
+          stat.style.transition = "transform 250ms ease";
+
+          stat.addEventListener("mouseenter", () => {
+            stat.style.transform = "translateY(-3px)";
+          });
+
+          stat.addEventListener("mouseleave", () => {
+            stat.style.transform = "translateY(0)";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ----- difference -----  -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -1289,7 +5005,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <title>Edu Stockx · Knowledge · Precision · Confidence</title>
+    <title>UGFXLAB · The Difference · Trading Education</title>
     <!-- Google Fonts + Font Awesome 6 -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
@@ -1310,8 +5026,11 @@
         --black: #000000;
         --green: #073f25;
         --green-light: #386f53;
-        --gold: #e6ac1a;
-        --gold-light: #f8d951;
+        /* CYAN palette */
+        --cyan: #09c8ec;
+        --cyan-light: #6ee0f5;
+        --cyan-dark: #0587a3;
+        --cyan-deep: #033e4d;
         --bronze: #a0520b;
         --text: #f4f4f4;
         --muted: #979d94;
@@ -1339,7 +5058,7 @@
         overflow: hidden;
         box-shadow:
           0 20px 40px -12px rgba(0, 0, 0, 0.9),
-          0 0 0 1px rgba(230, 172, 26, 0.03);
+          0 0 0 1px rgba(9, 200, 236, 0.03);
         backdrop-filter: blur(2px);
         border: 1px solid rgba(255, 255, 255, 0.01);
         transition: all 0.3s;
@@ -1353,7 +5072,7 @@
         background:
           radial-gradient(
             ellipse at 70% 10%,
-            rgba(230, 172, 26, 0.03) 0%,
+            rgba(9, 200, 236, 0.04) 0%,
             transparent 60%
           ),
           radial-gradient(
@@ -1366,7 +5085,7 @@
       }
 
       .solution-container {
-        max-width: 1360px;
+        max-width: 1270px;
         margin: 0 auto;
         padding: 2.8rem 2.5rem 2.5rem 2.5rem;
         position: relative;
@@ -1376,26 +5095,25 @@
         align-items: center;
       }
 
-      /* bridge chip – new content */
       .bridge-chip {
         display: inline-flex;
         align-items: center;
         gap: 0.6rem;
-        background: rgba(230, 172, 26, 0.07);
+        background: rgba(9, 200, 236, 0.07);
         padding: 0.4rem 1.4rem;
         border-radius: 60px;
         font-size: 0.7rem;
         font-weight: 600;
         letter-spacing: 0.3px;
-        color: var(--gold-light);
+        color: var(--cyan-light);
         margin-bottom: 1.2rem;
-        border: 1px solid rgba(230, 172, 26, 0.12);
+        border: 1px solid rgba(9, 200, 236, 0.14);
         backdrop-filter: blur(2px);
         transition: all 0.25s;
       }
       .bridge-chip i {
         font-size: 0.7rem;
-        color: var(--gold);
+        color: var(--cyan);
       }
 
       .solution-heading {
@@ -1409,11 +5127,11 @@
         text-align: center;
       }
       .highlight {
-        color: var(--gold);
+        color: var(--cyan);
         background: linear-gradient(
           120deg,
-          rgba(230, 172, 26, 0.08) 0%,
-          rgba(230, 172, 26, 0.01) 80%
+          rgba(9, 200, 236, 0.09) 0%,
+          rgba(9, 200, 236, 0.01) 80%
         );
         display: inline-block;
         padding: 0 0.1rem;
@@ -1429,21 +5147,20 @@
         text-align: center;
       }
 
-      /* cards grid – wider on desktop */
       .rmi-gridd {
         display: flex;
         flex-wrap: wrap;
-        gap: 1.8rem;
+        gap: 18px;
         margin: 1.5rem 0 1.5rem;
         justify-content: center;
         width: 100%;
       }
 
       .rmi-card {
-        flex: 1 1 260px; /* increased base width */
-        max-width: 370px; /* wider max-width */
+        flex: 1 1 260px;
+        max-width: 370px;
         min-width: 220px;
-        background: linear-gradient(65deg, rgb(0, 0, 0), #0f1200);
+        background: linear-gradient(65deg, rgb(0, 0, 0), #000912);
         backdrop-filter: blur(2px);
         border-radius: 1.8rem;
         padding: 1.8rem 1.6rem 1.6rem;
@@ -1453,7 +5170,30 @@
         opacity: 0;
         transform: translateY(28px);
         will-change: transform, opacity;
-        text-align: left;
+        text-align: center; /* centered card content */
+        position: relative;
+        overflow: hidden;
+      }
+
+      .rmi-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(9, 200, 236, 0.25),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+
+      .rmi-card:hover::after {
+        opacity: 1;
       }
 
       .rmi-card.visible {
@@ -1465,37 +5205,97 @@
         transform: translateY(-5px) scale(1.01);
         box-shadow:
           0 20px 32px -10px rgba(0, 0, 0, 0.9),
-          0 0 0 1px rgba(230, 172, 26, 0.12);
-        border-color: rgba(230, 172, 26, 0.12);
+          0 0 0 1px rgba(9, 200, 236, 0.16);
+        border-color: rgba(9, 200, 236, 0.16);
         background: rgba(0, 0, 0, 0.101);
       }
 
-      .card-icon {
-        font-size: 1.8rem;
-        color: var(--gold);
-        margin-bottom: 0.9rem;
-        display: inline-flex;
+      /* ===== UPGRADED CARD ICON CONTAINER ===== */
+      .cards-iconn {
+        position: relative;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(9, 200, 236, 0.16);
+        transition:
+          background 0.35s ease,
+          box-shadow 0.35s ease,
+          border-color 0.35s ease,
+          transform 0.35s cubic-bezier(0.2, 0, 0, 1),
+          color 0.35s ease;
+        overflow: hidden;
+        width: 64px;
+        height: 64px;
+        display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(230, 172, 26, 0.06);
-        width: 54px;
-        height: 54px;
-        border-radius: 18px;
-        border: 1px solid rgba(230, 172, 26, 0.04);
-        transition: 0.2s;
-      }
-      .rmi-card:hover .cards-iconn {
-        background: rgba(230, 172, 26, 0.1);
-        border-color: rgba(230, 172, 26, 0.15);
+        border-radius: 21px;
+        color: #080806;
+        font-size: 24px;
+        background: linear-gradient(
+          155deg,
+          #d4faff 0%,
+          #00e5ff 52%,
+          #0088a3 100%
+        );
+        box-shadow:
+          0 9px 22px rgba(0, 229, 255, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.55);
+        /* center the icon inside its container */
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .rmi-card h3 {
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: var(--text);
-        margin-bottom: 0.4rem;
-        letter-spacing: -0.01em;
+      .cards-iconn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 30% 20%,
+          rgba(9, 200, 236, 0.22) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
       }
+
+      .cards-iconn i {
+        position: relative;
+        z-index: 1;
+        transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1);
+      }
+
+      .rmi-card:hover .cards-iconn {
+        background: linear-gradient(
+          145deg,
+          rgba(9, 200, 236, 0.22),
+          rgba(9, 200, 236, 0.05)
+        );
+        border-color: rgba(9, 200, 236, 0.4);
+        color: var(--cyan-light);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.08),
+          0 10px 22px -8px rgba(9, 200, 236, 0.45);
+        transform: translateY(-2px);
+      }
+
+      .rmi-card:hover .cards-iconn::before {
+        opacity: 1;
+      }
+
+      .rmi-card:hover .cards-iconn i {
+        transform: scale(1.1);
+      }
+
+      /* uppercase heading */
+      .rmi-card h3 {
+        font-size: 21px;
+        font-weight: 600;
+        color: var(--text);
+        margin: 23px 0 16px;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+      }
+
       .rmi-card p {
         color: var(--muted);
         line-height: 1.5;
@@ -1503,26 +5303,50 @@
         margin-bottom: 0.9rem;
       }
 
+      /* feature list – no icons, centered, minimal bullet */
       .feature-list {
         list-style: none;
         padding: 0;
         margin-top: 0.3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
       }
       .feature-list li {
         display: flex;
         align-items: center;
-        gap: 0.6rem;
-        margin-bottom: 0.4rem;
+        justify-content: center;
+        gap: 0.5rem;
         font-size: 0.85rem;
         color: #c5cdc0;
+        text-align: center;
+        width: 100%;
       }
+      /* remove icon styling completely */
       .feature-list li i {
-        width: 1rem;
-        font-size: 0.75rem;
-        color: var(--gold-light);
+        display: none;
+      }
+      .feature-list li span {
+        color: #c5cdc0;
+        font-size: 0.85rem;
+      }
+      .feature-list li strong {
+        color: var(--text);
+        font-weight: 600;
       }
 
-      /* data snapshot – philosophy pillars */
+      /* subtle dot separator before each feature item, centered */
+      .feature-list li::before {
+        content: "•";
+        color: var(--cyan-light);
+        font-size: 0.9rem;
+        line-height: 1;
+        margin-right: 0.4rem;
+        opacity: 0.7;
+        display: inline-block;
+      }
+
       .data-snapshot {
         display: flex;
         flex-wrap: wrap;
@@ -1532,7 +5356,7 @@
         border-radius: 1.8rem;
         padding: 0.8rem 1.8rem;
         margin: 1rem 0 0.5rem;
-        border: 1px solid rgba(230, 172, 26, 0.04);
+        border: 1px solid rgba(9, 200, 236, 0.05);
         justify-content: center;
         align-items: center;
         box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.7);
@@ -1566,11 +5390,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 25px;
-        color: var(--gold);
-        border: 1px solid rgba(230, 172, 26, 0.05);
+        font-size: 22px;
+        color: var(--cyan);
+        border: 1px solid rgba(9, 200, 236, 0.08);
         flex-shrink: 0;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        transition: all 0.3s ease;
       }
+
+      .metric-item:hover .metric-icon {
+        background: rgba(9, 200, 236, 0.08);
+        border-color: rgba(9, 200, 236, 0.2);
+        color: var(--cyan-light);
+        box-shadow: 0 6px 16px -6px rgba(9, 200, 236, 0.3);
+      }
+
       .metric-text {
         display: flex;
         flex-direction: column;
@@ -1595,13 +5429,12 @@
       .attract-line {
         height: 2px;
         width: 50px;
-        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        background: linear-gradient(90deg, var(--cyan), var(--cyan-light));
         border-radius: 4px;
         margin-top: 1.2rem;
         opacity: 0.5;
       }
 
-      /* responsive */
       @media (max-width: 820px) {
         .solution-container {
           padding: 1.8rem 1.2rem 1.8rem;
@@ -1650,9 +5483,10 @@
           padding: 0.2rem 1rem;
         }
         .cards-iconn {
-          width: 44px;
-          height: 44px;
-          font-size: 1.3rem;
+          width: 48px;
+          height: 48px;
+          font-size: 1.25rem;
+          border-radius: 14px;
         }
         .rmi-card h3 {
           font-size: 1.2rem;
@@ -1662,8 +5496,8 @@
           min-width: 80px;
         }
         .metric-icon {
-          width: 38px;
-          height: 38px;
+          width: 40px;
+          height: 40px;
           font-size: 1rem;
         }
         .rmi-card {
@@ -1671,7 +5505,6 @@
         }
       }
 
-      /* hidden-init + stagger */
       .hidden-init {
         opacity: 0;
         transform: translateY(28px);
@@ -1703,6 +5536,29 @@
       .rmi-gridd {
         justify-content: center;
       }
+
+      .ugfxlab-intro {
+        font-size: clamp(1rem, 1.6vw, 1.15rem);
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 700px;
+        margin-bottom: 0.5rem;
+        font-weight: 400;
+        text-align: center;
+      }
+      .ugfxlab-intro strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .ugfxlab-sub {
+        color: var(--cyan-light);
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        margin-bottom: 1.8rem;
+        font-size: 0.95rem;
+        text-align: center;
+        opacity: 0.9;
+      }
     </style>
   </head>
   <body>
@@ -1711,123 +5567,87 @@
         <div class="solution-container">
           <!-- Chip -->
           <div class="bridge-chip hidden-init" id="chip">
-            <i class="fas fa-arrow-right"></i>
-            <span>FROM NOISE TO CONFIDENCE</span>
-            <i class="fas fa-gem"></i>
+            <i class="fas fa-gem"></i><span>THE UGFXLAB DIFFERENCE</span>
           </div>
 
           <!-- Heading -->
           <h2 class="solution-heading hidden-init" id="heading">
-            <span class="highlight">Secret Candle AI</span> — Where AI Meets<br />
-            <span class="highlight">Trading Precision</span>
+            You Don't Have to
+            <span class="highlight">Figure It All Out Alone.</span>
           </h2>
 
-          <p class="solution-description hidden-init" id="desc">
-            Harness the power of Secret Candle AI to analyze market structure,
-            identify institutional activity, and uncover high-probability
-            trading opportunities. Our AI-driven system helps traders make
-            confident, data-backed decisions instead of relying on emotions or
-            guesswork.
+          <!-- Intro description -->
+          <p class="ugfxlab-intro hidden-init" id="desc">
+            <strong>Trading is difficult.</strong> Instead of spending years
+            trying to figure everything out alone, surround yourself with
+            traders who have walked the same path.
           </p>
+          <p class="ugfxlab-sub hidden-init" id="subdesc">UGFXLAB combines:</p>
 
-          <!-- Cards – wider, more spacious -->
+          <!-- Cards – four pillars of UGFXLAB -->
           <div class="rmi-gridd stagger-children" id="cardGrid">
             <div class="rmi-card hidden-init" id="card1">
               <div class="cards-iconn">
                 <i class="fas fa-graduation-cap"></i>
               </div>
-              <h3>Understand the Market</h3>
+              <h3>Practical Market Education</h3>
               <p>
-                Gain a deeper view of price action with AI-powered market
-                intelligence.
+                Learn concepts you can actually apply. No fluff, just real
+                market skills.
               </p>
-              <ul class="feature-list">
-                <li><i class="fas fa-circle-check"></i> AI Market Bias</li>
-                <li>
-                  <i class="fas fa-chart-simple"></i> Multi-Timeframe Analysis
-                </li>
-                <li>
-                  <i class="fas fa-brain"></i> Dynamic Support & Resistance
-                </li>
-              </ul>
+              <!-- <ul class="feature-list">
+                <li><span>Actionable strategies</span></li>
+                <li><span>Real-world examples</span></li>
+                <li><span>Step-by-step frameworks</span></li>
+              </ul> -->
             </div>
 
             <div class="rmi-card hidden-init" id="card2">
               <div class="cards-iconn">
-                <i class="fas fa-user-astronaut"></i>
+                <i class="fa fa-area-chart" aria-hidden="true"></i>
               </div>
-              <h3>Discover Smart Opportunities</h3>
-              <p>Identify high-quality setups before the crowd.</p>
-              <ul class="feature-list">
-                <li>
-                  <i class="fas fa-heart-pulse"></i> Secret Candle AI Detection
-                </li>
-                <li>
-                  <i class="fas fa-shield-halved"></i> Institutional Order
-                  Blocks
-                </li>
-                <li><i class="fas fa-arrows-spin"></i> Trade Quality Filter</li>
-              </ul>
+              <h3>Real Trading Experience</h3>
+              <p>Education built from years of practical market experience.</p>
+              <!-- <ul class="feature-list">
+                <li><span>Taught by active traders</span></li>
+                <li><span>Battle-tested methods</span></li>
+                <li><span>Live market insights</span></li>
+              </ul> -->
             </div>
 
             <div class="rmi-card hidden-init" id="card3">
               <div class="cards-iconn">
-                <i class="fas fa-arrow-trend-up"></i>
+                <i class="fas fa-compass-drafting"></i>
               </div>
-              <h3>Trade with Confidence</h3>
+              <h3>Structured Mentorship</h3>
               <p>
-                Markets change every day, but strong trading principles never
-                do. Execute every trade with discipline and AI confirmation.
+                Follow a defined process instead of jumping from strategy to
+                strategy.
               </p>
-              <ul class="feature-list">
-                <li>
-                  <i class="fas fa-layer-group"></i> High-Probability Setups
-                </li>
-                <li>
-                  <i class="fas fa-repeat"></i> Smarter Buy & Sell Decisions
-                </li>
-                <li>
-                  <i class="fas fa-seedling"></i> Consistent Trading Performance
-                </li>
-              </ul>
+              <!-- <ul class="feature-list">
+                <li><span>Clear roadmap</span></li>
+                <li><span>Personal guidance</span></li>
+                <li><span>Accountability</span></li>
+              </ul> -->
+            </div>
+
+            <div class="rmi-card hidden-init" id="card4">
+              <div class="cards-iconn">
+                <i class="fa fa-users" aria-hidden="true"></i>
+              </div>
+              <h3>Community</h3>
+              <p>Learn alongside thousands of traders on the same journey.</p>
+              <!-- <ul class="feature-list">
+                <li><span>Private forums</span></li>
+                <li><span>Live discussions</span></li>
+                <li><span>Networking & support</span></li>
+              </ul> -->
             </div>
           </div>
 
-          <!-- Snapshot: Philosophy pillars (4 items) -->
-          <div class="data-snapshot" id="snapshot">
-            <div class="metric-item hidden-init" id="m1">
-              <div class="metric-icon"><i class="fas fa-book-open"></i></div>
-              <div class="metric-text">
-                <span class="metric-number">Analyze</span>
-                <span class="metric-label">The Market with AI</span>
-              </div>
-            </div>
-            <div class="metric-item hidden-init" id="m2">
-              <div class="metric-icon"><i class="fas fa-lightbulb"></i></div>
-              <div class="metric-text">
-                <span class="metric-number">Detect</span>
-                <span class="metric-label">Find High Quality Setups</span>
-              </div>
-            </div>
-            <div class="metric-item hidden-init" id="m3">
-              <div class="metric-icon"><i class="fas fa-handshake"></i></div>
-              <div class="metric-text">
-                <span class="metric-number">Execute</span>
-                <span class="metric-label">Trade with Confidence</span>
-              </div>
-            </div>
-            <div class="metric-item hidden-init" id="m4">
-              <div class="metric-icon">
-                <i class="fas fa-arrow-up-wide-short"></i>
-              </div>
-              <div class="metric-text">
-                <span class="metric-number">Grow</span>
-                <span class="metric-label">Master Consistency</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="attract-line hidden-init" id="line"></div>
+          <!-- Snapshot: UGFXLAB pillars (4 items) -->
+          <!-- commented out for now (kept as is) -->
+          <!-- <div class="data-snapshot" id="snapshot"> ... </div> -->
         </div>
       </section>
     </div>
@@ -1866,8 +5686,204 @@
           resetObserver.observe(el);
         });
 
-        console.log("Edu Stockx · Knowledge · Precision · Confidence");
+        console.log("UGFXLAB · The Difference · Trading Education");
       })();
     </script>
   </body>
 </html>
+
+<!-- ---- better ----  -->
+<style>
+  /* ========================================
+   UGFXLAB — SPACING & ALIGNMENT REFINEMENT
+======================================== */
+
+  :root {
+    --page-bg: #03070a;
+    --surface-bg: #081116;
+    --accent-cyan: #09c8ec;
+    --text-muted: #a8b2ba;
+
+    --section-space: clamp(64px, 6vw, 88px);
+    --content-width: 1200px;
+    --card-gap: 22px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    overflow-x: clip;
+  }
+
+  /* Shared content width */
+  .expertise-inner,
+  .path-container,
+  .why-inner {
+    width: min(100%, var(--content-width));
+    margin-inline: auto;
+  }
+
+  /* Consistent section rhythm */
+  .expertise {
+    min-height: auto;
+    padding: var(--section-space) 28px;
+  }
+
+  .path-section {
+    padding: var(--section-space) 28px;
+  }
+
+  .why-section {
+    padding: var(--section-space) 28px;
+  }
+
+  /* Hero — less artificial empty space */
+  .hero {
+    padding: 96px 24px 64px;
+  }
+
+  .hero-container {
+    min-height: 560px;
+  }
+
+  .hero-badge {
+    margin-bottom: 22px;
+  }
+
+  .hero-title-wrapper {
+    height: auto;
+    min-height: 100px;
+    margin-bottom: 24px;
+  }
+
+  .hero-text {
+    margin-bottom: 20px;
+  }
+
+  /* About — aligned heading and media */
+  .expertise-title {
+    margin-bottom: 32px;
+  }
+
+  .expertise-layout {
+    gap: 44px;
+    align-items: center;
+  }
+
+  .expertise-image {
+    height: auto;
+    aspect-ratio: 1.45 / 1;
+  }
+
+  .expertise-right {
+    padding-top: 0;
+  }
+
+  .expertise-description {
+    margin-bottom: 28px;
+    line-height: 1.75;
+  }
+
+  /* Cards — consistent spacing */
+  .path-heading {
+    margin-bottom: 36px;
+  }
+
+  .path-grid,
+  .feature-grid {
+    gap: var(--card-gap);
+  }
+
+  .feature-card {
+    min-height: 230px;
+  }
+
+  /* Market chart — avoid forced full-screen height */
+  .body-Dash {
+    min-height: auto;
+    padding: 48px 24px;
+  }
+
+  .dashboard-card {
+    max-width: 1200px;
+    border-radius: 24px;
+  }
+
+  /* Final section — no oversized outer gutters */
+  .body-rmi {
+    min-height: auto;
+    padding: 28px 24px;
+  }
+
+  /* Tablet */
+  @media (max-width: 900px) {
+    .expertise,
+    .path-section,
+    .why-section {
+      padding: 64px 24px;
+    }
+
+    .expertise-layout {
+      gap: 30px;
+    }
+
+    .hero-container {
+      min-height: 520px;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .expertise,
+    .path-section,
+    .why-section {
+      padding: 52px 18px;
+    }
+
+    .hero {
+      padding: 94px 18px 48px;
+    }
+
+    .hero-container {
+      min-height: auto;
+    }
+
+    .hero-title-wrapper {
+      min-height: 90px;
+      margin-bottom: 20px;
+    }
+
+    .hero-buttons {
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 12px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      min-width: 0;
+      width: 100%;
+      padding: 15px 20px;
+    }
+
+    .expertise-image {
+      aspect-ratio: 4 / 3;
+    }
+
+    .body-Dash {
+      padding: 32px 12px;
+    }
+
+    .dashboard-card {
+      padding: 16px 12px;
+      border-radius: 18px;
+    }
+
+    .body-rmi {
+      padding: 20px 12px;
+    }
+  }
+</style>

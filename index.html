@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UGFXLAB</title>
+    <link
+      rel="shortcut icon"
+      href="Photos/logo-Photoroom.png"
+      type="image/x-icon"
+    />
     <!-- Google Font & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1234,6 +1239,7 @@
     </script>
   </body>
 </html>
+
 <!-- -------ticker tape ----- -->
 <!doctype html>
 <html lang="en">
@@ -1337,9 +1343,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>More Than Just Trading — UGFXLAB</title>
-
     <style>
       :root {
         --black: #03070a;
@@ -1359,23 +1363,18 @@
         background: var(--black);
         color: var(--white);
         font-family: Inter, Arial, sans-serif;
+        overflow-x: hidden;
       }
-
-      /* =====================================================
-   SECTION
-===================================================== */
 
       .expertise {
         width: 100%;
         min-height: 100vh;
         background: var(--black);
-
         padding: 72px 30px 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-
-      /* =====================================================
-   MAIN CONTAINER
-===================================================== */
 
       .expertise-inner {
         width: 100%;
@@ -1383,10 +1382,7 @@
         margin: 0 auto;
       }
 
-      /* =====================================================
-   HEADING
-===================================================== */
-
+      /* ===== HEADING ===== */
       .expertise-title {
         font-size: 58px;
         line-height: 1.02;
@@ -1402,42 +1398,25 @@
         display: block;
       }
 
-      /* =====================================================
-   MAIN CONTENT
-===================================================== */
-
+      /* ===== MAIN CONTENT ===== */
       .expertise-layout {
         display: grid;
-
-        grid-template-columns:
-          minmax(0, 1.38fr)
-          minmax(0, 1fr);
-
+        grid-template-columns: minmax(0, 1.38fr) minmax(0, 1fr);
         gap: 50px;
-
         align-items: start;
-
         position: relative;
       }
 
-      /* =====================================================
-   VIDEO / IMAGE
-===================================================== */
-
+      /* ===== VIDEO ===== */
       .expertise-image {
         width: 100%;
         height: 418px;
-
         border-radius: 14px;
-
         overflow: hidden;
-
         background: var(--black-soft);
-
         position: relative;
       }
 
-      /* Video element fills container */
       .expertise-image video {
         width: 100%;
         height: 100%;
@@ -1450,132 +1429,65 @@
         transform: scale(1.025);
       }
 
-      /* Optional play button overlay for video feel */
-      .video-play-badge {
-        position: absolute;
-
-        bottom: 20px;
-        right: 20px;
-
-        width: 60px;
-        height: 60px;
-
-        border-radius: 50%;
-
-        background: rgba(9, 200, 236, 0.9);
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        color: var(--black);
-
-        font-size: 24px;
-
-        pointer-events: none;
-
-        box-shadow: 0 8px 24px rgba(9, 200, 236, 0.3);
-      }
-
-      /* =====================================================
-   RIGHT SIDE
-===================================================== */
-
+      /* ===== RIGHT SIDE ===== */
       .expertise-right {
         position: relative;
-
         padding-top: 34px;
       }
 
-      /* =====================================================
-   CYAN STAR
-===================================================== */
-
+      /* ===== CYAN STAR ===== */
       .expertise-star {
         position: absolute;
-
         top: -104px;
         left: -50px;
-
         width: 108px;
         height: 108px;
-
         pointer-events: none;
       }
 
-      /* vertical diamond */
-
       .expertise-star::before {
         content: "";
-
         position: absolute;
-
         width: 8px;
         height: 108px;
-
         left: 50%;
         top: 50%;
-
         transform: translate(-50%, -50%);
-
         background: var(--cyan);
-
         clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
       }
-
-      /* horizontal diamond */
 
       .expertise-star::after {
         content: "";
-
         position: absolute;
-
         width: 108px;
         height: 8px;
-
         left: 50%;
         top: 50%;
-
         transform: translate(-50%, -50%);
-
         background: var(--cyan);
-
         clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
       }
 
-      /* white center */
-
       .star-center {
         position: absolute;
-
         width: 15px;
         height: 15px;
-
         background: var(--white);
-
         left: 50%;
         top: 50%;
-
         transform: translate(-50%, -50%);
-
         z-index: 5;
       }
 
-      /* =====================================================
-   DESCRIPTION
-===================================================== */
-
+      /* ===== DESCRIPTION ===== */
       .expertise-description {
         width: 100%;
         max-width: 585px;
-
         color: var(--text);
-
         font-size: 17px;
         line-height: 1.58;
-
         font-weight: 400;
-
         margin: 0 0 48px;
       }
 
@@ -1583,32 +1495,20 @@
         color: var(--white);
       }
 
-      /* =====================================================
-   BUTTON
-===================================================== */
-
+      /* ===== BUTTON ===== */
       .story-btn {
         display: inline-flex;
         align-items: center;
-
         height: 60px;
-
         padding-left: 28px;
         padding-right: 8px;
-
         gap: 22px;
-
         color: var(--white);
-
         text-decoration: none;
-
         font-size: 17px;
         font-weight: 400;
-
         border: 1px solid rgba(9, 200, 236, 0.65);
-
         border-radius: 50px;
-
         transition:
           background 0.3s ease,
           border-color 0.3s ease,
@@ -1618,27 +1518,19 @@
       .story-btn-arrow {
         width: 43px;
         height: 43px;
-
         border-radius: 50%;
-
         display: flex;
         align-items: center;
         justify-content: center;
-
         background: var(--cyan);
-
         color: var(--black);
-
         font-size: 22px;
-
         transition: transform 0.3s ease;
       }
 
       .story-btn:hover {
         background: rgba(9, 200, 236, 0.06);
-
         border-color: var(--cyan);
-
         transform: translateY(-2px);
       }
 
@@ -1647,36 +1539,64 @@
       }
 
       /* =====================================================
-   DESKTOP 1250px
-===================================================== */
+       REFINED ANIMATION SYSTEM
+       - Only runs once per page load
+       - Only when section enters viewport
+       - Staggered, smooth, premium feel
+    ===================================================== */
 
-      @media (max-width: 1250px) {
-        .expertise {
-          padding-left: 28px;
-          padding-right: 28px;
-        }
-
-        .expertise-title {
-          font-size: 58px;
-        }
-
-        .expertise-layout {
-          gap: 45px;
-        }
-
-        .expertise-image {
-          height: 390px;
-        }
-
-        .expertise-description {
-          font-size: 18px;
-        }
+      /* All animated elements start hidden + shifted */
+      .anim {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+        transition:
+          opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
       }
 
-      /* =====================================================
-   TABLET
-===================================================== */
+      /* The star gets a special pop + spin */
+      .expertise-star.anim {
+        opacity: 0;
+        transform: scale(0.4) rotate(-45deg);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
 
+      /* Staggered delays for the entrance sequence */
+      .expertise-title.anim {
+        transition-delay: 0.1s;
+      }
+
+      .expertise-image.anim {
+        transition-delay: 0.25s;
+      }
+
+      .expertise-right .expertise-star.anim {
+        transition-delay: 0.4s;
+      }
+
+      .expertise-right .expertise-description.anim {
+        transition-delay: 0.55s;
+      }
+
+      .expertise-right .story-btn.anim {
+        transition-delay: 0.7s;
+      }
+
+      /* ===== FINAL REVEALED STATE ===== */
+      .expertise--animated .anim {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .expertise--animated .expertise-star.anim {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+
+      /* ===== TABLET ===== */
       @media (max-width: 900px) {
         .expertise {
           padding: 60px 24px;
@@ -1702,10 +1622,8 @@
 
         .expertise-star {
           position: relative;
-
           top: auto;
           left: auto;
-
           margin-bottom: 25px;
         }
 
@@ -1714,10 +1632,7 @@
         }
       }
 
-      /* =====================================================
-   MOBILE
-===================================================== */
-
+      /* ===== MOBILE ===== */
       @media (max-width: 600px) {
         .expertise {
           padding: 50px 18px;
@@ -1726,7 +1641,6 @@
         .expertise-title {
           font-size: 43px;
           letter-spacing: -1.6px;
-
           margin-bottom: 32px;
         }
 
@@ -1742,7 +1656,6 @@
         .expertise-description {
           font-size: 16px;
           line-height: 1.6;
-
           margin-bottom: 32px;
         }
 
@@ -1778,30 +1691,19 @@
       }
     </style>
   </head>
-
   <body>
-    <section class="expertise">
+    <section class="expertise" id="expertiseSection">
       <div class="expertise-inner">
-        <!-- ==========================================
-             HEADING
-        =========================================== -->
-
-        <h1 class="expertise-title">
+        <!-- HEADING -->
+        <h1 class="expertise-title anim">
           Stop Searching for the
-
           <span class="cyan-text"> Next Strategy. </span>
         </h1>
 
-        <!-- ==========================================
-             TWO COLUMN CONTENT
-        =========================================== -->
-
+        <!-- TWO COLUMN CONTENT -->
         <div class="expertise-layout">
-          <!-- ======================================
-                 VIDEO (REPLACED IMAGE)
-            ======================================= -->
-
-          <div class="expertise-image">
+          <!-- VIDEO -->
+          <div class="expertise-image anim">
             <video
               controls
               playsinline
@@ -1813,23 +1715,17 @@
               />
               Your browser does not support the video tag.
             </video>
-            <!-- <div class="video-play-badge">▶</div> -->
           </div>
 
-          <!-- ======================================
-                 RIGHT CONTENT
-            ======================================= -->
-
+          <!-- RIGHT CONTENT -->
           <div class="expertise-right">
             <!-- CYAN STAR -->
-
-            <div class="expertise-star">
+            <div class="expertise-star anim">
               <div class="star-center"></div>
             </div>
 
             <!-- DESCRIPTION -->
-
-            <p class="expertise-description">
+            <p class="expertise-description anim">
               MORE THAN JUST TRADING
               <br /><br />
               Trading isn't about finding a perfect strategy that wins every
@@ -1838,19 +1734,15 @@
               process repeatedly.
               <br /><br />
               At
-
               <span class="highlight"> UGFXLAB </span>
-
               , we help traders build that foundation through practical
               education, market analysis, mentorship and a community of traders
               walking the same path.
             </p>
 
             <!-- BUTTON -->
-
-            <a href="#" class="story-btn">
+            <a href="#" class="story-btn anim">
               <span> Explore Our Community </span>
-
               <span class="story-btn-arrow"> → </span>
             </a>
           </div>
@@ -1859,53 +1751,42 @@
     </section>
 
     <script>
-      /* =====================================================
-   SIMPLE SCROLL REVEAL
-===================================================== */
+      (function () {
+        const section = document.getElementById("expertiseSection");
+        let hasAnimated = false;
 
-      const section = document.querySelector(".expertise");
+        // Use IntersectionObserver to trigger animation once on scroll into view
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+                // Add class that triggers all transitions
+                section.classList.add("expertise--animated");
+                // Stop observing — ensures animation only plays once per refresh
+                observer.unobserve(section);
+              }
+            });
+          },
+          {
+            threshold: 0.25,
+            rootMargin: "0px 0px -60px 0px", // Slight offset for a natural trigger point
+          },
+        );
 
-      const title = document.querySelector(".expertise-title");
-      const image = document.querySelector(".expertise-image");
-      const right = document.querySelector(".expertise-right");
+        observer.observe(section);
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              title.style.opacity = "1";
-              title.style.transform = "translateY(0)";
-
-              image.style.opacity = "1";
-              image.style.transform = "translateY(0)";
-
-              right.style.opacity = "1";
-              right.style.transform = "translateY(0)";
-
-              observer.unobserve(section);
-            }
-          });
-        },
-        {
-          threshold: 0.15,
-        },
-      );
-
-      /* Initial state */
-
-      title.style.opacity = "0";
-      title.style.transform = "translateY(25px)";
-      title.style.transition = "all .7s ease";
-
-      image.style.opacity = "0";
-      image.style.transform = "translateY(25px)";
-      image.style.transition = "all .8s ease .1s";
-
-      right.style.opacity = "0";
-      right.style.transform = "translateY(25px)";
-      right.style.transition = "all .8s ease .2s";
-
-      observer.observe(section);
+        // Fallback: if the section is already in view on page load,
+        // the observer will fire immediately. No additional logic needed.
+        // But if the browser doesn't support IntersectionObserver (very old),
+        // we add a simple fallback.
+        if (!("IntersectionObserver" in window)) {
+          // Old browser fallback: just show everything after a tiny delay
+          setTimeout(() => {
+            section.classList.add("expertise--animated");
+          }, 300);
+        }
+      })();
     </script>
   </body>
 </html>
@@ -2020,7 +1901,7 @@
         max-width: 1000px;
       }
 
-      .eyebrow {
+      .eyebrowpath {
         display: inline-flex;
 
         align-items: center;
@@ -2040,8 +1921,8 @@
         text-transform: uppercase;
       }
 
-      .eyebrow::before,
-      .eyebrow::after {
+      .eyebrowpath::before,
+      .eyebrowpath::after {
         content: "";
 
         width: 32px;
@@ -2951,7 +2832,7 @@
           margin-bottom: 32px;
         }
 
-        .eyebrow {
+        .eyebrowpath {
           font-size: 10px;
 
           letter-spacing: 3px;
@@ -3163,7 +3044,7 @@
     <section class="path-section">
       <div class="path-container">
         <header class="path-heading">
-          <div class="eyebrow">Choose Your Path</div>
+          <div class="eyebrowpath">Choose Your Path</div>
 
           <h1>Your Trading Journey <span>Starts Here.</span></h1>
 
@@ -3395,22 +3276,6 @@
         padding: 76px 24px 84px;
         background: #000;
       }
-      /* .why-section:before {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        top: -180px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: min(900px, 100%);
-        height: 420px;
-        background: radial-gradient(
-          ellipse,
-          rgba(0, 229, 255, 0.09),
-          transparent 68%
-        );
-        pointer-events: none;
-      } */
       .why-inner {
         width: 100%;
         max-width: 1200px;
@@ -3421,7 +3286,7 @@
         margin: 0 auto 62px;
         max-width: 760px;
       }
-      .eyebrow {
+      .eyebrowwhy {
         display: inline-block;
         color: #00e5ff;
         font-size: 12px;
@@ -3431,12 +3296,14 @@
         margin-bottom: 19px;
       }
       .why-heading h2 {
-        font-size: clamp(32px, 4vw, 44px);
-        line-height: 1.14;
-        letter-spacing: -1.25px;
-        font-weight: 800;
         color: #fff;
         margin: 0 auto 19px;
+        font-size: 58px;
+        line-height: 1.02;
+        font-weight: 400;
+        letter-spacing: -2.4px;
+        max-width: 100%;
+        margin-bottom: 25px;
       }
       .why-heading h2 span {
         display: block;
@@ -3616,6 +3483,79 @@
       .cta-button:hover i {
         transform: translateX(4px);
       }
+
+      /* =====================================================
+       ONE-TIME SCROLL-TRIGGERED ANIMATION
+       - Plays only once per page load
+       - Cards animate only when scrolled into view
+       - Staggered, polished, dynamic
+    ===================================================== */
+
+      /* Initial hidden state for heading + CTA */
+      .anim {
+        opacity: 0;
+        transform: translateY(45px);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+
+      /* Heading elements staggered */
+      .why-heading .eyebrowwhy {
+        transform: translateY(30px);
+        transition-delay: 0.05s;
+      }
+      .why-heading h2 {
+        transform: translateY(35px);
+        transition-delay: 0.15s;
+      }
+      .why-heading p {
+        transform: translateY(30px);
+        transition-delay: 0.25s;
+      }
+
+      /* ===== CARDS: hidden until their own observer fires ===== */
+      .feature-card {
+        opacity: 0;
+        transform: translateY(60px) scale(0.94);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+
+      /* When card enters viewport, JS adds .card--visible */
+      .feature-card.card--visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      /* CTA */
+      .why-cta {
+        opacity: 0;
+        transform: translateY(35px);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: 0.85s;
+        will-change: opacity, transform;
+      }
+
+      /* ===== FINAL REVEALED STATE ===== */
+      .why-section--animated .anim,
+      .why-section--animated .why-cta {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .why-section--animated .why-heading .eyebrowwhy,
+      .why-section--animated .why-heading h2,
+      .why-section--animated .why-heading p {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
       @media (max-width: 900px) {
         .why-section {
           padding: 65px 22px;
@@ -3639,7 +3579,7 @@
         .why-heading {
           margin-bottom: 32px;
         }
-        .eyebrow {
+        .eyebrowwhy {
           font-size: 10px;
           letter-spacing: 2.5px;
           margin-bottom: 15px;
@@ -3692,26 +3632,34 @@
           scroll-behavior: auto !important;
           transition: none !important;
         }
+        .anim,
+        .feature-card,
+        .why-cta {
+          opacity: 1 !important;
+          transform: none !important;
+        }
       }
     </style>
   </head>
   <body>
-    <section class="why-section" aria-labelledby="why-title">
+    <section class="why-section" id="whySection" aria-labelledby="why-title">
       <div class="why-inner">
         <header class="why-heading">
-          <span class="eyebrow">WHY UGFXLAB</span>
-          <h2 id="why-title">Learn. Execute. Refine. <span>Repeat.</span></h2>
-          <!-- <p>
-            UGFXLAB was founded in 2021 with one goal — to help traders become
-            more knowledgeable, disciplined and independent in the markets.
-          </p> -->
-          <p style="margin-top: 14px; color: #b3f5ff; font-weight: 500">
+          <span class="eyebrowwhy anim">WHY UGFXLAB</span>
+          <h2 id="why-title" class="anim">
+            Learn. Execute. Refine. <span>Repeat.</span>
+          </h2>
+          <p
+            class="anim"
+            style="margin-top: 14px; color: #b3f5ff; font-weight: 500"
+          >
             Our approach is built around the Market Makers Method (BTMM),
             combined with years of practical trading experience, refinement and
             real-market application.
           </p>
         </header>
-        <div class="feature-grid">
+
+        <div class="feature-grid" id="featureGrid">
           <!-- Card 01 -->
           <article class="feature-card">
             <div class="card-top">
@@ -3798,6 +3746,7 @@
             </p>
           </article>
         </div>
+
         <div class="why-cta">
           <a
             class="cta-button"
@@ -3811,6 +3760,80 @@
         </div>
       </div>
     </section>
+
+    <script>
+      (function () {
+        const section = document.getElementById("whySection");
+        const cards = document.querySelectorAll(".feature-card");
+        let hasAnimated = false;
+
+        // Respect reduced motion
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        if (prefersReducedMotion) {
+          section.classList.add("why-section--animated");
+          cards.forEach((c) => c.classList.add("card--visible"));
+          return;
+        }
+
+        /* =====================================================
+         1. SECTION OBSERVER — triggers heading + CTA only
+      ===================================================== */
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+                section.classList.add("why-section--animated");
+                sectionObserver.unobserve(section);
+              }
+            });
+          },
+          {
+            threshold: 0.15,
+            rootMargin: "0px 0px -40px 0px",
+          },
+        );
+        sectionObserver.observe(section);
+
+        /* =====================================================
+         2. CARD OBSERVER — each card animates when it
+            personally enters the viewport.
+            Cards are staggered slightly once detected.
+      ===================================================== */
+        let visibleCardCount = 0;
+
+        const cardObserver = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const card = entry.target;
+                // Stagger each newly visible card by index order
+                const delay = (visibleCardCount % 3) * 0.12;
+                card.style.transitionDelay = delay + "s";
+                card.classList.add("card--visible");
+                visibleCardCount++;
+                obs.unobserve(card);
+              }
+            });
+          },
+          {
+            threshold: 0.18,
+            rootMargin: "0px 0px -60px 0px",
+          },
+        );
+
+        cards.forEach((card) => cardObserver.observe(card));
+
+        // Fallback for very old browsers
+        if (!("IntersectionObserver" in window)) {
+          section.classList.add("why-section--animated");
+          cards.forEach((c) => c.classList.add("card--visible"));
+        }
+      })();
+    </script>
   </body>
 </html>
 
@@ -4404,5 +4427,2560 @@
         }
       })();
     </script>
+  </body>
+</html>
+
+<!-- --- experience ---  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB | Real Experience</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --cyan: #09c8ec;
+        --black: #030506;
+        --white: #f7f9fb;
+        --muted: #b7c0c8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--black);
+        color: var(--white);
+      }
+
+      /* FULL-WIDTH BACKGROUND */
+      .experience-section {
+        position: relative;
+        width: 100%;
+        min-height: 512px;
+        overflow: hidden;
+        isolation: isolate;
+        background-color: #030506;
+        background-image:
+          linear-gradient(
+            90deg,
+            rgb(0 0 0) 0%,
+            rgb(0 0 0 / 98%) 38%,
+            rgb(0 0 0 / 80%) 64%,
+            rgba(2, 5, 7, 0.3) 100%
+          ),
+          linear-gradient(0deg, rgba(2, 5, 7, 0.7), transparent 60%),
+          url(Photos/mountain-bg.png);
+        background-size: cover;
+        background-position: center 48%;
+      }
+
+      .experience-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse at 82% 70%,
+          rgba(9, 200, 236, 0.13),
+          transparent 36%
+        );
+      }
+
+      .experience-container {
+        width: min(1200px, calc(100% - 48px));
+        min-height: 510px;
+        margin: 0 auto;
+        padding: 66px 0 58px;
+        display: grid;
+        grid-template-columns: 1.65fr 1fr;
+        align-items: center;
+        gap: 48px;
+      }
+
+      .experience-left {
+        min-width: 0;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 22px;
+        color: var(--cyan);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::after {
+        content: "";
+        width: 75px;
+        height: 1px;
+        background: linear-gradient(90deg, var(--cyan), transparent);
+      }
+
+      .experience-title {
+        max-width: 700px;
+        font-size: clamp(34px, 3.5vw, 44px);
+        line-height: 1.13;
+        font-weight: 600;
+        letter-spacing: -1.8px;
+        color: #f8fafc;
+      }
+
+      .experience-title span {
+        display: block;
+      }
+
+      .title-divider {
+        position: relative;
+        width: 100%;
+        height: 2px;
+        margin: 22px 0 30px;
+        border: none;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 200, 255, 0.02) 0%,
+          rgba(0, 200, 255, 0.12) 18%,
+          rgba(0, 200, 255, 0.42) 38%,
+          rgba(0, 200, 255, 0.12) 65%,
+          rgba(0, 200, 255, 0.02) 100%
+        );
+      }
+
+      .title-divider::before {
+        content: "";
+        position: absolute;
+        left: 25%;
+        top: 0px;
+        width: 324px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #00d9ff 35%,
+          #8af4ff 50%,
+          #00cfff 70%,
+          transparent
+        );
+      }
+
+      .experience-stats {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr 1.35fr 0.85fr;
+        align-items: stretch;
+        text-align: center;
+      }
+
+      .stat {
+        min-width: 0;
+        padding: 1px 17px 0 0;
+      }
+
+      .stat + .stat {
+        border-left: 1px solid rgba(9, 200, 236, 0.4);
+        padding-left: 19px;
+      }
+
+      .stat-number {
+        margin-bottom: 13px;
+        color: var(--cyan);
+        font-size: clamp(24px, 2.6vw, 35px);
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: -1px;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .stat-label {
+        max-width: 150px;
+        color: #c0c7cd;
+        font-size: 13px;
+        line-height: 1.7;
+        font-weight: 400;
+      }
+
+      /* GLASS TESTIMONIAL */
+      .experience-right {
+        position: relative;
+        min-width: 0;
+      }
+
+      .testimonial-card {
+        position: relative;
+        padding: 29px 29px 27px;
+        overflow: hidden;
+        border: 1px solid rgba(9, 200, 236, 0.68);
+        border-radius: 17px;
+        background: linear-gradient(
+          135deg,
+          rgba(12, 20, 25, 0.85),
+          rgba(4, 9, 13, 0.74)
+        );
+        box-shadow:
+          0 0 30px rgba(9, 200, 236, 0.07),
+          inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+
+      .testimonial-card::before {
+        content: "";
+        position: absolute;
+        left: 25%;
+        top: 0px;
+        width: 324px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #00d9ff 35%,
+          #8af4ff 50%,
+          #00cfff 70%,
+          transparent
+        );
+      }
+
+      .quote-mark {
+        display: block;
+        margin-bottom: 7px;
+        color: var(--cyan);
+        font-size: 31px;
+        line-height: 1;
+        font-weight: 800;
+      }
+
+      .testimonial-text {
+        color: #e1e7eb;
+        font-size: 14px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 1.85;
+      }
+
+      .testimonial-author {
+        display: block;
+        margin-top: 15px;
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      /* =====================================================
+       ONE-TIME SCROLL-TRIGGERED ENTRANCE
+    ===================================================== */
+      .experience-left,
+      .experience-right {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+
+      .experience-right {
+        transition-delay: 0.2s;
+      }
+
+      .experience-section--animated .experience-left,
+      .experience-section--animated .experience-right {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* TABLET */
+      @media (max-width: 1000px) {
+        .experience-container {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          padding: 58px 0;
+        }
+
+        .experience-section {
+          background-position: center;
+        }
+
+        .experience-title {
+          max-width: 750px;
+        }
+
+        .experience-stats {
+          max-width: 760px;
+        }
+
+        .experience-right {
+          max-width: 650px;
+        }
+      }
+
+      /* MOBILE */
+      @media (max-width: 600px) {
+        .experience-container {
+          width: calc(100% - 36px);
+          padding: 45px 0;
+          gap: 30px;
+        }
+
+        .experience-section {
+          background-image:
+            linear-gradient(90deg, rgba(2, 5, 7, 0.96), rgba(2, 5, 7, 0.8)),
+            linear-gradient(0deg, rgba(2, 5, 7, 0.85), transparent),
+            url("https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=1200&auto=format&fit=crop&q=80");
+          background-position: center;
+        }
+
+        .eyebrow {
+          gap: 10px;
+          margin-bottom: 18px;
+          font-size: 9px;
+          letter-spacing: 2.3px;
+        }
+
+        .eyebrow::after {
+          width: 30px;
+        }
+
+        .experience-title {
+          font-size: clamp(31px, 8vw, 42px);
+          letter-spacing: -1.3px;
+        }
+
+        .title-divider {
+          margin: 22px 0;
+        }
+
+        .experience-stats {
+          grid-template-columns: 1fr 1fr;
+          row-gap: 23px;
+        }
+
+        .stat {
+          padding-right: 12px;
+        }
+
+        .stat + .stat {
+          padding-left: 14px;
+        }
+
+        .stat:nth-child(3) {
+          border-left: none;
+          padding-left: 0;
+        }
+
+        .stat-number {
+          font-size: 27px;
+          margin-bottom: 9px;
+        }
+
+        .stat-label {
+          font-size: 12px;
+          line-height: 1.6;
+        }
+
+        .testimonial-card {
+          padding: 24px 21px;
+          border-radius: 13px;
+        }
+
+        .testimonial-text {
+          font-size: 13px;
+          line-height: 1.8;
+        }
+
+        .testimonial-author {
+          font-size: 14px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .experience-left,
+        .experience-right {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="experience-section" id="experienceSection">
+      <div class="experience-container">
+        <div class="experience-left">
+          <div class="eyebrow">Built from real market experience.</div>
+
+          <h1 class="experience-title">
+            <span>Real Experience. Real Traders.</span>
+            <span>Real Progress.</span>
+          </h1>
+
+          <div class="title-divider"></div>
+
+          <div class="experience-stats">
+            <!-- Stat 01: Years (counts up) -->
+            <div class="stat">
+              <div class="stat-number" data-target="5" data-suffix="+ Years">
+                0+ Years
+              </div>
+              <p class="stat-label">Trading the financial markets</p>
+            </div>
+
+            <!-- Stat 02: Traders (counts up) -->
+            <div class="stat">
+              <div class="stat-number" data-target="5000" data-suffix="+">
+                0+
+              </div>
+              <p class="stat-label">Traders in the UGFXLAB community</p>
+            </div>
+
+            <!-- Stat 03: Payouts (counts up) -->
+            <div class="stat">
+              <div
+                class="stat-number"
+                data-target="50"
+                data-prefix="$"
+                data-suffix="K+"
+              >
+                $0K+
+              </div>
+              <p class="stat-label">
+                Trading payouts across multiple prop firms
+              </p>
+            </div>
+
+            <!-- Stat 04: Year (stays static — no data-target) -->
+            <div class="stat">
+              <div class="stat-number">2021</div>
+              <p class="stat-label">UGFXLAB founded</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-right">
+          <div class="testimonial-card">
+            <span class="quote-mark">“</span>
+
+            <p class="testimonial-text">
+              I'm not a perfect trader, and I don't pretend to be one. What I've
+              learned is that profitability doesn't come from constantly
+              searching for the next strategy. It comes from knowing your edge,
+              managing risk and becoming obsessed with executing your process
+              consistently.
+            </p>
+
+            <span class="testimonial-author"> — UGFXLAB </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const section = document.getElementById("experienceSection");
+        const statNumbers = document.querySelectorAll(
+          ".stat-number[data-target]",
+        );
+
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        /* ---------- Number count-up helper ---------- */
+        function countUp(el) {
+          const target = parseFloat(el.getAttribute("data-target"));
+          const prefix = el.getAttribute("data-prefix") || "";
+          const suffix = el.getAttribute("data-suffix") || "";
+
+          // Detect if we need decimals (e.g. 1.5) — here all are integers
+          const isDecimal = target % 1 !== 0;
+          const decimals = isDecimal ? 1 : 0;
+
+          const duration = 1600; // ms
+          const startTime = performance.now();
+
+          function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+          }
+
+          function formatValue(val) {
+            if (decimals === 0) {
+              return Math.round(val).toLocaleString("en-US");
+            }
+            return val.toFixed(decimals);
+          }
+
+          function tick(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeOutCubic(progress);
+            const current = eased * target;
+
+            el.textContent = prefix + formatValue(current) + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              // Ensure final exact value
+              el.textContent = prefix + formatValue(target) + suffix;
+            }
+          }
+
+          requestAnimationFrame(tick);
+        }
+
+        /* ---------- Reduced motion: skip animation ---------- */
+        if (prefersReducedMotion) {
+          section.classList.add("experience-section--animated");
+          statNumbers.forEach((el) => {
+            const target = parseFloat(el.getAttribute("data-target"));
+            const prefix = el.getAttribute("data-prefix") || "";
+            const suffix = el.getAttribute("data-suffix") || "";
+            el.textContent = prefix + target.toLocaleString("en-US") + suffix;
+          });
+          return;
+        }
+
+        let hasAnimated = false;
+
+        /* ---------- Section observer: entrance + count-up ---------- */
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+
+                // Entrance animation for columns
+                section.classList.add("experience-section--animated");
+
+                // Start counting each number
+                statNumbers.forEach((el) => countUp(el));
+
+                observer.unobserve(section);
+              }
+            });
+          },
+          {
+            threshold: 0.25,
+            rootMargin: "0px 0px -60px 0px",
+          },
+        );
+
+        observer.observe(section);
+
+        /* Fallback */
+        if (!("IntersectionObserver" in window)) {
+          section.classList.add("experience-section--animated");
+          statNumbers.forEach((el) => countUp(el));
+        }
+
+        /* ---------- Hover response for desktop stats ---------- */
+        const stats = document.querySelectorAll(".stat");
+        stats.forEach((stat) => {
+          stat.style.transition = "transform 250ms ease";
+
+          stat.addEventListener("mouseenter", () => {
+            stat.style.transform = "translateY(-3px)";
+          });
+
+          stat.addEventListener("mouseleave", () => {
+            stat.style.transform = "translateY(0)";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ----- difference -----  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>UGFXLAB · The Difference · Trading Education</title>
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --black: #000000;
+        --green: #073f25;
+        --green-light: #386f53;
+        /* CYAN palette */
+        --cyan: #09c8ec;
+        --cyan-light: #6ee0f5;
+        --cyan-dark: #0587a3;
+        --cyan-deep: #033e4d;
+        --bronze: #a0520b;
+        --text: #f4f4f4;
+        --muted: #979d94;
+        --card-bg: rgba(53, 53, 53, 0.76);
+        --border-subtle: rgba(255, 255, 255, 0.04);
+      }
+
+      .body-rmi {
+        background: #000000;
+        /* min-height: 100vh; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        /* padding: 1rem; */
+        font-family: "Inter", sans-serif;
+      }
+
+      .solution-section {
+        width: 100%;
+        max-width: 1440px;
+        background: var(--black);
+        border-radius: 2.2rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow:
+          0 20px 40px -12px rgba(0, 0, 0, 0.9),
+          0 0 0 1px rgba(9, 200, 236, 0.03);
+        backdrop-filter: blur(2px);
+        border: 1px solid rgba(255, 255, 255, 0.01);
+        transition: all 0.3s;
+        text-align: center;
+      }
+
+      .solution-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 70% 10%,
+            rgba(9, 200, 236, 0.04) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 20% 90%,
+            rgba(7, 63, 37, 0.08) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .solution-container {
+        max-width: 1270px;
+        margin: 0 auto;
+        padding: 6.8rem 2.5rem 2.5rem 2.5rem;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .bridge-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: rgba(9, 200, 236, 0.07);
+        padding: 0.4rem 1.4rem;
+        border-radius: 60px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        color: var(--cyan-light);
+        margin-bottom: 28px;
+        border: 1px solid rgba(9, 200, 236, 0.14);
+        backdrop-filter: blur(2px);
+        transition: all 0.25s;
+      }
+      .bridge-chip i {
+        font-size: 0.7rem;
+        color: var(--cyan);
+      }
+
+      .solution-heading {
+        font-size: clamp(2rem, 4.2vw, 3rem);
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--text);
+        max-width: 880px;
+        margin-bottom: 0.6rem;
+        letter-spacing: -0.02em;
+        text-align: center;
+      }
+      .highlight {
+        color: var(--cyan);
+        background: linear-gradient(
+          120deg,
+          rgba(9, 200, 236, 0.09) 0%,
+          rgba(9, 200, 236, 0.01) 80%
+        );
+        display: inline-block;
+        padding: 0 0.1rem;
+      }
+
+      .solution-description {
+        font-size: clamp(1rem, 1.6vw, 1.15rem);
+        line-height: 1.5;
+        color: var(--muted);
+        max-width: 700px;
+        margin-bottom: 1.8rem;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .rmi-gridd {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin: 1.5rem 0 1.5rem;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .rmi-card {
+        flex: 1 1 260px;
+        max-width: 370px;
+        min-width: 220px;
+        background: linear-gradient(65deg, rgb(0, 0, 0), #000912);
+        backdrop-filter: blur(2px);
+        border-radius: 1.8rem;
+        padding: 1.8rem 1.6rem 1.6rem;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--border-subtle);
+        transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+        opacity: 0;
+        transform: translateY(28px);
+        will-change: transform, opacity;
+        text-align: center; /* centered card content */
+        position: relative;
+        overflow: hidden;
+      }
+
+      .rmi-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(9, 200, 236, 0.25),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+
+      .rmi-card:hover::after {
+        opacity: 1;
+      }
+
+      .rmi-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .rmi-card:hover {
+        transform: translateY(-5px) scale(1.01);
+        box-shadow:
+          0 20px 32px -10px rgba(0, 0, 0, 0.9),
+          0 0 0 1px rgba(9, 200, 236, 0.16);
+        border-color: rgba(9, 200, 236, 0.16);
+        background: rgba(0, 0, 0, 0.101);
+      }
+
+      /* ===== UPGRADED CARD ICON CONTAINER ===== */
+      .cards-iconn {
+        position: relative;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(9, 200, 236, 0.16);
+        transition:
+          background 0.35s ease,
+          box-shadow 0.35s ease,
+          border-color 0.35s ease,
+          transform 0.35s cubic-bezier(0.2, 0, 0, 1),
+          color 0.35s ease;
+        overflow: hidden;
+        width: 64px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 21px;
+        color: #080806;
+        font-size: 24px;
+        background: linear-gradient(
+          155deg,
+          #d4faff 0%,
+          #00e5ff 52%,
+          #0088a3 100%
+        );
+        box-shadow:
+          0 9px 22px rgba(0, 229, 255, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.55);
+        /* center the icon inside its container */
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cards-iconn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 30% 20%,
+          rgba(9, 200, 236, 0.22) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        pointer-events: none;
+      }
+
+      .cards-iconn i {
+        position: relative;
+        z-index: 1;
+        transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1);
+      }
+
+      .rmi-card:hover .cards-iconn {
+        background: linear-gradient(
+          145deg,
+          rgba(9, 200, 236, 0.22),
+          rgba(9, 200, 236, 0.05)
+        );
+        border-color: rgba(9, 200, 236, 0.4);
+        color: var(--cyan-light);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.08),
+          0 10px 22px -8px rgba(9, 200, 236, 0.45);
+        transform: translateY(-2px);
+      }
+
+      .rmi-card:hover .cards-iconn::before {
+        opacity: 1;
+      }
+
+      .rmi-card:hover .cards-iconn i {
+        transform: scale(1.1);
+      }
+
+      /* uppercase heading */
+      .rmi-card h3 {
+        font-size: 21px;
+        font-weight: 600;
+        color: var(--text);
+        margin: 23px 0 16px;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+      }
+
+      .rmi-card p {
+        color: var(--muted);
+        line-height: 1.5;
+        font-size: 0.9rem;
+        margin-bottom: 0.9rem;
+      }
+
+      /* feature list – no icons, centered, minimal bullet */
+      .feature-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 0.3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .feature-list li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: #c5cdc0;
+        text-align: center;
+        width: 100%;
+      }
+      /* remove icon styling completely */
+      .feature-list li i {
+        display: none;
+      }
+      .feature-list li span {
+        color: #c5cdc0;
+        font-size: 0.85rem;
+      }
+      .feature-list li strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* subtle dot separator before each feature item, centered */
+      .feature-list li::before {
+        content: "•";
+        color: var(--cyan-light);
+        font-size: 0.9rem;
+        line-height: 1;
+        margin-right: 0.4rem;
+        opacity: 0.7;
+        display: inline-block;
+      }
+
+      .data-snapshot {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4.2rem;
+        background: rgba(255, 255, 255, 0.015);
+        backdrop-filter: blur(2px);
+        border-radius: 1.8rem;
+        padding: 0.8rem 1.8rem;
+        margin: 1rem 0 0.5rem;
+        border: 1px solid rgba(9, 200, 236, 0.05);
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.7);
+        transition: all 0.3s;
+        width: 100%;
+        max-width: 1174px;
+      }
+
+      .metric-item {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        flex: 0 1 160px;
+        min-width: 200px;
+        padding: 0.2rem 0;
+        opacity: 0;
+        transform: translateY(14px);
+        transition: all 0.5s cubic-bezier(0.15, 0.9, 0.25, 1);
+        justify-content: center;
+      }
+      .metric-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .metric-icon {
+        background: rgba(7, 63, 37, 0.2);
+        width: 58px;
+        height: 49px;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: var(--cyan);
+        border: 1px solid rgba(9, 200, 236, 0.08);
+        flex-shrink: 0;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .metric-item:hover .metric-icon {
+        background: rgba(9, 200, 236, 0.08);
+        border-color: rgba(9, 200, 236, 0.2);
+        color: var(--cyan-light);
+        box-shadow: 0 6px 16px -6px rgba(9, 200, 236, 0.3);
+      }
+
+      .metric-text {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+      }
+      .metric-number {
+        font-size: 25px;
+        font-weight: 600;
+        color: var(--text);
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+      }
+      .metric-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+        color: #a1a1a1;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+
+      .attract-line {
+        height: 2px;
+        width: 50px;
+        background: linear-gradient(90deg, var(--cyan), var(--cyan-light));
+        border-radius: 4px;
+        margin-top: 1.2rem;
+        opacity: 0.5;
+      }
+
+      @media (max-width: 820px) {
+        .solution-container {
+          padding: 1.8rem 1.2rem 1.8rem;
+        }
+        .solution-section {
+          border-radius: 1.8rem;
+        }
+        .data-snapshot {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.8rem;
+          padding: 0.8rem 1rem;
+          justify-content: center;
+        }
+        .metric-item {
+          flex: 1 0 100px;
+          min-width: 100px;
+          gap: 0.6rem;
+        }
+        .rmi-gridd {
+          flex-direction: column;
+          gap: 1.2rem;
+          align-items: center;
+        }
+        .rmi-card {
+          padding: 1.4rem;
+          min-width: unset;
+          max-width: 460px;
+          width: 100%;
+          flex: 0 1 auto;
+        }
+        .metric-number {
+          font-size: 1.3rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .solution-container {
+          padding: 1.2rem 0.8rem 1.2rem;
+        }
+        .solution-heading {
+          font-size: 29px;
+        }
+        .bridge-chip {
+          font-size: 0.6rem;
+          padding: 0.2rem 1rem;
+        }
+        .cards-iconn {
+          width: 48px;
+          height: 48px;
+          font-size: 1.25rem;
+          border-radius: 14px;
+        }
+        .rmi-card h3 {
+          font-size: 1.2rem;
+        }
+        .metric-item {
+          flex: 1 0 80px;
+          min-width: 80px;
+        }
+        .metric-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 1rem;
+        }
+        .rmi-card {
+          padding: 1.2rem;
+        }
+      }
+
+      .hidden-init {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.7s cubic-bezier(0.15, 0.9, 0.25, 1),
+          transform 0.7s cubic-bezier(0.15, 0.9, 0.25, 1);
+      }
+      .hidden-init.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .stagger-children > * {
+        transition-delay: 0s;
+      }
+      .stagger-children > *:nth-child(1) {
+        transition-delay: 0.04s;
+      }
+      .stagger-children > *:nth-child(2) {
+        transition-delay: 0.12s;
+      }
+      .stagger-children > *:nth-child(3) {
+        transition-delay: 0.2s;
+      }
+      .stagger-children > *:nth-child(4) {
+        transition-delay: 0.28s;
+      }
+
+      .rmi-gridd {
+        justify-content: center;
+      }
+
+      .ugfxlab-intro {
+        font-size: clamp(1rem, 1.6vw, 1.15rem);
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 700px;
+        margin-bottom: 0.5rem;
+        font-weight: 400;
+        text-align: center;
+      }
+      .ugfxlab-intro strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .ugfxlab-sub {
+        color: var(--cyan-light);
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        margin-bottom: 1.8rem;
+        font-size: 0.95rem;
+        text-align: center;
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="body-rmi">
+      <section class="solution-section" id="Solution-Section">
+        <div class="solution-container">
+          <!-- Chip -->
+          <div class="bridge-chip hidden-init" id="chip">
+            <i class="fas fa-gem"></i><span>THE UGFXLAB DIFFERENCE</span>
+          </div>
+
+          <!-- Heading -->
+          <h2 class="solution-heading hidden-init" id="heading">
+            You Don't Have to
+            <span class="highlight">Figure It All Out Alone.</span>
+          </h2>
+
+          <!-- Intro description -->
+          <p class="ugfxlab-intro hidden-init" id="desc">
+            <strong>Trading is difficult.</strong> Instead of spending years
+            trying to figure everything out alone, surround yourself with
+            traders who have walked the same path.
+          </p>
+          <p class="ugfxlab-sub hidden-init" id="subdesc">UGFXLAB combines:</p>
+
+          <!-- Cards – four pillars of UGFXLAB -->
+          <div class="rmi-gridd stagger-children" id="cardGrid">
+            <div class="rmi-card hidden-init" id="card1">
+              <div class="cards-iconn">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <h3>Practical Market Education</h3>
+              <p>
+                Learn concepts you can actually apply. No fluff, just real
+                market skills.
+              </p>
+              <!-- <ul class="feature-list">
+                <li><span>Actionable strategies</span></li>
+                <li><span>Real-world examples</span></li>
+                <li><span>Step-by-step frameworks</span></li>
+              </ul> -->
+            </div>
+
+            <div class="rmi-card hidden-init" id="card2">
+              <div class="cards-iconn">
+                <i class="fa fa-area-chart" aria-hidden="true"></i>
+              </div>
+              <h3>Real Trading Experience</h3>
+              <p>Education built from years of practical market experience.</p>
+              <!-- <ul class="feature-list">
+                <li><span>Taught by active traders</span></li>
+                <li><span>Battle-tested methods</span></li>
+                <li><span>Live market insights</span></li>
+              </ul> -->
+            </div>
+
+            <div class="rmi-card hidden-init" id="card3">
+              <div class="cards-iconn">
+                <i class="fas fa-compass-drafting"></i>
+              </div>
+              <h3>Structured Mentorship</h3>
+              <p>
+                Follow a defined process instead of jumping from strategy to
+                strategy.
+              </p>
+              <!-- <ul class="feature-list">
+                <li><span>Clear roadmap</span></li>
+                <li><span>Personal guidance</span></li>
+                <li><span>Accountability</span></li>
+              </ul> -->
+            </div>
+
+            <div class="rmi-card hidden-init" id="card4">
+              <div class="cards-iconn">
+                <i class="fa fa-users" aria-hidden="true"></i>
+              </div>
+              <h3>Community</h3>
+              <p>Learn alongside thousands of traders on the same journey.</p>
+              <!-- <ul class="feature-list">
+                <li><span>Private forums</span></li>
+                <li><span>Live discussions</span></li>
+                <li><span>Networking & support</span></li>
+              </ul> -->
+            </div>
+          </div>
+
+          <!-- Snapshot: UGFXLAB pillars (4 items) -->
+          <!-- commented out for now (kept as is) -->
+          <!-- <div class="data-snapshot" id="snapshot"> ... </div> -->
+        </div>
+      </section>
+    </div>
+
+    <script>
+      (function () {
+        const hiddenElements = document.querySelectorAll(".hidden-init");
+
+        const resetObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const el = entry.target;
+              if (!entry.isIntersecting) {
+                el.classList.remove("visible");
+              } else {
+                if (el.classList.contains("metric-item")) {
+                  const metricItems = document.querySelectorAll(".metric-item");
+                  const idx = Array.from(metricItems).indexOf(el);
+                  const delay = idx * 120;
+                  setTimeout(() => {
+                    el.classList.add("visible");
+                  }, delay);
+                } else {
+                  el.classList.add("visible");
+                }
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -30px 0px",
+          },
+        );
+
+        hiddenElements.forEach((el) => {
+          resetObserver.observe(el);
+        });
+
+        console.log("UGFXLAB · The Difference · Trading Education");
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ---- better ----  -->
+<style>
+  /* ========================================
+   UGFXLAB — SPACING & ALIGNMENT REFINEMENT
+======================================== */
+
+  :root {
+    --page-bg: #03070a;
+    --surface-bg: #081116;
+    --accent-cyan: #09c8ec;
+    --text-muted: #a8b2ba;
+
+    --section-space: clamp(64px, 6vw, 88px);
+    --content-width: 1200px;
+    --card-gap: 22px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    overflow-x: clip;
+  }
+
+  /* Shared content width */
+  .expertise-inner,
+  .path-container,
+  .why-inner {
+    width: min(100%, var(--content-width));
+    margin-inline: auto;
+  }
+
+  /* Consistent section rhythm */
+  .expertise {
+    min-height: auto;
+    padding: var(--section-space) 28px;
+  }
+
+  .path-section {
+    padding: var(--section-space) 28px;
+  }
+
+  .why-section {
+    padding: var(--section-space) 28px;
+  }
+
+  /* Hero — less artificial empty space */
+  .hero {
+    padding: 96px 24px 64px;
+  }
+
+  .hero-container {
+    min-height: 560px;
+  }
+
+  .hero-badge {
+    margin-bottom: 22px;
+  }
+
+  .hero-title-wrapper {
+    height: auto;
+    min-height: 100px;
+    margin-bottom: 24px;
+  }
+
+  .hero-text {
+    margin-bottom: 20px;
+  }
+
+  /* About — aligned heading and media */
+  .expertise-title {
+    margin-bottom: 32px;
+  }
+
+  .expertise-layout {
+    gap: 44px;
+    align-items: center;
+  }
+
+  .expertise-image {
+    height: auto;
+    aspect-ratio: 1.45 / 1;
+  }
+
+  .expertise-right {
+    padding-top: 0;
+  }
+
+  .expertise-description {
+    margin-bottom: 28px;
+    line-height: 1.75;
+  }
+
+  /* Cards — consistent spacing */
+  .path-heading {
+    margin-bottom: 36px;
+  }
+
+  .path-grid,
+  .feature-grid {
+    gap: var(--card-gap);
+  }
+
+  .feature-card {
+    min-height: 230px;
+  }
+
+  /* Market chart — avoid forced full-screen height */
+  .body-Dash {
+    min-height: auto;
+    padding: 48px 24px;
+  }
+
+  .dashboard-card {
+    max-width: 1200px;
+    border-radius: 24px;
+  }
+
+  /* Final section — no oversized outer gutters */
+  .body-rmi {
+    min-height: auto;
+    padding: 28px 24px;
+  }
+
+  /* Tablet */
+  @media (max-width: 900px) {
+    .expertise,
+    .path-section,
+    .why-section {
+      padding: 64px 24px;
+    }
+
+    .expertise-layout {
+      gap: 30px;
+    }
+
+    .hero-container {
+      min-height: 520px;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .expertise,
+    .path-section,
+    .why-section {
+      padding: 52px 18px;
+    }
+
+    .hero {
+      padding: 94px 18px 48px;
+    }
+
+    .hero-container {
+      min-height: auto;
+    }
+
+    .hero-title-wrapper {
+      min-height: 90px;
+      margin-bottom: 20px;
+    }
+
+    .hero-buttons {
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 12px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      min-width: 0;
+      width: 100%;
+      padding: 15px 20px;
+    }
+
+    .expertise-image {
+      aspect-ratio: 4 / 3;
+    }
+
+    .body-Dash {
+      padding: 32px 12px;
+    }
+
+    .dashboard-card {
+      padding: 16px 12px;
+      border-radius: 18px;
+    }
+
+    .body-rmi {
+      padding: 20px 12px;
+    }
+  }
+</style>
+
+<!-- ----TRUST------ -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regulation Section</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #000;
+        /* font-family: "Inter", sans-serif; */
+      }
+
+      .regulation {
+        position: relative;
+
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        /* overflow: hidden; */
+        background: #000;
+        margin-bottom: 2rem;
+      }
+
+      /* Background Image */
+      .regulation-bg {
+        position: absolute;
+        top: 12rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 69%;
+        max-width: 1600px;
+        pointer-events: none;
+        z-index: 1;
+        mask-image: radial-gradient(
+          ellipse at center,
+          rgba(0, 0, 0, 1) 45%,
+          rgb(0 0 0) 60%,
+          rgb(0 0 0 / 29%) 75%,
+          rgba(0, 0, 0, 0) 100%
+        );
+      }
+
+      .regulation-bg img {
+        width: 100%;
+        /* height: 390px; */
+        display: block;
+      }
+
+      /* Content */
+      .regulation-content {
+        position: relative;
+        z-index: 5;
+        text-align: center;
+        padding-top: 70px;
+      }
+
+      .regulation-title {
+        font-family: "Nacelle", sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 45px;
+        line-height: 50px;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgb(0 215 255 / 90%) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -1px;
+      }
+
+      .regulation-icons {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .regulation-icons img {
+        width: 350px;
+        max-width: 90%;
+      }
+
+      .join-us {
+        margin-top: 25px;
+      }
+
+      .join-us a {
+        text-decoration: none;
+        color: #32ff45;
+        font-size: 24px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: 0.3s;
+      }
+
+      .join-us a:hover {
+        transform: translateY(-2px);
+      }
+
+      .learn-more svg {
+        width: 18px;
+        height: 18px;
+        fill: #32ff45;
+      }
+
+      /* Tablet */
+      @media (max-width: 1024px) {
+        .regulation-title {
+          font-size: 46px;
+          max-width: 700px;
+        }
+
+        .regulation-icons img {
+          width: 280px;
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        .regulation {
+          min-height: 400px;
+          overflow: hidden;
+        }
+
+        .regulation-content {
+          padding-top: 50px;
+        }
+
+        .regulation-title {
+          font-size: 33px;
+          line-height: 1.05;
+          max-width: 100%;
+          padding: 0 8px;
+        }
+
+        .regulation-icons img {
+          width: 240px;
+        }
+
+        .join-us a {
+          font-size: 18px;
+        }
+
+        .regulation-bg {
+          width: 140%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="trustt">
+      <section class="regulation">
+        <div class="regulation-content">
+          <h2 class="regulation-title">
+            Trusted by Aspiring Traders Worldwide
+          </h2>
+
+          <div class="regulation-icons">
+            <img src="Photos/iconsss.png" alt="" />
+          </div>
+
+          <!-- <div class="join-us">
+          <a href="#">
+            Learn more
+            <svg viewBox="0 0 24 24">
+              <path d="M8 5l8 7-8 7" />
+            </svg>
+          </a>
+        </div> -->
+        </div>
+
+        <div class="regulation-bg">
+          <img src="Photos/trust.png" alt="" />
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
+
+<!-- ---- CTA ----  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB | Take the Next Step</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --cyan: #09c8ec;
+        --black: #030608;
+        --white: #f8fafc;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Inter, Arial, sans-serif;
+        background: #030405;
+        color: var(--white);
+      }
+
+      /* Outer section */
+      .cta-section {
+        width: 100%;
+        padding: 65px 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        margin-top: 30rem;
+      }
+
+      /* Main image card */
+      .cta-card {
+        position: relative;
+        isolation: isolate;
+        width: 100%;
+        max-width: 1090px;
+        min-height: 350px;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        border: 1px solid rgb(145 145 145 / 85%);
+        border-radius: 16px;
+        background-color: #061016;
+        background-image:
+          linear-gradient(
+            90deg,
+            rgb(2 8 12) 0%,
+            rgb(2 8 12) 27%,
+            rgb(2 8 12 / 89%) 44%,
+            rgb(2 8 12 / 36%) 75%,
+            rgba(2, 8, 12, 0.05) 100%
+          ),
+          url(Photos/LabNight1.png);
+        background-size: cover;
+        background-position: center;
+        box-shadow:
+          0 0 35px rgba(9, 200, 236, 0.08),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+        transform: translateY(24px);
+        opacity: 0;
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease,
+          box-shadow 0.35s ease;
+        transition:
+          opacity 1.8s ease,
+          transform 0.8s ease,
+          box-shadow 0.35s ease;
+      }
+
+      .cta-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .cta-card:hover {
+        box-shadow:
+          0 0 45px rgba(9, 200, 236, 0.13),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+      }
+
+      /* Left content */
+      .cta-content {
+        position: relative;
+        z-index: 2;
+        width: 62%;
+        max-width: 850px;
+        padding: 50px 0 50px 6%;
+      }
+
+      .eyebrow {
+        color: var(--cyan);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 13px;
+      }
+
+      .cta-content h1 {
+        font-size: 44px;
+        line-height: 1.08;
+        font-weight: 700;
+        letter-spacing: -1.8px;
+        margin-bottom: 14px;
+        color: #fff;
+      }
+
+      .cta-description {
+        color: rgba(245, 249, 252, 0.82);
+        font-size: clamp(12px, 1vw, 16px);
+        font-weight: 400;
+        line-height: 1.8;
+        max-width: 690px;
+      }
+
+      .cta-highlight {
+        display: block;
+        color: var(--cyan);
+        margin-top: 2px;
+        font-weight: 500;
+      }
+
+      /* CTA button */
+      .cta-button {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        margin-top: 25px;
+        padding: 13px 20px;
+        min-height: 43px;
+        border: 1px solid rgba(9, 200, 236, 0.9);
+        border-radius: 7px;
+        background: var(--cyan);
+        color: #031015;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        transition:
+          background 0.25s ease,
+          box-shadow 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .cta-button:hover {
+        background: #65e6fa;
+        box-shadow: 0 0 28px rgba(9, 200, 236, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .telegram-icon {
+        width: 19px;
+        height: 19px;
+        flex-shrink: 0;
+      }
+
+      .arrow {
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 1;
+        transition: transform 0.25s ease;
+      }
+
+      .cta-button:hover .arrow {
+        transform: translateX(4px);
+      }
+
+      /* Cinematic image depth */
+      .cta-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        border-radius: inherit;
+        background:
+          linear-gradient(0deg, rgba(1, 5, 8, 0.2), transparent 35%),
+          linear-gradient(180deg, rgba(1, 5, 8, 0.08), transparent 30%);
+      }
+
+      /* Tablet */
+      @media (max-width: 900px) {
+        .cta-section {
+          padding: 45px 20px;
+        }
+
+        .cta-card {
+          min-height: 360px;
+          background-position: 58% center;
+        }
+
+        .cta-content {
+          width: 76%;
+          padding: 48px 0 48px 6%;
+        }
+
+        .cta-content h1 {
+          font-size: clamp(32px, 5vw, 44px);
+        }
+
+        .cta-description {
+          max-width: 520px;
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 600px) {
+        .cta-section {
+          padding: 28px 15px;
+        }
+
+        .cta-card {
+          min-height: 400px;
+          align-items: flex-end;
+          border-radius: 15px;
+          background-position: 61% center;
+          background-image:
+            linear-gradient(
+              0deg,
+              rgba(2, 7, 10, 0.99) 0%,
+              rgba(2, 7, 10, 0.93) 38%,
+              rgba(2, 7, 10, 0.53) 70%,
+              rgba(2, 7, 10, 0.14) 100%
+            ),
+            url("https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=1200&auto=format&fit=crop&q=85");
+        }
+
+        .cta-content {
+          width: 100%;
+          max-width: none;
+          padding: 35px 23px 28px;
+        }
+
+        .eyebrow {
+          font-size: 9px;
+          letter-spacing: 3px;
+          margin-bottom: 11px;
+        }
+
+        .cta-content h1 {
+          font-size: clamp(30px, 8vw, 39px);
+          line-height: 1.12;
+          letter-spacing: -1.2px;
+          margin-bottom: 13px;
+        }
+
+        .cta-description {
+          font-size: 12px;
+          line-height: 1.75;
+        }
+
+        .cta-button {
+          margin-top: 21px;
+          padding: 14px 16px;
+          font-size: 12px;
+          min-height: 48px;
+          gap: 10px;
+        }
+
+        .telegram-icon {
+          width: 17px;
+          height: 17px;
+        }
+
+        .arrow {
+          font-size: 19px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+
+        .cta-card {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="cta-section">
+      <div class="cta-card" id="ctaCard">
+        <div class="cta-content">
+          <p class="eyebrow">Take the Next Step</p>
+
+          <h1>
+            Take the Risk<br />
+            or Lose the Chance.
+          </h1>
+
+          <p class="cta-description">
+            You don't need another strategy. You need an edge.<br />
+            You need a process. You need discipline. You need consistency.
+            <span class="cta-highlight">
+              Start building yours with UGFXLAB.
+            </span>
+          </p>
+
+          <a
+            href="https://t.me/"
+            class="cta-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              class="telegram-icon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M21.8 3.2a1.4 1.4 0 0 0-1.5-.2L2.4 10.1c-1.2.5-1.1 1.3.2 1.7l4.6 1.5 1.8 5.6c.3.8.6 1.1 1.2 1.1.5 0 .8-.2 1.1-.6l2.7-2.6 4.6 3.4c.9.5 1.6.2 1.8-.9l3-14.6c.2-.7 0-1.2-.6-1.5ZM8 13l9.7-6.1c.5-.3.9-.1.5.3l-8 7.2-.3 3.1L8 13Z"
+              />
+            </svg>
+
+            <span>Join the Free Community</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Smooth scroll-reveal animation
+      const ctaCard = document.getElementById("ctaCard");
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries, obs) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                obs.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+
+        observer.observe(ctaCard);
+      } else {
+        ctaCard.classList.add("visible");
+      }
+    </script>
+  </body>
+</html>
+
+<!-- ---- Footer ---  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFX LAB – Footer Pro</title>
+    <!-- Font Awesome 6 (free) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <!-- Google Font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .body-footer {
+        background: #0b0b0b;
+        font-family: "Inter", Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      /* ----- footer main ----- */
+      .foot-footer {
+        background: #0f0f0f;
+        color: #fff;
+        padding: 60px 40px 30px;
+        border-top: 1px solid #2a2a2a;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      .foot-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2.4fr 1fr 1fr 1.2fr;
+        gap: 50px 60px;
+        padding: 0 2rem;
+      }
+
+      /* ----- left column (logo + belief) ----- */
+      .foot-left {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .foot-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 10px;
+      }
+
+      .foot-logo-img {
+        width: 230px;
+        height: 58px;
+        object-fit: contain;
+        filter: brightness(1.05);
+        display: block;
+        flex-shrink: 0;
+      }
+
+      .foot-brand-name {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+        color: #ffffff;
+        line-height: 1.2;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-brand-name span {
+        color: #09c8ec;
+        font-weight: 400;
+      }
+
+      .foot-belief {
+        margin: 6px 0 18px 0;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #d0d0d0c9;
+        max-width: 420px;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+        padding-left: 18px;
+        border-left: 2px solid #09c8ec;
+        font-style: italic;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-belief i {
+        color: #09c8ec;
+        margin-right: 4px;
+        opacity: 0.7;
+      }
+
+      /* social icons row (left column) */
+      .foot-social-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+        margin-top: 6px;
+      }
+
+      .foot-social-row a {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 20px;
+        text-decoration: none;
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s,
+          box-shadow 0.2s;
+        background: #1e1e1e;
+        border: 1px solid #333;
+      }
+
+      .foot-social-row a:hover {
+        transform: scale(1.08);
+        opacity: 0.95;
+        box-shadow: 0 0 0 2px #09c8ec;
+      }
+
+      /* brand colors for icons */
+      .foot-social-row .foot-fb {
+        background: #1877f2;
+        border-color: #1877f2;
+      }
+      .foot-social-row .foot-ig {
+        background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+        border-color: transparent;
+      }
+      .foot-social-row .foot-yt {
+        background: #ff0000;
+        border-color: #ff0000;
+      }
+      .foot-social-row .foot-tg {
+        background: #0088cc;
+        border-color: #0088cc;
+      }
+      .foot-social-row .foot-dc {
+        background: #5865f2;
+        border-color: #5865f2;
+      }
+      .foot-social-row .foot-tiktok {
+        background: #000000;
+        border-color: #333;
+      }
+      .foot-social-row .foot-wa {
+        background: #25d366;
+        border-color: #25d366;
+      }
+
+      /* ----- headings & links (company, services, more) ----- */
+      .foot-heading {
+        font-size: 15px;
+        margin-bottom: 24px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        color: #f0f0f0;
+        text-transform: uppercase;
+        opacity: 0.8;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      .foot-links a {
+        display: block;
+        color: #c5c5c5;
+        text-decoration: none;
+        font-size: 16px;
+        margin-bottom: 16px;
+        transition:
+          color 0.2s ease,
+          padding-left 0.15s;
+        font-weight: 400;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      .foot-links a:hover {
+        color: #09c8ec;
+        padding-left: 4px;
+      }
+
+      /* ----- bottom bar (copyright + credit) ----- */
+      .foot-bottom {
+        max-width: 1400px;
+        margin: 30px auto 0;
+        padding-top: 22px;
+        border-top: 1px solid #2a2a2a;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 15px;
+        color: #b0b0b0;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      .foot-bottom .foot-copy a {
+        color: #09c8ec;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .foot-bottom .foot-copy a:hover {
+        color: #7adef2;
+      }
+
+      .foot-bottom .foot-credit a {
+        color: #09c8ec;
+        text-decoration: none;
+        font-weight: 400;
+        border-bottom: 1px dotted #555;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .foot-bottom .foot-credit a:hover {
+        color: #7adef2;
+        border-bottom-color: #09c8ec;
+      }
+
+      /* contact details block */
+      .foot-contact-details {
+        margin-top: 24px;
+        padding-top: 18px;
+        border-top: 1px solid #2a2a2a;
+        font-size: 15px;
+        line-height: 1.8;
+        color: #c0c0c0;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-contact-details a {
+        color: #c5c5c5;
+        text-decoration: none;
+        transition: color 0.2s;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-contact-details a:hover {
+        color: #09c8ec;
+      }
+      .foot-contact-details i {
+        width: 20px;
+        color: #09c8ec;
+        opacity: 0.9;
+        margin-right: 6px;
+      }
+
+      /* ----- responsive: 2 columns in a row (tablet) ----- */
+      @media (max-width: 1100px) {
+        .foot-container {
+          grid-template-columns: 1fr 1fr;
+          gap: 40px 30px;
+          padding: 0 0.5rem;
+        }
+        .foot-left {
+          grid-column: 1 / -1;
+        }
+        .foot-belief {
+          max-width: 100%;
+        }
+      }
+
+      /* small screens: single column */
+      @media (max-width: 700px) {
+        .foot-footer {
+          padding: 40px 20px 25px;
+        }
+
+        .foot-container {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 30px 20px;
+          padding: 0;
+        }
+
+        .foot-left {
+          grid-column: 1 / -1;
+        }
+
+        .foot-container > .foot-links:nth-child(2),
+        .foot-container > .foot-links:nth-child(3) {
+          grid-column: auto;
+        }
+
+        .foot-container > .foot-links:nth-child(4) {
+          grid-column: 1 / -1;
+        }
+
+        .foot-brand-name {
+          font-size: 24px;
+        }
+
+        .foot-social-row a {
+          width: 44px;
+          height: 44px;
+          font-size: 18px;
+        }
+
+        .foot-bottom {
+          flex-direction: column;
+          gap: 12px;
+          text-align: center;
+          margin-top: 30px;
+          padding-top: 18px;
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        .foot-belief {
+          padding-left: 14px;
+          font-size: 16px;
+        }
+
+        .foot-contact-details {
+          font-size: 14px;
+        }
+      }
+
+      @media (max-width: 450px) {
+        .foot-brand {
+          flex-wrap: wrap;
+        }
+        .foot-logo-img {
+          width: 48px;
+          height: 48px;
+        }
+        .foot-brand-name {
+          font-size: 20px;
+        }
+      }
+
+      /* fix for X icon (Font Awesome 6) */
+      .fa-x-twitter::before {
+        content: "\e9ca";
+        font-family: "Font Awesome 6 Brands";
+      }
+    </style>
+  </head>
+  <body>
+    <div class="body-footer">
+      <footer class="foot-footer">
+        <div class="foot-container">
+          <!-- LEFT column: logo + name + belief + socials + contacts -->
+          <div class="foot-left">
+            <div class="foot-brand">
+              <!-- replace src with your actual logo path -->
+              <img
+                class="foot-logo-img"
+                src="Photos/UGFXLABLogo.png"
+                alt="UGFX LAB logo"
+              />
+              <!-- <span class="foot-brand-name">UGFX<span> LAB</span></span> -->
+            </div>
+
+            <div class="foot-belief">
+              <i
+                class="fas fa-quote-left"
+                style="opacity: 0.5; font-size: 14px"
+              ></i>
+              One good trade proves nothing. Real consistency comes from knowing
+              your edge, managing your risk and being able to execute your
+              process repeatedly — regardless of the outcome.
+              <i
+                class="fas fa-quote-right"
+                style="opacity: 0.5; font-size: 14px"
+              ></i>
+            </div>
+
+            <!-- Social icons (left column) -->
+            <div class="foot-social-row">
+              <a
+                href="https://www.youtube.com/@fxlabtrades"
+                class="foot-yt"
+                aria-label="YouTube"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a
+                href="https://t.me/ugfxlab"
+                class="foot-tg"
+                aria-label="Telegram channel"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-telegram-plane"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/fxlabtrades/"
+                class="foot-ig"
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@fxlabtrades"
+                class="foot-tiktok"
+                aria-label="TikTok"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/fxlabtrades"
+                class="foot-fb"
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="https://wa.me/message/A6ENZ2W5UUSJK1"
+                class="foot-wa"
+                aria-label="WhatsApp Business"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+            </div>
+
+            <!-- Contact details -->
+            <!-- <div class="foot-contact-details">
+              <div>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:support@ugfxlab.com">support@ugfxlab.com</a>
+              </div>
+              <div>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:partneships@ugfxlab.com"
+                  >partneships@ugfxlab.com</a
+                >
+              </div>
+              <div>
+                <i class="fab fa-telegram-plane"></i>
+                <a
+                  href="https://t.me/ugfxlab"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Telegram channel</a
+                >
+              </div>
+              <div>
+                <i class="fas fa-user-shield"></i>
+                <a
+                  href="https://t.me/fxlab_admin"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Telegram Support/Admin</a
+                >
+              </div>
+            </div> -->
+          </div>
+
+          <!-- COMPANY / HOME / ABOUT / COMMUNITY ... -->
+          <div class="foot-links">
+            <h3 class="foot-heading">COMPANY</h3>
+            <a href="index.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="Community.html">Community</a>
+            <a href="Mentorship.html">Mentorship</a>
+            <a href="Results.html">Results</a>
+            <a href="Contact.html">Contact</a>
+          </div>
+
+          <!-- SERVICES / FXLABTRADES / THE LAB / 1-ON-1 MENTORSHIP -->
+          <div class="foot-links">
+            <h3 class="foot-heading">SERVICES</h3>
+            <a href="Services/FXLABTRADES.html">FXLABTRADES</a>
+            <a href="Services/THE-LAB.html">THE LAB</a>
+            <a href="Services/1-ON-1-MENTORSHIP.html">1-ON-1 MENTORSHIP</a>
+          </div>
+
+          <!-- MORE -->
+          <div class="foot-links">
+            <h3 class="foot-heading">MORE</h3>
+            <a href="terms.html">Terms of Service</a>
+            <a href="Privacy.html">Privacy Policy</a>
+          </div>
+        </div>
+
+        <!-- BOTTOM BAR -->
+        <div class="foot-bottom">
+          <div class="foot-copy">
+            &copy; 2026
+            <a href="https://ugfxlab.com/">UGFX LAB</a> — All Rights Reserved
+          </div>
+          <div class="foot-credit">
+            Designed by
+            <a
+              href="https://skilled-va.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Skilled VA</a
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
